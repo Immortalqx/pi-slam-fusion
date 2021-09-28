@@ -1,0 +1,8 @@
+{  
+global:  
+  PILBuildManifest;  
+  PILInitializeLibrary;
+  PILUninitializeLibrary;
+  createSLAMInstance; 
+local: *;  
+};

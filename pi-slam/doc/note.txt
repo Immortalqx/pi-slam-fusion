@@ -1,0 +1,1 @@
+./pislam Mapper.Matcher=bow SLAM.MaxOverlap=0.90 Dataset=/home/bushuhui/rtmapper/projects/DataSet_lostframe_36_42/DataSet_lostframe_36_42.rtm GPS.LocalOptimize=0

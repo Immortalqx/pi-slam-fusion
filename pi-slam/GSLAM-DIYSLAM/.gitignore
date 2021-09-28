@@ -1,0 +1,6 @@
+build
+*.user
+.qglviewer.xml
+cmake-build-debug
+.idea
+Default.cfg

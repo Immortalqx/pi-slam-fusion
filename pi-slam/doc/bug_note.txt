@@ -1,0 +1,784 @@
+
+
+
+
+Thread 19 "pislam" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fffa6c18700 (LWP 7902)]
+std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release (this=0x164) at /usr/include/c++/5/bits/shared_ptr_base.h:147
+147		if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, -1) == 1)
+
+
+(gdb) bt full
+#0  std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release (this=0x164) at /usr/include/c++/5/bits/shared_ptr_base.h:147
+No locals.
+#1  0x00000000005cebec in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::~__shared_count (this=<optimized out>, __in_chrg=<optimized out>) at /usr/include/c++/5/bits/shared_ptr_base.h:659
+No locals.
+#2  std::__shared_ptr<GSLAM::Estimator, (__gnu_cxx::_Lock_policy)2>::~__shared_ptr (this=<optimized out>, __in_chrg=<optimized out>) at /usr/include/c++/5/bits/shared_ptr_base.h:925
+No locals.
+#3  std::__shared_ptr<GSLAM::Estimator, (__gnu_cxx::_Lock_policy)2>::operator=(std::__shared_ptr<GSLAM::Estimator, (__gnu_cxx::_Lock_policy)2>&&) (
+    __r=<unknown type in /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/build/pislam, CU 0x12e8716, DIE 0x134c94b>, this=0x7fff8c00cab8)
+    at /usr/include/c++/5/bits/shared_ptr_base.h:1000
+No locals.
+#4  std::shared_ptr<GSLAM::Estimator>::operator=(std::shared_ptr<GSLAM::Estimator>&&) (
+    __r=<unknown type in /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/build/pislam, CU 0x12e8716, DIE 0x1357fee>, this=0x7fff8c00cab8)
+    at /usr/include/c++/5/bits/shared_ptr.h:294
+No locals.
+#5  MatcherBoW::MatcherBoW (this=0x7fff8c00cab0) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MatcherBoW.cpp:19
+No locals.
+#6  0x00000000005ce2be in createbow () at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MatcherBoW.cpp:405
+No locals.
+#7  0x000000000061c964 in Matcher::create (desireType=<error reading variable: access outside bounds of object referenced via synthetic pointer>)
+    at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/Matcher.h:33
+No locals.
+#8  zhaoyong::LoopCloserSE3Graph::LoopCloserSE3Graph (this=0x7fff8c01ae60, map=...) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/LoopCloserDemo.cpp:146
+No locals.
+#9  0x0000000000618012 in zhaoyong::createse3graph (map=std::shared_ptr (count 5, weak 0) 0x7fff8c00b240) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/LoopCloserDemo.cpp:423
+No locals.
+#10 0x00000000005e7f02 in Mapper::create (desireType=..., map=std::shared_ptr (count 5, weak 0) 0x7fff8c00b240) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/Mapper.h:34
+        inst = <optimized out>
+#11 demo::Mapper::Mapper (this=0x7fff8c00b4e0, map=std::shared_ptr (count 5, weak 0) 0x7fff8c00b240) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MapperDemo.cpp:241
+No locals.
+#12 0x00000000005e87f2 in createdemo (map=std::shared_ptr (count 5, weak 0) 0x7fff8c00b240) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MapperDemo.cpp:1402
+No locals.
+#13 0x00000000005b1e44 in Mapper::create (map=std::shared_ptr (count 5, weak 0) 0x7fff8c00b240, desireType="demo") at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/Mapper.h:34
+No locals.
+#14 0x00000000005a6c64 in Tracker::Tracker (mapper=..., map=..., this=0x7fff8c005e50) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/Tracker.h:17
+No locals.
+#15 opt::Tracker::Tracker (this=0x7fff8c005e50, map=..., mapper=...) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:132
+No locals.
+#16 0x00000000005a74ae in createTrackerDemoopt (map=std::shared_ptr (count 5, weak 0) 0x7fff8c00b240, mapper=std::shared_ptr (empty) 0x0)
+    at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:1567
+No locals.
+#17 0x0000000000644cb0 in Tracker::create (desireType=..., mapper=std::shared_ptr (empty) 0x0, map=std::shared_ptr (count 5, weak 0) 0x7fff8c00b240)
+    at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/Tracker.h:42
+        inst = @0x1075d80: {data = std::map with 6 elements = {["demo"] = 0x6318a0 <createTrackerDemodemo(GSLAM::MapPtr const&, std::shared_ptr<Mapper> const&)>, ["loadmap"] = 0x5dc830
+     <zhaoyong::createTrackerloadmap(GSLAM::MapPtr const&, std::shared_ptr<Mapper> const&)>, ["opt"] = 0x5a7480 <createTrackerDemoopt(GSLAM::MapPtr const&, std::shared_ptr<Mapper> const&)>, 
+            ["ransacPnP"] = 0x5bcb30 <createTrackerRansacPnPransacPnP(GSLAM::MapPtr const&, std::shared_ptr<Mapper> const&)>, ["testInit"] = 0x639c00
+     <createTrackerDemotestInit(GSLAM::MapPtr const&, std::shared_ptr<Mapper> const&)>, ["testLoopDetector"] = 0x616b80
+     <createTrackerTestLoopDetectortestLoopDetector(GSLAM::MapPtr const&, std::shared_ptr<Mapper> const&)>}, mMutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+                  __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+#18 DIYSLAM::track (this=0x138b690, frame=std::shared_ptr (count 2, weak 0) 0x7fff8c00b060) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/DIYSLAM.cpp:112
+        map2load = "Tracker"
+        image = {cols = 0, rows = 0, flags = 0, data = 0x0, refCount = 0x0}
+        imgFile = ""
+        gpsData = std::vector of length 536, capacity -17591998885662 = {4.9406564584124654e-324, -1.3324910761727524e-47, 8.5351777056407038e-317, 8.5351777056407038e-317, 8.5352132783672044e-317, 
+          6.9533482179055698e-310, 0, 8.5352014207917042e-317, 6.9532818328862311e-310, 6.9533482208384916e-310, 9.4516813362517163e-317, 6.9532596559932042e-310, 6.9531436082559078e-310, 
+---Type <return> to continue, or q <return> to quit---
+          -1.3324910761727524e-47, 6.95325965714497e-310, 6.9532596559932042e-310, 6.9532818328862311e-310, 4.9406564584124654e-324, 6.95325965714497e-310, 6.953259657146551e-310, 
+          6.9533491445605696e-310, 6.9533482211998513e-310, 1.0164471819769466e-316, 1.0164471819769466e-316, 6.953281832881488e-310, 1.0164463914719133e-316, 6.9532818328822785e-310, 
+          6.9533483935317766e-310, 9.4516813362517163e-317, 6.9532818330443321e-310, 1.0164424389467465e-316, 1.3339772437713657e-322, 6.953281832883069e-310, 4.9406564584124654e-324, 
+          1.0164487629870133e-316, 6.953259657141808e-310, 8.178723176004328e-317, 2.5361219631316198e-317, 6.9200652518101687e-317, 6.9169190417774516e-323, 0, -1.3324910761727524e-47, 
+          6.9533558073172235e-310, 6.9532818328901836e-310, 6.953259657141808e-310, 3.8485967532303572e-205, 2.5361219631316198e-317, 3.4054324432518765e-317, 6.9533558073172235e-310, 
+          3.408574206693781e-317, 0, 0.01, 6.9532596571315314e-310, 6.953259657141808e-310, 9.4517050514027167e-317, 0, 6.9532818328901836e-310, 6.9169190417774516e-323, 7.3850181444447128e-28, 
+          5.8336594028762838e-310, 6.9532818328917646e-310, 0, 7.3850181444446518e-28, 5.8336594028762838e-310, 0, -1.3324910761727524e-47, 9.6112763974339392e-317, 0, 0, 6.9533558071930648e-310, 
+          6.9532818330791143e-310, 6.9533460803037747e-310, 0, 0, 0, 6.9533472946488523e-310, 0, 6.9532818330443321e-310, 6.9532818330443321e-310, -4.5339012194811452e-48, 0, 6.9533558071930648e-310, 
+          6.9532818330791143e-310, 3.4054324432518765e-317, 9.9565522796866643e+47, 9.7804401434563326e+47, 0, 0, 0, 0, 0, 0, 0, 0, 6.9532818330443321e-310, 6.9533455240868939e-310, 0, 0, 0, 0, 0, 0, 
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...}
+        mpFrame = <optimized out>
+#19 0x0000000000694557 in SLAM_System::slamThread (this=0x7fffffffd710) at /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/gui/main.cpp:104
+        Fr = std::shared_ptr (count 2, weak 0) 0x7fff8c00b060
+        rate = {_cycle = 0.01, _tmBegin = {__d = {__r = 1548925865322758955}}}
+        str = "DIYSLAM::Track"
+#20 0x00007ffff443bc80 in ?? () from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+No symbol table info available.
+#21 0x00007ffff5bac6ba in start_thread (arg=0x7fffa6c18700) at pthread_create.c:333
+        __res = <optimized out>
+        pd = 0x7fffa6c18700
+        now = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140735991088896, -5324801403687566866, 0, 140737488342335, 140735991089600, 6892672, 5324887359021613550, 5324778821537858030}, 
+              mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = <optimized out>
+        pagesize_m1 = <optimized out>
+        sp = <optimized out>
+        freesize = <optimized out>
+        __PRETTY_FUNCTION__ = "start_thread"
+#22 0x00007ffff397f41d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+No locals.
+(gdb) 
+
+
+
+
+
+
+MapperDemo.cpp:308 New KeyFrame:207,ER:253, Created 272 pt,FUSE1:630,FUSE:2320,BA:100-1870-24640,EO:2103,EP:32
+TrackerOpt.cpp:92 Frame 208,1076 kpts,trackLastFrame,Match25/25/26,Inliers25,LocalPts:1770,Try:171-Matched56,FOV:0.0434338,KF
+TrackerOpt.cpp:184 , trackLastFrame: 1
+MapperDemo.cpp:308 New KeyFrame:208,ER:250, Created 329 pt,FUSE1:602,FUSE:2610,BA:101-1871-25167,EO:3121,EP:57
+TrackerOpt.cpp:92 Frame 209,1048 kpts,trackLastFrame,Match24/24/25,Inliers24,LocalPts:1768,Try:164-Matched55,FOV:0.0203509,KF
+TrackerOpt.cpp:184 , trackLastFrame: 1
+MapperDemo.cpp:308 New KeyFrame:209,ER:238, Created 277 pt,FUSE1:606,FUSE:3071,BA:98-1633-21844,EO:2228,EP:27
+TrackerOpt.cpp:92 Frame 210,1100 kpts,trackLastFrame,Match23/23/24,Inliers23,LocalPts:1754,Try:149-Matched43,FOV:0.0413685,KF
+TrackerOpt.cpp:184 , trackLastFrame: 1
+MapperDemo.cpp:308 New KeyFrame:210,ER:222, Created 324 pt,FUSE1:592,FUSE:2009,BA:99-1684-21772,EO:2658,EP:66
+TrackerOpt.cpp:92 Frame 211,1065 kpts,trackLastFrame,Match23/23/23,Inliers22,LocalPts:1824,Try:181-Matched65,FOV:0.039825,KF
+TrackerOpt.cpp:184 , trackLastFrame: 1
+MapperDemo.cpp:308 New KeyFrame:211,ER:272, Created 322 pt,FUSE1:581,FUSE:2435,BA:100-1639-21062,EO:2544,EP:86
+TrackerOpt.cpp:92 Frame 212,1071 kpts,trackLastFrame,Match22/22/22,Inliers22,LocalPts:1810,Try:160-Matched53,FOV:0.0352373,KF
+TrackerOpt.cpp:184 , trackLastFrame: 0
+
+-------------------------------------------------------------------------------------------
+Caught signal 11 (SIGSEGV)
+stack trace:
+  ./pislam [ MatcherBoW::match4triangulation(std::shared_ptr<GSLAM::MapFrame> const&, std::shared_ptr<GSLAM::MapFrame> const&, std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >&) const + 0x9a8 ] [0x5cffe8]
+TrackerOpt.cpp:192 Losted at frame 213
+TrackerOpt.cpp:92 Frame 213,1068 kpts,trackLastFrame,Match19/19/21,trackRefKeyframeRansac212,Match667, matchRes=1,Obs19,trackrefFrame212,Match667,PnP19,Failed to find relative pose
+TrackerOpt.cpp:92 Frame 214,1087 kpts,RL
+TrackerOpt.cpp:92 Frame 215,1052 kpts,RL
+TrackerOpt.cpp:92 Frame 216,1057 kpts,RL
+TrackerOpt.cpp:92 Frame 217,1041 kpts,RL
+TrackerOpt.cpp:92 Frame 218,1004 kpts,RL
+TrackerOpt.cpp:92 Frame 219,1076 kpts,RL
+TrackerOpt.cpp:92 Frame 220,1050 kpts,RL
+TrackerOpt.cpp:92 Frame 221,1056 kpts,RL
+TrackerOpt.cpp:92 Frame 222,1058 kpts,RL
+TrackerOpt.cpp:92 Frame 223,1071 kpts,RL
+TrackerOpt.cpp:92 Frame 224,1090 kpts,RL
+TrackerOpt.cpp:92 Frame 225,1097 kpts,RL
+TrackerOpt.cpp:92 Frame 226,1088 kpts,RL
+TrackerOpt.cpp:92 Frame 227,1094 kpts,RL
+TrackerOpt.cpp:92 Frame 228,1131 kpts,RL
+TrackerOpt.cpp:92 Frame 229,1087 kpts,RL
+TrackerOpt.cpp:92 Frame 230,1094 kpts,RL
+TrackerOpt.cpp:92 Frame 231,1103 kpts,RL
+TrackerOpt.cpp:92 Frame 232,1097 kpts,RL
+      /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MatcherBoW.cpp:72
+  ./pislam [ demo::Mapper::createNewMapPointsBow() + 0x12b4 ] [0x5f2a44]
+TrackerOpt.cpp:92 Frame 233,1100 kpts,RL
+      /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MapperDemo.cpp:445
+  ./pislam [ demo::Mapper::handleCurrentFrame() + 0x398 ] [0x5f33d8]
+TrackerOpt.cpp:92 Frame 234,1078 kpts,RL
+      /home/bushuhui/pis/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MapperDemo.cpp:285
+  ./pislam [ demo::Mapper::mappingThread() + 0x105 ] [0x5f3625]
+TrackerOpt.cpp:92 Frame 235,1054 kpts,RL
+      /usr/include/c++/5/bits/stl_deque.h:1550
+  /usr/lib/x86_64-linux-gnu/libstdc++.so.6 [  + 0xb8c80 ] [0x7f784d12cc80]
+TrackerOpt.cpp:92 Frame 236,1072 kpts,RL
+      ??:0
+  /lib/x86_64-linux-gnu/libpthread.so.0 [  + 0x76ba ] [0x7f784e89d6ba]
+      ??:0
+-------------------------------------------------------------------------------------------
+
+
+
+
+
+## TrackerOpt.cpp line.1132 行导致了内存访问异常，异常的内容是“malloc(): smallbin double linked list corrupted”
+
+(gdb) bt full
+#0  0x00007ffff38ad428 in __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:54
+        resultvar = 0
+        pid = 19475
+        selftid = 19496
+#1  0x00007ffff38af02a in __GI_abort () at abort.c:89
+        save_stage = 2
+        act = {__sigaction_handler = {sa_handler = 0x370a302e302e3231, sa_sigaction = 0x370a302e302e3231}, sa_mask = {__val = {3906137538957829734, 7378697426660503600, 3472328326379693413, 
+              3472310978873881120, 3467824696600441904, 3546357245911579192, 2314885531121889843, 2314885530818453536, 2314885530818453536, 7091318039310988591, 3257288213055174703, 
+              7955377262162766188, 7809602816349843317, 3328777150088293990, 7378697426073300528, 3472328326379693413}}, sa_flags = 1717974829, sa_restorer = 0xad}
+        sigs = {__val = {32, 0 <repeats 15 times>}}
+#2  0x00007ffff38ef7ea in __libc_message (do_abort=do_abort@entry=2, fmt=fmt@entry=0x7ffff3a08ed8 "*** Error in `%s': %s: 0x%s ***\n") at ../sysdeps/posix/libc_fatal.c:175
+        ap = <error reading variable ap (Attempt to dereference a generic pointer.)>
+        fd = 29
+        on_2 = <optimized out>
+        list = <optimized out>
+        nlist = <optimized out>
+        cp = <optimized out>
+        written = <optimized out>
+#3  0x00007ffff38fa651 in malloc_printerr (ar_ptr=0x7fff8fffe280, ptr=0x7fff6c3a4300, str=0x7ffff3a09308 "malloc(): smallbin double linked list corrupted", action=3) at malloc.c:5006
+        buf = "00007fff6c3a4300"
+        cp = <optimized out>
+        ar_ptr = 0x7fff8fffe280
+        ptr = 0x7fff6c3a4300
+        str = 0x7ffff3a09308 "malloc(): smallbin double linked list corrupted"
+        action = 3
+#4  _int_malloc (av=av@entry=0x7fff6c000020, bytes=bytes@entry=8) at malloc.c:3386
+        fb = <optimized out>
+        pp = <optimized out>
+        nb = 32
+        idx = <optimized out>
+        bin = <optimized out>
+        victim = 0x7fff6c3a42f0
+        size = <optimized out>
+        victim_index = <optimized out>
+        remainder = <optimized out>
+        remainder_size = <optimized out>
+        block = <optimized out>
+        bit = <optimized out>
+        map = <optimized out>
+        fwd = <optimized out>
+        bck = <optimized out>
+        errstr = 0x7ffff3a09308 "malloc(): smallbin double linked list corrupted"
+        __func__ = "_int_malloc"
+#5  0x00007ffff38fc184 in __GI___libc_malloc (bytes=8) at malloc.c:2913
+        ar_ptr = 0x7fff6c000020
+        victim = <optimized out>
+        hook = <optimized out>
+#6  0x00007ffff4410e78 in operator new(unsigned long) () from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+No symbol table info available.
+#7  0x0000000000532727 in __gnu_cxx::new_allocator<std::pair<int, int> >::allocate (this=0x7fff6c36cc98, __n=<optimized out>) at /usr/include/c++/5/ext/new_allocator.h:104
+---Type <return> to continue, or q <return> to quit---
+No locals.
+#8  std::allocator_traits<std::allocator<std::pair<int, int> > >::allocate (__a=..., __n=<optimized out>) at /usr/include/c++/5/bits/alloc_traits.h:491
+No locals.
+#9  std::_Vector_base<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_allocate (this=0x7fff6c36cc98, __n=<optimized out>) at /usr/include/c++/5/bits/stl_vector.h:170
+No locals.
+#10 std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_emplace_back_aux<std::pair<int, int> >(std::pair<int, int>&&) (this=this@entry=0x7fff6c36cc98)
+    at /usr/include/c++/5/bits/vector.tcc:412
+No locals.
+#11 0x00000000005a1a6b in std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::emplace_back<std::pair<int, int> >(std::pair<int, int>&&) (this=0x7fff6c36cc98)
+    at /usr/include/c++/5/bits/vector.tcc:101
+No locals.
+#12 std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::push_back(std::pair<int, int>&&) (
+    __x=<unknown type in /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/build/pislam, CU 0xff8aaa, DIE 0x10a45cb>, this=0x7fff6c36cc98)
+    at /usr/include/c++/5/bits/stl_vector.h:932
+No locals.
+#13 opt::Tracker::addKeyframeIfNeeded (this=this@entry=0x7fff88000fc0) at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:1132
+        con = 0x7fff6c36cc90
+        it = {first = 19, second = std::shared_ptr (empty) 0x7ffff47031c0}
+        ptObs = {first = 268, second = 88}
+        __for_range = std::map with 41 elements = {[226] = 117, [227] = 106, [241] = 99, [243] = 92, [245] = 95, [247] = 94, [249] = 93, [250] = 91, [252] = 93, [254] = 90, [256] = 85, [258] = 86, 
+          [260] = 88, [261] = 77, [262] = 87, [263] = 75, [264] = 81, [266] = 86, [267] = 83, [268] = 88, [269] = 80, [270] = 85, [271] = 96, [272] = 731, [273] = 714, [289] = 96, [290] = 98, 
+          [291] = 90, [292] = 106, [294] = 100, [296] = 102, [298] = 719, [299] = 114, [300] = 712, [301] = 715, [302] = 115, [307] = 671, [308] = 663, [310] = 685, [311] = 111, [312] = 697}
+        pt = <optimized out>
+        ptObserves = std::map with 41 elements = {[226] = 117, [227] = 106, [241] = 99, [243] = 92, [245] = 95, [247] = 94, [249] = 93, [250] = 91, [252] = 93, [254] = 90, [256] = 85, [258] = 86, 
+          [260] = 88, [261] = 77, [262] = 87, [263] = 75, [264] = 81, [266] = 86, [267] = 83, [268] = 88, [269] = 80, [270] = 85, [271] = 96, [272] = 731, [273] = 714, [289] = 96, [290] = 98, 
+          [291] = 90, [292] = 106, [294] = 100, [296] = 102, [298] = 719, [299] = 114, [300] = 712, [301] = 715, [302] = 115, [307] = 671, [308] = 663, [310] = 685, [311] = 111, [312] = 697}
+        obs = {first = <optimized out>, second = 714}
+        __for_range = std::map with 31 elements = {[43665] = 714, [43672] = 636, [45266] = 638, [45533] = 1128, [47084] = 810, [49183] = 658, [49258] = 1324, [49720] = 771, [49905] = 711, 
+          [50163] = 1267, [50632] = 659, [50647] = 1018, [50654] = 645, [50680] = 1331, [50688] = 700, [50689] = 703, [50697] = 682, [50700] = 681, [50717] = 1019, [50721] = 809, [50744] = 757, 
+          [50769] = 1027, [50792] = 1052, [50820] = 1047, [50826] = 628, [50909] = 976, [50916] = 1379, [50917] = 993, [50974] = 1030, [51055] = 1293, [51221] = 1439}
+        parents = std::map with 19 elements = {[226] = std::shared_ptr (count 1, weak 0) 0x7fff6c1f5210, [227] = std::shared_ptr (count 1, weak 0) 0x7fff6c30f900, 
+          [241] = std::shared_ptr (count 1, weak 0) 0x7fff6c34b6e0, [243] = std::shared_ptr (count 1, weak 0) 0x7fff6c34c1e0, [245] = std::shared_ptr (count 1, weak 0) 0x7fff6c1f9a10, 
+          [247] = std::shared_ptr (count 1, weak 0) 0x7fff6c2bba30, [249] = std::shared_ptr (count 1, weak 0) 0x7fff6c1e9ea0, [250] = std::shared_ptr (count 1, weak 0) 0x7fff6c2629f0, 
+          [252] = std::shared_ptr (count 1, weak 0) 0x7fff6c1f6c50, [254] = std::shared_ptr (count 1, weak 0) 0x7fff6c32d1c0, [256] = std::shared_ptr (count 1, weak 0) 0x7fff6c35efd0, 
+          [258] = std::shared_ptr (count 1, weak 0) 0x7fff6c1ecf00, [260] = std::shared_ptr (count 1, weak 0) 0x7fff6c35d6b0, [261] = std::shared_ptr (count 1, weak 0) 0x7fff6c359a10, 
+          [262] = std::shared_ptr (count 1, weak 0) 0x7fff6c2b8300, [263] = std::shared_ptr (count 1, weak 0) 0x7fff6c2783b0, [264] = std::shared_ptr (count 1, weak 0) 0x7fff6c203e00, 
+          [266] = std::shared_ptr (count 1, weak 0) 0x7fff6c2f8fe0, [267] = std::shared_ptr (count 1, weak 0) 0x7fff6c310ed0}
+        observes = std::map with 31 elements = {[43665] = 714, [43672] = 636, [45266] = 638, [45533] = 1128, [47084] = 810, [49183] = 658, [49258] = 1324, [49720] = 771, [49905] = 711, [50163] = 1267, 
+          [50632] = 659, [50647] = 1018, [50654] = 645, [50680] = 1331, [50688] = 700, [50689] = 703, [50697] = 682, [50700] = 681, [50717] = 1019, [50721] = 809, [50744] = 757, [50769] = 1027, 
+          [50792] = 1052, [50820] = 1047, [50826] = 628, [50909] = 976, [50916] = 1379, [50917] = 993, [50974] = 1030, [51055] = 1293, [51221] = 1439}
+        mostMatches = <optimized out>
+        refId = 4607179175670658686
+        refFrame = <error reading variable: Cannot access memory at address 0x401a6afa80974539>
+        cur2kf = {my_rotation = {x = 14.7070732285451, y = 1.6669101097037066e-41, z = 6.9531436082562536e-310, w = 6.9533461007665409e-310}, my_translation = {x = 6.9532333138097903e-310, 
+            y = 1.0375378562666177e-322, z = 51.451932865101952}}
+        ln = {data = {8.8931816251424378e-323, 6.9532629702017618e-310, 6.9532629701839755e-310, 5.9287877500949585e-323, 6.1896137676367501e+223, 5.8267700864445006e-315}}
+        mIDepth = <optimized out>
+        sum = <optimized out>
+#14 0x00000000005a88d4 in opt::Tracker::track (this=0x7fff88000fc0, frame=std::shared_ptr (count 2, weak 0) 0x7fff3c013960)
+    at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:203
+---Type <return> to continue, or q <return> to quit---
+        logger = {_sst = @0x7fff880010d0, _verbose = 2}
+        bOK = <optimized out>
+#15 0x000000000063fcbf in DIYSLAM::trackingThread (this=0x12bc1f0) at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/DIYSLAM.cpp:234
+        frame = std::shared_ptr (count 2, weak 0) 0x7fff3c013960
+#16 0x00007ffff443bc80 in ?? () from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+No symbol table info available.
+#17 0x00007ffff5bac6ba in start_thread (arg=0x7fff8ffff700) at pthread_create.c:333
+        __res = <optimized out>
+        pd = 0x7fff8ffff700
+        now = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140735609304832, 9074848059538958568, 0, 140737488344047, 140735609305536, 0, -9074953613306599192, -9074826575793592088}, mask_was_saved = 0}}, 
+          priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = <optimized out>
+        pagesize_m1 = <optimized out>
+        sp = <optimized out>
+        freesize = <optimized out>
+        __PRETTY_FUNCTION__ = "start_thread"
+#18 0x00007ffff397f41d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+No locals.
+
+
+
+
+Thread 18 "pislam" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fff8ffff700 (LWP 25181)]
+0x00000000005aacc7 in std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release (this=0x7fff644d6290) at /usr/include/c++/5/bits/shared_ptr_base.h:150
+150		    _M_dispose();
+(gdb) bt
+#0  0x00000000005aacc7 in std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release (this=0x7fff644d6290) at /usr/include/c++/5/bits/shared_ptr_base.h:150
+#1  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::~__shared_count (this=<optimized out>, __in_chrg=<optimized out>) at /usr/include/c++/5/bits/shared_ptr_base.h:659
+#2  std::__shared_ptr<GSLAM::FrameConnection, (__gnu_cxx::_Lock_policy)2>::~__shared_ptr (this=<optimized out>, __in_chrg=<optimized out>) at /usr/include/c++/5/bits/shared_ptr_base.h:925
+#3  std::shared_ptr<GSLAM::FrameConnection>::~shared_ptr (this=<optimized out>, __in_chrg=<optimized out>) at /usr/include/c++/5/bits/shared_ptr.h:93
+#4  std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> >::~pair (this=<optimized out>, __in_chrg=<optimized out>) at /usr/include/c++/5/bits/stl_pair.h:96
+#5  __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::destroy<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > (
+    this=<optimized out>, __p=<optimized out>) at /usr/include/c++/5/ext/new_allocator.h:124
+#6  std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > > >::destroy<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > (__a=..., __p=<optimized out>) at /usr/include/c++/5/bits/alloc_traits.h:542
+#7  std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> >, std::_Select1st<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::_M_destroy_node (this=0x7fff8fffe2d0, __p=0x7fff644e74d0) at /usr/include/c++/5/bits/stl_tree.h:553
+#8  std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> >, std::_Select1st<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::_M_drop_node (__p=0x7fff644e74d0, this=0x7fff8fffe2d0) at /usr/include/c++/5/bits/stl_tree.h:561
+#9  std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> >, std::_Select1st<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::_M_erase (this=this@entry=0x7fff8fffe2d0, __x=0x7fff644e74d0)
+    at /usr/include/c++/5/bits/stl_tree.h:1614
+#10 0x00000000005aac57 in std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> >, std::_Select1st<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::_M_erase (this=this@entry=0x7fff8fffe2d0, __x=0x7fff644e7490)
+    at /usr/include/c++/5/bits/stl_tree.h:1612
+#11 0x00000000005aac57 in std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> >, std::_Select1st<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::_M_erase (this=this@entry=0x7fff8fffe2d0, __x=0x7fff644b0f60)
+    at /usr/include/c++/5/bits/stl_tree.h:1612
+#12 0x00000000005a07bd in std::_Rb_tree<unsigned long, std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> >, std::_Select1st<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::~_Rb_tree (this=0x7fff8fffe2d0, __in_chrg=<optimized out>)
+    at /usr/include/c++/5/bits/stl_tree.h:858
+#13 std::map<unsigned long, std::shared_ptr<GSLAM::FrameConnection>, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, std::shared_ptr<GSLAM::FrameConnection> > > >::~map (
+    this=0x7fff8fffe2d0, __in_chrg=<optimized out>) at /usr/include/c++/5/bits/stl_map.h:96
+#14 opt::Tracker::trackLocalMap (this=this@entry=0x7fff80000fc0) at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:902
+#15 0x00000000005a88cc in opt::Tracker::track (this=0x7fff80000fc0, frame=std::shared_ptr (count 2, weak 0) 0x7fff38a29230)
+    at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:188
+#16 0x000000000063fcbf in DIYSLAM::trackingThread (this=0x133c6a0) at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/DIYSLAM.cpp:234
+#17 0x00007ffff443bc80 in ?? () from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+#18 0x00007ffff5bac6ba in start_thread (arg=0x7fff8ffff700) at pthread_create.c:333
+#19 0x00007ffff397f41d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+Caught signal 11 (SIGSEGV)
+stack trace:
+  ./pislam [ DIYSLAM::release() + 0x7c ] [0x64027c]
+      /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/DIYSLAM.cpp:100
+  ./pislam [ DIYSLAM::~DIYSLAM() + 0x1d ] [0x64051d]
+      /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/GSLAM/core/Mutex.h:40
+  ./pislam [ std::_Sp_counted_ptr<DIYSLAM*, (__gnu_cxx::_Lock_policy)2>::_M_dispose() + 0x21 ] [0x642db1]
+      /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/DIYSLAM.cpp:70
+  ./pislam [ std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release() + 0x46 ] [0x558046]
+      /usr/include/c++/5/ext/atomicity.h:49
+  ./pislam [ std::_Sp_counted_ptr<GSLAM::SLAMVisualizerImpl*, (__gnu_cxx::_Lock_policy)2>::_M_dispose() + 0x27 ] [0x660e17]
+      /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/gui/SLAMVisualizer.cpp:348
+  ./pislam [ std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release() + 0x46 ] [0x558046]
+      /usr/include/c++/5/ext/atomicity.h:49
+  ./pislam [ GSLAM::SLAMVisualizer::~SLAMVisualizer() + 0x2f ] [0x660dbf]
+      /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/gui/SLAMVisualizer.h:12
+  /usr/lib/x86_64-linux-gnu/libQtCore.so.4 [ QObjectPrivate::deleteChildren() + 0x81 ] [0x7f5418fa12b1]
+      ??:0
+  /usr/lib/x86_64-linux-gnu/libQtGui.so.4 [ QWidget::~QWidget() + 0x332 ] [0x7f541950c2a2]
+      ??:0
+  /usr/lib/x86_64-linux-gnu/libQtGui.so.4 [ QStackedWidget::~QStackedWidget() + 0x9 ] [0x7f54199334e9]
+      ??:0
+  /usr/lib/x86_64-linux-gnu/libQtCore.so.4 [ QObjectPrivate::deleteChildren() + 0x81 ] [0x7f5418fa12b1]
+      ??:0
+  /usr/lib/x86_64-linux-gnu/libQtGui.so.4 [ QWidget::~QWidget() + 0x332 ] [0x7f541950c2a2]
+      ??:0
+  /usr/lib/x86_64-linux-gnu/libQtGui.so.4 [ QTabWidget::~QTabWidget() + 0x9 ] [0x7f541993eb99]
+      ??:0
+  /usr/lib/x86_64-linux-gnu/libQtCore.so.4 [ QObjectPrivate::deleteChildren() + 0x81 ] [0x7f5418fa12b1]
+      ??:0
+  /usr/lib/x86_64-linux-gnu/libQtGui.so.4 [ QWidget::~QWidget() + 0x332 ] [0x7f541950c2a2]
+      ??:0
+  ./pislam [ main + 0x284 ] [0x4e5d84]
+      /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/gui/main.cpp:164
+  /lib/x86_64-linux-gnu/libc.so.6 [ __libc_start_main + 0xf0 ] [0x7f5415aa6830]
+      ??:0
+-------------------------------------------------------------------------------------------
+
+
+
+
+(gdb) bt full
+#0  0x00007ffff38ad428 in __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:54
+        resultvar = 0
+        pid = 18091
+        selftid = 18113
+#1  0x00007ffff38af02a in __GI_abort () at abort.c:89
+        save_stage = 2
+        act = {__sigaction_handler = {sa_handler = 0x2020202020323435, sa_sigaction = 0x2020202020323435}, sa_mask = {__val = {2314885530818453536, 3395749441387372576, 3414407380873671541, 7794943938178463864, 
+              8461814194867891817, 8101259339335560239, 7365366921936466734, 3474584717463217766, 7306640034653614128, 2319406791772103730, 3472328228581767026, 4048771456345072177, 3760847847964094778, 
+              2314885530819638325, 2314885530818453536, 3395749441387372576}}, sa_flags = 796029813, sa_restorer = 0xad}
+        sigs = {__val = {32, 0 <repeats 15 times>}}
+#2  0x00007ffff38ef7ea in __libc_message (do_abort=do_abort@entry=2, fmt=fmt@entry=0x7ffff3a08ed8 "*** Error in `%s': %s: 0x%s ***\n") at ../sysdeps/posix/libc_fatal.c:175
+        ap = <error reading variable ap (Attempt to dereference a generic pointer.)>
+        fd = 32
+        on_2 = <optimized out>
+        list = <optimized out>
+        nlist = <optimized out>
+        cp = <optimized out>
+        written = <optimized out>
+#3  0x00007ffff38fa651 in malloc_printerr (ar_ptr=0x7fff8fffdec0, ptr=0x7fff6c1fc440, str=0x7ffff3a09308 "malloc(): smallbin double linked list corrupted", action=3) at malloc.c:5006
+        buf = "00007fff6c1fc440"
+        cp = <optimized out>
+        ar_ptr = 0x7fff8fffdec0
+        ptr = 0x7fff6c1fc440
+        str = 0x7ffff3a09308 "malloc(): smallbin double linked list corrupted"
+        action = 3
+#4  _int_malloc (av=av@entry=0x7fff6c000020, bytes=bytes@entry=24) at malloc.c:3386
+        fb = <optimized out>
+        pp = <optimized out>
+        nb = 32
+        idx = <optimized out>
+        bin = <optimized out>
+        victim = 0x7fff6c1fc430
+        size = <optimized out>
+        victim_index = <optimized out>
+        remainder = <optimized out>
+        remainder_size = <optimized out>
+        block = <optimized out>
+        bit = <optimized out>
+        map = <optimized out>
+        fwd = <optimized out>
+        bck = <optimized out>
+        errstr = 0x7ffff3a09308 "malloc(): smallbin double linked list corrupted"
+        __func__ = "_int_malloc"
+#5  0x00007ffff38fc184 in __GI___libc_malloc (bytes=24) at malloc.c:2913
+        ar_ptr = 0x7fff6c000020
+        victim = <optimized out>
+        hook = <optimized out>
+#6  0x00007ffff4410e78 in operator new(unsigned long) () from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+No symbol table info available.
+#7  0x00000000006453ba in __gnu_cxx::new_allocator<double>::allocate (this=<optimized out>, __n=<optimized out>) at /usr/include/c++/5/ext/new_allocator.h:104
+---Type <return> to continue, or q <return> to quit---
+No locals.
+#8  std::allocator_traits<std::allocator<double> >::allocate (__a=..., __n=<optimized out>) at /usr/include/c++/5/bits/alloc_traits.h:491
+No locals.
+#9  std::_Vector_base<double, std::allocator<double> >::_M_allocate (this=<optimized out>, __n=<optimized out>) at /usr/include/c++/5/bits/stl_vector.h:170
+No locals.
+#10 std::_Vector_base<unsigned long, std::allocator<unsigned long> >::_M_create_storage (__n=<optimized out>, this=<synthetic pointer>) at /usr/include/c++/5/bits/stl_vector.h:185
+No locals.
+#11 std::_Vector_base<unsigned long, std::allocator<unsigned long> >::_Vector_base (__a=..., __n=<optimized out>, this=<synthetic pointer>) at /usr/include/c++/5/bits/stl_vector.h:136
+No locals.
+#12 std::vector<unsigned long, std::allocator<unsigned long> >::vector (__x=std::vector of length 3, capacity 4 = {...}, this=<synthetic pointer>) at /usr/include/c++/5/bits/stl_vector.h:320
+No locals.
+#13 MapFrame::getFeaturesInArea (this=0x7fff7747b9f0, x=@0x7fff8fffe240: 1666.24707, y=@0x7fff8fffe3b0: 304.16806, r=<optimized out>, precisely=true)
+    at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/MapFrame.cpp:278
+        iy = 8
+        ix = 27
+        vIndices = std::vector of length 0, capacity 1164
+        _camOut = {impl = std::shared_ptr (count 99, weak 0) 0x0}
+        mnMinX = 0
+        mnMinY = 0
+        GridWidthInv = <optimized out>
+        GridHeightInv = <optimized out>
+        nMinCellX = <optimized out>
+        nMaxCellX = 28
+        nMinCellY = 8
+        nMaxCellY = 10
+        r2 = 180.633591
+#14 0x00000000005cadd7 in MatcherBoW::findMatchWindow (this=this@entry=0x7fff88002e90, des=..., fr=std::shared_ptr (count 3, weak 0) 0x7fff7747b9f0, x=@0x7fff8fffe240: 1666.24707, y=@0x7fff8fffe3b0: 304.16806, 
+    r=@0x7fff8fffe200: 13.4399996, idx=@0x7fff8fffe220: 266, discardMapPoints=true) at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/MatcherBoW.cpp:132
+        candidates = std::vector of length 0, capacity 1164
+        minDistance = <optimized out>
+        minDistance2 = <optimized out>
+        maxDistance = <optimized out>
+#15 0x00000000005a0697 in opt::Tracker::trackLocalMap (this=this@entry=0x7fff88000fc0) at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:976
+        nvec = {x = <optimized out>, y = <optimized out>, z = -0.78971851379643021}
+        searchRadius = 13.4399996
+        idx = 266
+        pw = {x = -60.309045398985191, y = -13.646320823552639, z = 16.415203926050051}
+        pc = {x = 29.907573890475938, y = -9.9868184904825927, z = 16.938874272643787}
+        pimg = {x = 1666.2470246627086, y = <optimized out>}
+        __for_range = std::set with 2084 elements = {[0] = std::shared_ptr (count 9, weak 0) 0x7fff6c2114b0, [1] = std::shared_ptr (count 5, weak 0) 0x7fff6c21d3f0, 
+          [2] = std::shared_ptr (count 16, weak 0) 0x7fff6c2298e0, [3] = std::shared_ptr (count 13, weak 0) 0x7fff6c238d20, [4] = std::shared_ptr (count 7, weak 0) 0x7fff6c2501f0, 
+          [5] = std::shared_ptr (count 27, weak 0) 0x7fff6c258df0, [6] = std::shared_ptr (count 18, weak 0) 0x7fff6c25b0f0, [7] = std::shared_ptr (count 17, weak 0) 0x7fff6c25be10, 
+          [8] = std::shared_ptr (count 21, weak 0) 0x7fff6c273ab0, [9] = std::shared_ptr (count 11, weak 0) 0x7fff6c27a810, [10] = std::shared_ptr (count 11, weak 0) 0x7fff6c2a0330, 
+          [11] = std::shared_ptr (count 6, weak 0) 0x7fff6c2ba2d0, [12] = std::shared_ptr (count 13, weak 0) 0x7fff6c2bc5d0, [13] = std::shared_ptr (count 27, weak 0) 0x7fff6c2bf190, 
+          [14] = std::shared_ptr (count 22, weak 0) 0x7fff6c2c21b0, [15] = std::shared_ptr (count 16, weak 0) 0x7fff6c2c5ef0, [16] = std::shared_ptr (count 6, weak 0) 0x7fff8002aea0, 
+          [17] = std::shared_ptr (count 6, weak 0) 0x7fff8002b6c0, [18] = std::shared_ptr (count 8, weak 0) 0x7fff8002ca10, [19] = std::shared_ptr (count 17, weak 0) 0x7fff8002cb10, 
+          [20] = std::shared_ptr (count 18, weak 0) 0x7fff8002cf20, [21] = std::shared_ptr (count 20, weak 0) 0x7fff8002d330, [22] = std::shared_ptr (count 17, weak 0) 0x7fff8002db50, 
+          [23] = std::shared_ptr (count 12, weak 0) 0x7fff8002fc40, [24] = std::shared_ptr (count 4, weak 0) 0x7fff80031950, [25] = std::shared_ptr (count 9, weak 0) 0x7fff80031f70, 
+          [26] = std::shared_ptr (count 6, weak 0) 0x7fff80036660, [27] = std::shared_ptr (count 18, weak 0) 0x7fff80056670, [28] = std::shared_ptr (count 8, weak 0) 0x7fff80056f90, 
+          [29] = std::shared_ptr (count 5, weak 0) 0x7fff800586e0, [30] = std::shared_ptr (count 24, weak 0) 0x7fff800593e0, [31] = std::shared_ptr (count 15, weak 0) 0x7fff8005a8f0, 
+---Type <return> to continue, or q <return> to quit---
+          [32] = std::shared_ptr (count 6, weak 0) 0x7fff8005d260, [33] = std::shared_ptr (count 14, weak 0) 0x7fff8005dd20, [34] = std::shared_ptr (count 8, weak 0) 0x7fff8005ef80, 
+          [35] = std::shared_ptr (count 8, weak 0) 0x7fff80060480, [36] = std::shared_ptr (count 6, weak 0) 0x7fff800613a0, [37] = std::shared_ptr (count 24, weak 0) 0x7fff800666f0, 
+          [38] = std::shared_ptr (count 7, weak 0) 0x7fff80069e30, [39] = std::shared_ptr (count 23, weak 0) 0x7fff8006a650, [40] = std::shared_ptr (count 7, weak 0) 0x7fff8006b780, 
+          [41] = std::shared_ptr (count 5, weak 0) 0x7fff8006bd30, [42] = std::shared_ptr (count 8, weak 0) 0x7fff8006ce40, [43] = std::shared_ptr (count 5, weak 0) 0x7fff8006d5e0, 
+          [44] = std::shared_ptr (count 6, weak 0) 0x7fff800765f0, [45] = std::shared_ptr (count 5, weak 0) 0x7fff8007d740, [46] = std::shared_ptr (count 14, weak 0) 0x7fff8007eeb0, 
+          [47] = std::shared_ptr (count 18, weak 0) 0x7fff800854c0, [48] = std::shared_ptr (count 19, weak 0) 0x7fff800892f0, [49] = std::shared_ptr (count 7, weak 0) 0x7fff8008d860, 
+          [50] = std::shared_ptr (count 7, weak 0) 0x7fff8008e000, [51] = std::shared_ptr (count 10, weak 0) 0x7fff800e5330, [52] = std::shared_ptr (count 9, weak 0) 0x7fff800edfb0, 
+          [53] = std::shared_ptr (count 11, weak 0) 0x7fff800eed60, [54] = std::shared_ptr (count 12, weak 0) 0x7fff800f13e0, [55] = std::shared_ptr (count 7, weak 0) 0x7fff800fb4a0, 
+          [56] = std::shared_ptr (count 4, weak 0) 0x7fff800fb580, [57] = std::shared_ptr (count 8, weak 0) 0x7fff800fbdf0, [58] = std::shared_ptr (count 6, weak 0) 0x7fff800fd720, 
+          [59] = std::shared_ptr (count 4, weak 0) 0x7fff800ff5c0, [60] = std::shared_ptr (count 9, weak 0) 0x7fff80102760, [61] = std::shared_ptr (count 10, weak 0) 0x7fff80104880, 
+          [62] = std::shared_ptr (count 4, weak 0) 0x7fff80104de0, [63] = std::shared_ptr (count 6, weak 0) 0x7fff80107a10, [64] = std::shared_ptr (count 10, weak 0) 0x7fff80108070, 
+          [65] = std::shared_ptr (count 8, weak 0) 0x7fff8010e190, [66] = std::shared_ptr (count 6, weak 0) 0x7fff8010e4c0, [67] = std::shared_ptr (count 23, weak 0) 0x7fff80112a00, 
+          [68] = std::shared_ptr (count 10, weak 0) 0x7fff8011c8b0, [69] = std::shared_ptr (count 7, weak 0) 0x7fff8011cc20, [70] = std::shared_ptr (count 6, weak 0) 0x7fff8011e6c0, 
+          [71] = std::shared_ptr (count 15, weak 0) 0x7fff80123b20, [72] = std::shared_ptr (count 4, weak 0) 0x7fff80124470, [73] = std::shared_ptr (count 11, weak 0) 0x7fff80126b60, 
+          [74] = std::shared_ptr (count 6, weak 0) 0x7fff8012bb50, [75] = std::shared_ptr (count 6, weak 0) 0x7fff80142e50, [76] = std::shared_ptr (count 4, weak 0) 0x7fff80144a40, 
+          [77] = std::shared_ptr (count 9, weak 0) 0x7fff80145510, [78] = std::shared_ptr (count 8, weak 0) 0x7fff801458d0, [79] = std::shared_ptr (count 11, weak 0) 0x7fff80145b00, 
+          [80] = std::shared_ptr (count 7, weak 0) 0x7fff80147b80, [81] = std::shared_ptr (count 19, weak 0) 0x7fff801487b0, [82] = std::shared_ptr (count 8, weak 0) 0x7fff801499c0, 
+          [83] = std::shared_ptr (count 6, weak 0) 0x7fff80149c00, [84] = std::shared_ptr (count 4, weak 0) 0x7fff8014bba0, [85] = std::shared_ptr (count 4, weak 0) 0x7fff8014c1e0, 
+          [86] = std::shared_ptr (count 9, weak 0) 0x7fff8014e030, [87] = std::shared_ptr (count 8, weak 0) 0x7fff80150850, [88] = std::shared_ptr (count 7, weak 0) 0x7fff80156680, 
+          [89] = std::shared_ptr (count 4, weak 0) 0x7fff80157420, [90] = std::shared_ptr (count 7, weak 0) 0x7fff80158ec0, [91] = std::shared_ptr (count 11, weak 0) 0x7fff8015abf0, 
+          [92] = std::shared_ptr (count 3, weak 0) 0x7fff8015b0f0, [93] = std::shared_ptr (count 6, weak 0) 0x7fff8015f7b0, [94] = std::shared_ptr (count 5, weak 0) 0x7fff801616e0, 
+          [95] = std::shared_ptr (count 6, weak 0) 0x7fff80161c70, [96] = std::shared_ptr (count 5, weak 0) 0x7fff80162040, [97] = std::shared_ptr (count 8, weak 0) 0x7fff801648c0, 
+          [98] = std::shared_ptr (count 8, weak 0) 0x7fff80164af0, [99] = std::shared_ptr (count 5, weak 0) 0x7fff80165ad0, [100] = std::shared_ptr (count 5, weak 0) 0x7fff80165f30, 
+          [101] = std::shared_ptr (count 7, weak 0) 0x7fff801669a0, [102] = std::shared_ptr (count 6, weak 0) 0x7fff80169c10, [103] = std::shared_ptr (count 5, weak 0) 0x7fff80169cf0, 
+          [104] = std::shared_ptr (count 8, weak 0) 0x7fff8016c260, [105] = std::shared_ptr (count 8, weak 0) 0x7fff8016d890, [106] = std::shared_ptr (count 14, weak 0) 0x7fff8016e3c0, 
+          [107] = std::shared_ptr (count 4, weak 0) 0x7fff8016fe00, [108] = std::shared_ptr (count 5, weak 0) 0x7fff80170960, [109] = std::shared_ptr (count 9, weak 0) 0x7fff80172ba0, 
+          [110] = std::shared_ptr (count 5, weak 0) 0x7fff80175a10, [111] = std::shared_ptr (count 5, weak 0) 0x7fff80179430, [112] = std::shared_ptr (count 17, weak 0) 0x7fff80179700, 
+          [113] = std::shared_ptr (count 7, weak 0) 0x7fff80179bb0, [114] = std::shared_ptr (count 6, weak 0) 0x7fff8017b3d0, [115] = std::shared_ptr (count 17, weak 0) 0x7fff8017ce70, 
+          [116] = std::shared_ptr (count 5, weak 0) 0x7fff8017d640, [117] = std::shared_ptr (count 7, weak 0) 0x7fff8017d990, [118] = std::shared_ptr (count 6, weak 0) 0x7fff8017e3e0, 
+          [119] = std::shared_ptr (count 7, weak 0) 0x7fff8017fb20, [120] = std::shared_ptr (count 15, weak 0) 0x7fff8017fdd0, [121] = std::shared_ptr (count 12, weak 0) 0x7fff80180040, 
+          [122] = std::shared_ptr (count 5, weak 0) 0x7fff80180710, [123] = std::shared_ptr (count 4, weak 0) 0x7fff80180960, [124] = std::shared_ptr (count 10, weak 0) 0x7fff801813a0, 
+          [125] = std::shared_ptr (count 6, weak 0) 0x7fff80182040, [126] = std::shared_ptr (count 26, weak 0) 0x7fff80187170, [127] = std::shared_ptr (count 7, weak 0) 0x7fff80187dd0, 
+          [128] = std::shared_ptr (count 11, weak 0) 0x7fff8018ade0, [129] = std::shared_ptr (count 9, weak 0) 0x7fff8018b710, [130] = std::shared_ptr (count 5, weak 0) 0x7fff8018e340, 
+          [131] = std::shared_ptr (count 5, weak 0) 0x7fff8018e750, [132] = std::shared_ptr (count 5, weak 0) 0x7fff80196d00, [133] = std::shared_ptr (count 17, weak 0) 0x7fff80197760, 
+          [134] = std::shared_ptr (count 17, weak 0) 0x7fff80199440, [135] = std::shared_ptr (count 8, weak 0) 0x7fff8019a000, [136] = std::shared_ptr (count 6, weak 0) 0x7fff8019ed30, 
+          [137] = std::shared_ptr (count 20, weak 0) 0x7fff8019f140, [138] = std::shared_ptr (count 8, weak 0) 0x7fff801a16b0, [139] = std::shared_ptr (count 8, weak 0) 0x7fff801a1ac0, 
+          [140] = std::shared_ptr (count 5, weak 0) 0x7fff801a33a0, [141] = std::shared_ptr (count 15, weak 0) 0x7fff801b9370, [142] = std::shared_ptr (count 9, weak 0) 0x7fff801ba180, 
+          [143] = std::shared_ptr (count 6, weak 0) 0x7fff801ba590, [144] = std::shared_ptr (count 5, weak 0) 0x7fff801cbd80, [145] = std::shared_ptr (count 11, weak 0) 0x7fff801cdce0, 
+          [146] = std::shared_ptr (count 6, weak 0) 0x7fff801ce1f0, [147] = std::shared_ptr (count 8, weak 0) 0x7fff801ce9f0, [148] = std::shared_ptr (count 5, weak 0) 0x7fff801cf540, 
+          [149] = std::shared_ptr (count 20, weak 0) 0x7fff801d14b0, [150] = std::shared_ptr (count 7, weak 0) 0x7fff801d72f0, [151] = std::shared_ptr (count 17, weak 0) 0x7fff801d7a00, 
+          [152] = std::shared_ptr (count 15, weak 0) 0x7fff801d7bf0, [153] = std::shared_ptr (count 10, weak 0) 0x7fff801d82b0, [154] = std::shared_ptr (count 4, weak 0) 0x7fff801d8b20, 
+          [155] = std::shared_ptr (count 17, weak 0) 0x7fff801da080, [156] = std::shared_ptr (count 11, weak 0) 0x7fff801dc410, [157] = std::shared_ptr (count 7, weak 0) 0x7fff801dcd30, 
+          [158] = std::shared_ptr (count 6, weak 0) 0x7fff801de330, [159] = std::shared_ptr (count 7, weak 0) 0x7fff801de660, [160] = std::shared_ptr (count 7, weak 0) 0x7fff801df4f0, 
+          [161] = std::shared_ptr (count 9, weak 0) 0x7fff801dfc90, [162] = std::shared_ptr (count 9, weak 0) 0x7fff801e09b0, [163] = std::shared_ptr (count 7, weak 0) 0x7fff801e1cb0, 
+          [164] = std::shared_ptr (count 5, weak 0) 0x7fff801e2580, [165] = std::shared_ptr (count 8, weak 0) 0x7fff801e2a30, [166] = std::shared_ptr (count 8, weak 0) 0x7fff801e3ef0, 
+          [167] = std::shared_ptr (count 5, weak 0) 0x7fff801e4060, [168] = std::shared_ptr (count 10, weak 0) 0x7fff801e5210, [169] = std::shared_ptr (count 10, weak 0) 0x7fff801e7210, 
+          [170] = std::shared_ptr (count 4, weak 0) 0x7fff801e9f30, [171] = std::shared_ptr (count 6, weak 0) 0x7fff801ea830, [172] = std::shared_ptr (count 14, weak 0) 0x7fff801eb8b0, 
+          [173] = std::shared_ptr (count 15, weak 0) 0x7fff801ec7d0, [174] = std::shared_ptr (count 5, weak 0) 0x7fff801f09d0, [175] = std::shared_ptr (count 16, weak 0) 0x7fff801f1960, 
+          [176] = std::shared_ptr (count 4, weak 0) 0x7fff801f1f60, [177] = std::shared_ptr (count 14, weak 0) 0x7fff801f2920, [178] = std::shared_ptr (count 19, weak 0) 0x7fff801f39d0, 
+          [179] = std::shared_ptr (count 6, weak 0) 0x7fff801f52a0, [180] = std::shared_ptr (count 4, weak 0) 0x7fff801f5e70, [181] = std::shared_ptr (count 11, weak 0) 0x7fff801f6200, 
+---Type <return> to continue, or q <return> to quit---
+          [182] = std::shared_ptr (count 4, weak 0) 0x7fff801f6b00, [183] = std::shared_ptr (count 13, weak 0) 0x7fff801f6f10, [184] = std::shared_ptr (count 7, weak 0) 0x7fff801f7720, 
+          [185] = std::shared_ptr (count 5, weak 0) 0x7fff801f7970, [186] = std::shared_ptr (count 5, weak 0) 0x7fff801f8130, [187] = std::shared_ptr (count 7, weak 0) 0x7fff801f9b10, 
+          [188] = std::shared_ptr (count 6, weak 0) 0x7fff801fa7f0, [189] = std::shared_ptr (count 5, weak 0) 0x7fff801faaa0, [190] = std::shared_ptr (count 28, weak 0) 0x7fff801fbb30, 
+          [191] = std::shared_ptr (count 5, weak 0) 0x7fff801fe570, [192] = std::shared_ptr (count 15, weak 0) 0x7fff801fffb0, [193] = std::shared_ptr (count 18, weak 0) 0x7fff80201170, 
+          [194] = std::shared_ptr (count 8, weak 0) 0x7fff80201f10, [195] = std::shared_ptr (count 7, weak 0) 0x7fff802027a0, [196] = std::shared_ptr (count 7, weak 0) 0x7fff80203960, 
+          [197] = std::shared_ptr (count 19, weak 0) 0x7fff802047e0, [198] = std::shared_ptr (count 4, weak 0) 0x7fff80207c10, [199] = std::shared_ptr (count 12, weak 0) 0x7fff802081c0...}
+        mtimer = {_func_name = 0x74b2ff "Tracker::trackLocalMap"}
+        observations = std::map with 24 elements = {[15042] = 578, [15730] = 200, [16301] = 643, [16794] = 201, [17658] = 142, [17696] = 607, [18245] = 218, [18513] = 542, [18534] = 341, [18552] = 575, [18582] = 822, 
+          [18818] = 527, [18941] = 307, [18951] = 1020, [19253] = 141, [19303] = 518, [19304] = 851, [19316] = 812, [19344] = 304, [19763] = 801, [19784] = 513, [19839] = 66, [19847] = 81, [19883] = 512}
+        connects = std::set with 41 elements = {[0] = 14, [1] = 16, [2] = 18, [3] = 21, [4] = 23, [5] = 25, [6] = 27, [7] = 29, [8] = 31, [9] = 33, [10] = 35, [11] = 38, [12] = 40, [13] = 42, [14] = 44, [15] = 46, 
+          [16] = 48, [17] = 50, [18] = 52, [19] = 54, [20] = 56, [21] = 58, [22] = 61, [23] = 63, [24] = 65, [25] = 67, [26] = 69, [27] = 71, [28] = 73, [29] = 75, [30] = 77, [31] = 79, [32] = 81, [33] = 83, [34] = 85, 
+          [35] = 87, [36] = 89, [37] = 91, [38] = 93, [39] = 95, [40] = 141}
+        parents = std::map with 17 elements = {[85] = std::shared_ptr (count 1, weak 0) 0x7fff6c24b990, [95] = std::shared_ptr (count 1, weak 0) 0x7fff6c1e52d0, [141] = std::shared_ptr (count 1, weak 0) 0x7fff6c22cf40, 
+          [147] = std::shared_ptr (count 1, weak 0) 0x7fff6c2e0a10, [149] = std::shared_ptr (count 1, weak 0) 0x7fff6c1df590, [156] = std::shared_ptr (count 1, weak 0) 0x7fff6c1eb960, 
+          [158] = std::shared_ptr (count 1, weak 0) 0x7fff6c1f6640, [161] = std::shared_ptr (count 1, weak 0) 0x7fff6c204a80, [166] = std::shared_ptr (count 1, weak 0) 0x7fff6c23a230, 
+          [167] = std::shared_ptr (count 1, weak 0) 0x7fff6c1e4250, [169] = std::shared_ptr (count 1, weak 0) 0x7fff6c1ede70, [170] = std::shared_ptr (count 1, weak 0) 0x7fff6c1f1690, 
+          [171] = std::shared_ptr (count 1, weak 0) 0x7fff6c1fd450, [172] = std::shared_ptr (count 1, weak 0) 0x7fff6c1f1f40, [173] = std::shared_ptr (count 1, weak 0) 0x7fff6c1e2890, 
+          [174] = std::shared_ptr (count 1, weak 0) 0x7fff6c1e4d50, [175] = std::shared_ptr (count 1, weak 0) 0x7fff6c1e47d0}
+        trackPParents = <optimized out>
+        maxLocalKFNum = <optimized out>
+        mappoints = std::set with 2084 elements = {[0] = std::shared_ptr (count 9, weak 0) 0x7fff6c2114b0, [1] = std::shared_ptr (count 5, weak 0) 0x7fff6c21d3f0, 
+          [2] = std::shared_ptr (count 16, weak 0) 0x7fff6c2298e0, [3] = std::shared_ptr (count 13, weak 0) 0x7fff6c238d20, [4] = std::shared_ptr (count 7, weak 0) 0x7fff6c2501f0, 
+          [5] = std::shared_ptr (count 27, weak 0) 0x7fff6c258df0, [6] = std::shared_ptr (count 18, weak 0) 0x7fff6c25b0f0, [7] = std::shared_ptr (count 17, weak 0) 0x7fff6c25be10, 
+          [8] = std::shared_ptr (count 21, weak 0) 0x7fff6c273ab0, [9] = std::shared_ptr (count 11, weak 0) 0x7fff6c27a810, [10] = std::shared_ptr (count 11, weak 0) 0x7fff6c2a0330, 
+          [11] = std::shared_ptr (count 6, weak 0) 0x7fff6c2ba2d0, [12] = std::shared_ptr (count 13, weak 0) 0x7fff6c2bc5d0, [13] = std::shared_ptr (count 27, weak 0) 0x7fff6c2bf190, 
+          [14] = std::shared_ptr (count 22, weak 0) 0x7fff6c2c21b0, [15] = std::shared_ptr (count 16, weak 0) 0x7fff6c2c5ef0, [16] = std::shared_ptr (count 6, weak 0) 0x7fff8002aea0, 
+          [17] = std::shared_ptr (count 6, weak 0) 0x7fff8002b6c0, [18] = std::shared_ptr (count 8, weak 0) 0x7fff8002ca10, [19] = std::shared_ptr (count 17, weak 0) 0x7fff8002cb10, 
+          [20] = std::shared_ptr (count 18, weak 0) 0x7fff8002cf20, [21] = std::shared_ptr (count 20, weak 0) 0x7fff8002d330, [22] = std::shared_ptr (count 17, weak 0) 0x7fff8002db50, 
+          [23] = std::shared_ptr (count 12, weak 0) 0x7fff8002fc40, [24] = std::shared_ptr (count 4, weak 0) 0x7fff80031950, [25] = std::shared_ptr (count 9, weak 0) 0x7fff80031f70, 
+          [26] = std::shared_ptr (count 6, weak 0) 0x7fff80036660, [27] = std::shared_ptr (count 18, weak 0) 0x7fff80056670, [28] = std::shared_ptr (count 8, weak 0) 0x7fff80056f90, 
+          [29] = std::shared_ptr (count 5, weak 0) 0x7fff800586e0, [30] = std::shared_ptr (count 24, weak 0) 0x7fff800593e0, [31] = std::shared_ptr (count 15, weak 0) 0x7fff8005a8f0, 
+          [32] = std::shared_ptr (count 6, weak 0) 0x7fff8005d260, [33] = std::shared_ptr (count 14, weak 0) 0x7fff8005dd20, [34] = std::shared_ptr (count 8, weak 0) 0x7fff8005ef80, 
+          [35] = std::shared_ptr (count 8, weak 0) 0x7fff80060480, [36] = std::shared_ptr (count 6, weak 0) 0x7fff800613a0, [37] = std::shared_ptr (count 24, weak 0) 0x7fff800666f0, 
+          [38] = std::shared_ptr (count 7, weak 0) 0x7fff80069e30, [39] = std::shared_ptr (count 23, weak 0) 0x7fff8006a650, [40] = std::shared_ptr (count 7, weak 0) 0x7fff8006b780, 
+          [41] = std::shared_ptr (count 5, weak 0) 0x7fff8006bd30, [42] = std::shared_ptr (count 8, weak 0) 0x7fff8006ce40, [43] = std::shared_ptr (count 5, weak 0) 0x7fff8006d5e0, 
+          [44] = std::shared_ptr (count 6, weak 0) 0x7fff800765f0, [45] = std::shared_ptr (count 5, weak 0) 0x7fff8007d740, [46] = std::shared_ptr (count 14, weak 0) 0x7fff8007eeb0, 
+          [47] = std::shared_ptr (count 18, weak 0) 0x7fff800854c0, [48] = std::shared_ptr (count 19, weak 0) 0x7fff800892f0, [49] = std::shared_ptr (count 7, weak 0) 0x7fff8008d860, 
+          [50] = std::shared_ptr (count 7, weak 0) 0x7fff8008e000, [51] = std::shared_ptr (count 10, weak 0) 0x7fff800e5330, [52] = std::shared_ptr (count 9, weak 0) 0x7fff800edfb0, 
+          [53] = std::shared_ptr (count 11, weak 0) 0x7fff800eed60, [54] = std::shared_ptr (count 12, weak 0) 0x7fff800f13e0, [55] = std::shared_ptr (count 7, weak 0) 0x7fff800fb4a0, 
+          [56] = std::shared_ptr (count 4, weak 0) 0x7fff800fb580, [57] = std::shared_ptr (count 8, weak 0) 0x7fff800fbdf0, [58] = std::shared_ptr (count 6, weak 0) 0x7fff800fd720, 
+          [59] = std::shared_ptr (count 4, weak 0) 0x7fff800ff5c0, [60] = std::shared_ptr (count 9, weak 0) 0x7fff80102760, [61] = std::shared_ptr (count 10, weak 0) 0x7fff80104880, 
+          [62] = std::shared_ptr (count 4, weak 0) 0x7fff80104de0, [63] = std::shared_ptr (count 6, weak 0) 0x7fff80107a10, [64] = std::shared_ptr (count 10, weak 0) 0x7fff80108070, 
+          [65] = std::shared_ptr (count 8, weak 0) 0x7fff8010e190, [66] = std::shared_ptr (count 6, weak 0) 0x7fff8010e4c0, [67] = std::shared_ptr (count 23, weak 0) 0x7fff80112a00, 
+          [68] = std::shared_ptr (count 10, weak 0) 0x7fff8011c8b0, [69] = std::shared_ptr (count 7, weak 0) 0x7fff8011cc20, [70] = std::shared_ptr (count 6, weak 0) 0x7fff8011e6c0, 
+          [71] = std::shared_ptr (count 15, weak 0) 0x7fff80123b20, [72] = std::shared_ptr (count 4, weak 0) 0x7fff80124470, [73] = std::shared_ptr (count 11, weak 0) 0x7fff80126b60, 
+          [74] = std::shared_ptr (count 6, weak 0) 0x7fff8012bb50, [75] = std::shared_ptr (count 6, weak 0) 0x7fff80142e50, [76] = std::shared_ptr (count 4, weak 0) 0x7fff80144a40, 
+          [77] = std::shared_ptr (count 9, weak 0) 0x7fff80145510, [78] = std::shared_ptr (count 8, weak 0) 0x7fff801458d0, [79] = std::shared_ptr (count 11, weak 0) 0x7fff80145b00, 
+          [80] = std::shared_ptr (count 7, weak 0) 0x7fff80147b80, [81] = std::shared_ptr (count 19, weak 0) 0x7fff801487b0, [82] = std::shared_ptr (count 8, weak 0) 0x7fff801499c0, 
+          [83] = std::shared_ptr (count 6, weak 0) 0x7fff80149c00, [84] = std::shared_ptr (count 4, weak 0) 0x7fff8014bba0, [85] = std::shared_ptr (count 4, weak 0) 0x7fff8014c1e0, 
+          [86] = std::shared_ptr (count 9, weak 0) 0x7fff8014e030, [87] = std::shared_ptr (count 8, weak 0) 0x7fff80150850, [88] = std::shared_ptr (count 7, weak 0) 0x7fff80156680, 
+---Type <return> to continue, or q <return> to quit---
+          [89] = std::shared_ptr (count 4, weak 0) 0x7fff80157420, [90] = std::shared_ptr (count 7, weak 0) 0x7fff80158ec0, [91] = std::shared_ptr (count 11, weak 0) 0x7fff8015abf0, 
+          [92] = std::shared_ptr (count 3, weak 0) 0x7fff8015b0f0, [93] = std::shared_ptr (count 6, weak 0) 0x7fff8015f7b0, [94] = std::shared_ptr (count 5, weak 0) 0x7fff801616e0, 
+          [95] = std::shared_ptr (count 6, weak 0) 0x7fff80161c70, [96] = std::shared_ptr (count 5, weak 0) 0x7fff80162040, [97] = std::shared_ptr (count 8, weak 0) 0x7fff801648c0, 
+          [98] = std::shared_ptr (count 8, weak 0) 0x7fff80164af0, [99] = std::shared_ptr (count 5, weak 0) 0x7fff80165ad0, [100] = std::shared_ptr (count 5, weak 0) 0x7fff80165f30, 
+          [101] = std::shared_ptr (count 7, weak 0) 0x7fff801669a0, [102] = std::shared_ptr (count 6, weak 0) 0x7fff80169c10, [103] = std::shared_ptr (count 5, weak 0) 0x7fff80169cf0, 
+          [104] = std::shared_ptr (count 8, weak 0) 0x7fff8016c260, [105] = std::shared_ptr (count 8, weak 0) 0x7fff8016d890, [106] = std::shared_ptr (count 14, weak 0) 0x7fff8016e3c0, 
+          [107] = std::shared_ptr (count 4, weak 0) 0x7fff8016fe00, [108] = std::shared_ptr (count 5, weak 0) 0x7fff80170960, [109] = std::shared_ptr (count 9, weak 0) 0x7fff80172ba0, 
+          [110] = std::shared_ptr (count 5, weak 0) 0x7fff80175a10, [111] = std::shared_ptr (count 5, weak 0) 0x7fff80179430, [112] = std::shared_ptr (count 17, weak 0) 0x7fff80179700, 
+          [113] = std::shared_ptr (count 7, weak 0) 0x7fff80179bb0, [114] = std::shared_ptr (count 6, weak 0) 0x7fff8017b3d0, [115] = std::shared_ptr (count 17, weak 0) 0x7fff8017ce70, 
+          [116] = std::shared_ptr (count 5, weak 0) 0x7fff8017d640, [117] = std::shared_ptr (count 7, weak 0) 0x7fff8017d990, [118] = std::shared_ptr (count 6, weak 0) 0x7fff8017e3e0, 
+          [119] = std::shared_ptr (count 7, weak 0) 0x7fff8017fb20, [120] = std::shared_ptr (count 15, weak 0) 0x7fff8017fdd0, [121] = std::shared_ptr (count 12, weak 0) 0x7fff80180040, 
+          [122] = std::shared_ptr (count 5, weak 0) 0x7fff80180710, [123] = std::shared_ptr (count 4, weak 0) 0x7fff80180960, [124] = std::shared_ptr (count 10, weak 0) 0x7fff801813a0, 
+          [125] = std::shared_ptr (count 6, weak 0) 0x7fff80182040, [126] = std::shared_ptr (count 26, weak 0) 0x7fff80187170, [127] = std::shared_ptr (count 7, weak 0) 0x7fff80187dd0, 
+          [128] = std::shared_ptr (count 11, weak 0) 0x7fff8018ade0, [129] = std::shared_ptr (count 9, weak 0) 0x7fff8018b710, [130] = std::shared_ptr (count 5, weak 0) 0x7fff8018e340, 
+          [131] = std::shared_ptr (count 5, weak 0) 0x7fff8018e750, [132] = std::shared_ptr (count 5, weak 0) 0x7fff80196d00, [133] = std::shared_ptr (count 17, weak 0) 0x7fff80197760, 
+          [134] = std::shared_ptr (count 17, weak 0) 0x7fff80199440, [135] = std::shared_ptr (count 8, weak 0) 0x7fff8019a000, [136] = std::shared_ptr (count 6, weak 0) 0x7fff8019ed30, 
+          [137] = std::shared_ptr (count 20, weak 0) 0x7fff8019f140, [138] = std::shared_ptr (count 8, weak 0) 0x7fff801a16b0, [139] = std::shared_ptr (count 8, weak 0) 0x7fff801a1ac0, 
+          [140] = std::shared_ptr (count 5, weak 0) 0x7fff801a33a0, [141] = std::shared_ptr (count 15, weak 0) 0x7fff801b9370, [142] = std::shared_ptr (count 9, weak 0) 0x7fff801ba180, 
+          [143] = std::shared_ptr (count 6, weak 0) 0x7fff801ba590, [144] = std::shared_ptr (count 5, weak 0) 0x7fff801cbd80, [145] = std::shared_ptr (count 11, weak 0) 0x7fff801cdce0, 
+          [146] = std::shared_ptr (count 6, weak 0) 0x7fff801ce1f0, [147] = std::shared_ptr (count 8, weak 0) 0x7fff801ce9f0, [148] = std::shared_ptr (count 5, weak 0) 0x7fff801cf540, 
+          [149] = std::shared_ptr (count 20, weak 0) 0x7fff801d14b0, [150] = std::shared_ptr (count 7, weak 0) 0x7fff801d72f0, [151] = std::shared_ptr (count 17, weak 0) 0x7fff801d7a00, 
+          [152] = std::shared_ptr (count 15, weak 0) 0x7fff801d7bf0, [153] = std::shared_ptr (count 10, weak 0) 0x7fff801d82b0, [154] = std::shared_ptr (count 4, weak 0) 0x7fff801d8b20, 
+          [155] = std::shared_ptr (count 17, weak 0) 0x7fff801da080, [156] = std::shared_ptr (count 11, weak 0) 0x7fff801dc410, [157] = std::shared_ptr (count 7, weak 0) 0x7fff801dcd30, 
+          [158] = std::shared_ptr (count 6, weak 0) 0x7fff801de330, [159] = std::shared_ptr (count 7, weak 0) 0x7fff801de660, [160] = std::shared_ptr (count 7, weak 0) 0x7fff801df4f0, 
+          [161] = std::shared_ptr (count 9, weak 0) 0x7fff801dfc90, [162] = std::shared_ptr (count 9, weak 0) 0x7fff801e09b0, [163] = std::shared_ptr (count 7, weak 0) 0x7fff801e1cb0, 
+          [164] = std::shared_ptr (count 5, weak 0) 0x7fff801e2580, [165] = std::shared_ptr (count 8, weak 0) 0x7fff801e2a30, [166] = std::shared_ptr (count 8, weak 0) 0x7fff801e3ef0, 
+          [167] = std::shared_ptr (count 5, weak 0) 0x7fff801e4060, [168] = std::shared_ptr (count 10, weak 0) 0x7fff801e5210, [169] = std::shared_ptr (count 10, weak 0) 0x7fff801e7210, 
+          [170] = std::shared_ptr (count 4, weak 0) 0x7fff801e9f30, [171] = std::shared_ptr (count 6, weak 0) 0x7fff801ea830, [172] = std::shared_ptr (count 14, weak 0) 0x7fff801eb8b0, 
+          [173] = std::shared_ptr (count 15, weak 0) 0x7fff801ec7d0, [174] = std::shared_ptr (count 5, weak 0) 0x7fff801f09d0, [175] = std::shared_ptr (count 16, weak 0) 0x7fff801f1960, 
+          [176] = std::shared_ptr (count 4, weak 0) 0x7fff801f1f60, [177] = std::shared_ptr (count 14, weak 0) 0x7fff801f2920, [178] = std::shared_ptr (count 19, weak 0) 0x7fff801f39d0, 
+          [179] = std::shared_ptr (count 6, weak 0) 0x7fff801f52a0, [180] = std::shared_ptr (count 4, weak 0) 0x7fff801f5e70, [181] = std::shared_ptr (count 11, weak 0) 0x7fff801f6200, 
+          [182] = std::shared_ptr (count 4, weak 0) 0x7fff801f6b00, [183] = std::shared_ptr (count 13, weak 0) 0x7fff801f6f10, [184] = std::shared_ptr (count 7, weak 0) 0x7fff801f7720, 
+          [185] = std::shared_ptr (count 5, weak 0) 0x7fff801f7970, [186] = std::shared_ptr (count 5, weak 0) 0x7fff801f8130, [187] = std::shared_ptr (count 7, weak 0) 0x7fff801f9b10, 
+          [188] = std::shared_ptr (count 6, weak 0) 0x7fff801fa7f0, [189] = std::shared_ptr (count 5, weak 0) 0x7fff801faaa0, [190] = std::shared_ptr (count 28, weak 0) 0x7fff801fbb30, 
+          [191] = std::shared_ptr (count 5, weak 0) 0x7fff801fe570, [192] = std::shared_ptr (count 15, weak 0) 0x7fff801fffb0, [193] = std::shared_ptr (count 18, weak 0) 0x7fff80201170, 
+          [194] = std::shared_ptr (count 8, weak 0) 0x7fff80201f10, [195] = std::shared_ptr (count 7, weak 0) 0x7fff802027a0, [196] = std::shared_ptr (count 7, weak 0) 0x7fff80203960, 
+          [197] = std::shared_ptr (count 19, weak 0) 0x7fff802047e0, [198] = std::shared_ptr (count 4, weak 0) 0x7fff80207c10, [199] = std::shared_ptr (count 12, weak 0) 0x7fff802081c0...}
+        camera2world = {my_rotation = {x = 0.0019553996257051232, y = -0.016678565769199037, z = 0.008281310237653234, w = 0.99982469551482434}, my_translation = {x = -89.797523788515036, y = -4.083346558744922, 
+            z = -1.4762506450628663}}
+        world2camera = {my_rotation = {x = -0.0019553996257051232, y = 0.016678565769199037, z = -0.008281310237653234, w = 0.99982469551482434}, my_translation = {x = 89.851883755901483, y = 2.5952410082264645, 
+            z = -1.5336307674046032}}
+        cam = {impl = std::shared_ptr (count 99, weak 0) 0x12613d0}
+        matches = std::vector of length 9, capacity 16 = {{first = 137, second = std::shared_ptr (count 18, weak 0) 0x7fff8002cf20}, {first = 1013, second = std::shared_ptr (count 12, weak 0) 0x7fff8041d450}, {
+            first = 160, second = std::shared_ptr (count 11, weak 0) 0x7fff80492fb0}, {first = 221, second = std::shared_ptr (count 16, weak 0) 0x7fff806885c0}, {first = 217, 
+            second = std::shared_ptr (count 15, weak 0) 0x7fff807782f0}, {first = 804, second = std::shared_ptr (count 18, weak 0) 0x7fff80fcb100}, {first = 199, 
+            second = std::shared_ptr (count 11, weak 0) 0x7fff8101f550}, {first = 265, second = std::shared_ptr (count 10, weak 0) 0x7fff810fc1e0}, {first = 266, 
+            second = std::shared_ptr (count 7, weak 0) 0x7fff81231db0}}
+        tryCount = 84
+        matchNumber = <optimized out>
+        l2w = {my_se3 = {my_rotation = {x = 29.907573890475938, y = -9.9868184904825927, z = 16.938874272643787, w = 6.9533460952889833e-310}, my_translation = {x = 6.9532629701839755e-310, y = 6.9533460874907006e-310, 
+---Type <return> to continue, or q <return> to quit---
+              z = 9.0908078834789364e-322}}, my_scale = 6.9532629702072954e-310}
+        w2l = {my_se3 = {my_rotation = {x = 0.33000784890278251, y = 0.51714551978961432, z = -0.78971851379643021, w = 6.9533460952785091e-310}, my_translation = {x = 6.7903865311876845e-313, 
+              y = 6.9533462242492077e-310, z = 6.9533462241440705e-310}}, my_scale = 6.9532629701689559e-310}
+#16 0x00000000005a891c in opt::Tracker::track (this=0x7fff88000fc0, frame=std::shared_ptr (count 3, weak 0) 0x7fff7747b9f0)
+    at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/zhaoyong/TrackerOpt.cpp:188
+        logger = {_sst = @0x7fff880010d0, _verbose = 2}
+        bOK = <optimized out>
+#17 0x000000000063fd0f in DIYSLAM::trackingThread (this=0x12af4a0) at /home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/src/DIYSLAM.cpp:234
+        frame = std::shared_ptr (count 3, weak 0) 0x7fff7747b9f0
+#18 0x00007ffff443bc80 in ?? () from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+No symbol table info available.
+#19 0x00007ffff5bac6ba in start_thread (arg=0x7fff8ffff700) at pthread_create.c:333
+        __res = <optimized out>
+        pd = 0x7fff8ffff700
+        now = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140735609304832, -6285385347151687788, 0, 140737488344047, 140735609305536, 0, 6285561268322701204, 6285397946723602324}, mask_was_saved = 0}}, priv = {pad = {0x0, 
+              0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = <optimized out>
+        pagesize_m1 = <optimized out>
+        sp = <optimized out>
+        freesize = <optimized out>
+        __PRETTY_FUNCTION__ = "start_thread"
+#20 0x00007ffff397f41d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+No locals.
+
+
+
+
+
+
+## Bug of segmentation fault
+
+SLAM.isOnline  ?= 0
+
+MapperDemo.cpp:308 New KeyFrame:2
+MapperDemo.cpp:312 end
+Segmentation fault (core dumped)
+
+
+## *** Error in `./pislam': malloc(): smallbin double linked list corrupted: 0x00007f165431ec40 ***
+https://stackoverflow.com/questions/19534051/glibc-detect-smallbin-linked-list-corrupted
+https://github.com/strongloop/strong-oracle/issues/33
+https://www.linuxquestions.org/questions/programming-9/%2A%2A%2A-glibc-detected-%2A%2A%2A-a-out-corrupted-double-linked-list-0x000000000187d240-%2A%2A%2A-817965/
+
+
+*** Error in `/home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/build/pislam': malloc(): smallbin double linked list corrupted: 0x00007fff6423fd50 ***
+
+======= Backtrace: =========
+/lib/x86_64-linux-gnu/libc.so.6(+0x777e5)[0x7ffff38ef7e5]
+/lib/x86_64-linux-gnu/libc.so.6(+0x82651)[0x7ffff38fa651]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_malloc+0x54)[0x7ffff38fc184]
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x18)[0x7ffff4410e78]
+/home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/build/pislam(_ZN3opt7Tracker19addKeyframeIfNeededEv+0x255)[0x5a1a75] opt::Tracker::addKeyframeIfNeeded()
+/home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/build/pislam(_ZN3opt7Tracker5trackERKSt10shared_ptrI8MapFrameE+0x284)[0x5a88d4] opt::Tracker::track(std::shared_ptr<MapFrame> const&)
+/home_data/bushuhui-data/msdk/uav/PIS/RTMapper3/algorithm_codes/PI-SLAM/build/pislam(_ZN7DIYSLAM14trackingThreadEv+0x2bf)[0x63fcbf]  
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0xb8c80)[0x7ffff443bc80]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x76ba)[0x7ffff5bac6ba]
+/lib/x86_64-linux-gnu/libc.so.6(clone+0x6d)[0x7ffff397f41d]
+
+
+
+## valgrind - 4 month ago program
+
+```
+valgrind --tool=memcheck --leak-check=full --error-limit=no --show-leak-kinds=all --track-origins=yes ./pislam
+```
+
+--trace-children=yes
+
+MapperDemo.cpp:305 New KeyFrame:21,ER:169, Created 159 pt,FUSE1:244,FUSE:967,BA:11-1460-9910,EO:867,EP:34
+main.cpp:128 cmd: SLAM_Call, param: Stop
+MapperDemo.cpp:305 New KeyFrame:23,ER:0, Created 230 pt,FUSE1:591,FUSE:1345,BA:12-1543-10822,EO:1069,EP:45
+MapperDemo.cpp:305 New KeyFrame:25,ER:138, Created 189 pt,FUSE1:365,FUSE:1347,BA:13-1550-11643,EO:1236,EP:38
+DIYSLAM.cpp:109 SLAM released.
+==342== Mismatched free() / delete / delete []
+==342==    at 0x4C2F24B: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==342==    by 0x5951F8: _M_release (shared_ptr_base.h:150)
+==342==    by 0x5951F8: ~__shared_count (shared_ptr_base.h:659)
+==342==    by 0x5951F8: ~__shared_ptr (shared_ptr_base.h:925)
+==342==    by 0x5951F8: ~shared_ptr (shared_ptr.h:93)
+==342==    by 0x5951F8: ~GPUSIFT (FeatureDetectorSiftGPU.cpp:67)
+==342==    by 0x5951F8: ~GPUSIFT (FeatureDetectorSiftGPU.cpp:69)
+==342==    by 0x5951F8: std::_Sp_counted_ptr<GPUSIFT*, (__gnu_cxx::_Lock_policy)2>::_M_dispose() (shared_ptr_base.h:374)
+==342==    by 0x555825: std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release() (shared_ptr_base.h:150)
+==342==    by 0x626C63: ~__shared_count (shared_ptr_base.h:659)
+==342==    by 0x626C63: ~__shared_ptr (shared_ptr_base.h:925)
+==342==    by 0x626C63: ~shared_ptr (shared_ptr.h:93)
+==342==    by 0x626C63: DIYSLAM::~DIYSLAM() (DIYSLAM.cpp:66)
+==342==    by 0x629310: ~DIYSLAM (DIYSLAM.cpp:69)
+==342==    by 0x629310: std::_Sp_counted_ptr<DIYSLAM*, (__gnu_cxx::_Lock_policy)2>::_M_dispose() (shared_ptr_base.h:374)
+==342==    by 0x555825: std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release() (shared_ptr_base.h:150)
+==342==    by 0x647126: ~__shared_count (shared_ptr_base.h:659)
+==342==    by 0x647126: ~__shared_ptr (shared_ptr_base.h:925)
+==342==    by 0x647126: reset (shared_ptr_base.h:1022)
+==342==    by 0x647126: ~SLAMVisualizerImpl (SLAMVisualizer.cpp:349)
+==342==    by 0x647126: std::_Sp_counted_ptr<GSLAM::SLAMVisualizerImpl*, (__gnu_cxx::_Lock_policy)2>::_M_dispose() (shared_ptr_base.h:374)
+==342==    by 0x555825: std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release() (shared_ptr_base.h:150)
+==342==    by 0x6470CE: ~__shared_count (shared_ptr_base.h:659)
+==342==    by 0x6470CE: ~__shared_ptr (shared_ptr_base.h:925)
+==342==    by 0x6470CE: ~shared_ptr (shared_ptr.h:93)
+==342==    by 0x6470CE: ~SLAMVisualizer (SLAMVisualizer.h:12)
+==342==    by 0x6470CE: GSLAM::SLAMVisualizer::~SLAMVisualizer() (SLAMVisualizer.h:12)
+==342==    by 0x5CD12B0: QObjectPrivate::deleteChildren() (in /usr/lib/x86_64-linux-gnu/libQtCore.so.4.8.7)
+==342==    by 0x50552A1: QWidget::~QWidget() (in /usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.7)
+==342==    by 0x547C4E8: QStackedWidget::~QStackedWidget() (in /usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.7)
+==342==  Address 0x223e3b40 is 0 bytes inside a block of size 160 alloc'd
+==342==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==342==    by 0x50A201: operator new (SiftGPU.cpp:1428)
+==342==    by 0x50A201: CreateNewSiftGPU (SiftGPU.cpp:1423)
+==342==    by 0x591FB9: GPUSIFT::init() const (FeatureDetectorSiftGPU.cpp:76)
+==342==    by 0x592CA4: GPUSIFT::operator()(GSLAM::GImage const&, GSLAM::GImage const&, std::vector<GSLAM::KeyPoint, std::allocator<GSLAM::KeyPoint> >&, GSLAM::GImage&, bool) const (FeatureDetectorSiftGPU.cpp:137)
+==342==    by 0x6285E8: DIYSLAM::track(std::shared_ptr<GSLAM::MapFrame>&) (DIYSLAM.cpp:154)
+==342==    by 0x671096: SLAM_System::slamThread() (main.cpp:102)
+==342==    by 0x85C4C7F: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==342==    by 0x6E566B9: start_thread (pthread_create.c:333)
+==342==    by 0x90D641C: clone (clone.S:109)
+==342== 
+MapHash with 12 MapFrames and 1044 MapPoints released.
+
+------------------------------------  Timer report ------------------------------------
+           FUNCTION                       #CALLS  MIN.T  MEAN.T  MAX.T  TOTAL 
+---------------------------------------------------------------------------------------
+DIYSLAM::Track                              24  716.6ms   1.6 s   3.9 s  39.0 s
+Main                                         1   89.2 s  89.2 s  89.2 s  89.2 s
+Mapper::createNewMapPoints                  10   91.7ms 278.8ms 629.5ms   2.8 s
+Mapper::createNewMapPointsBow               10   65.0ms 107.6ms 337.4ms   1.1 s
+Mapper::dataAssociation                     10  107.4ms 242.4ms 346.5ms   2.4 s
+Mapper::handleCurrentFrame                  12   31.8ms   2.5 s   4.4 s  29.6 s
+Mapper::localOptimization                   11    1.4 s   2.1 s   3.6 s  22.9 s
+Mapper::mapPointCulling                     12    5.2us   1.1ms   2.5ms  13.6ms
+Tracker::FeatureExtract                     24  716.1ms   1.6 s   3.8 s  38.9 s
+Tracker::initialize                          2    3.2 s   3.6 s   4.1 s   7.3 s
+Tracker::trackLocalMap                      21   32.6ms  94.4ms 224.0ms   2.0 s
+Tracker::trackRefKeyframeRansac             21   88.1ms 260.7ms 640.9ms   5.5 s
+--------------------------------- End of Timer report ---------------------------------
+
+==342== 
+==342== HEAP SUMMARY:
+==342==     in use at exit: 582,406 bytes in 7,200 blocks
+==342==   total heap usage: 2,622,855 allocs, 2,615,655 frees, 8,253,251,390 bytes allocated
+==342== 
+==342== LEAK SUMMARY:
+==342==    definitely lost: 4,292 bytes in 55 blocks
+==342==    indirectly lost: 12,124 bytes in 133 blocks
+==342==      possibly lost: 4,712 bytes in 25 blocks
+==342==    still reachable: 561,278 bytes in 6,987 blocks
+==342==                       of which reachable via heuristic:
+==342==                         newarray           : 8,896 bytes in 20 blocks
+==342==         suppressed: 0 bytes in 0 blocks
+==342== Rerun with --leak-check=full to see details of leaked memory
+==342== 
+==342== For counts of detected and suppressed errors, rerun with: -v
+==342== Use --track-origins=yes to see where uninitialised values come from
+==342== ERROR SUMMARY: 9120760 errors from 592 contexts (suppressed: 0 from 0)
+

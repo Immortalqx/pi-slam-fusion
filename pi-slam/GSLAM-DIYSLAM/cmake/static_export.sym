@@ -1,0 +1,4 @@
+PILBuildManifest
+PILInitializeLibrary
+PILUninitializeLibrary
+createSLAMInstance

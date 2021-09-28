@@ -1,0 +1,4 @@
+
+set(OPENMP_FOUND true)
+set(OPENMP_LIBRARIES -lgomp)
+set(OPENMP_DEFINITIONS -DG2O_OPENMP -fopenmp)
