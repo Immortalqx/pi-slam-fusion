@@ -482,12 +482,12 @@ bool Svar::ParseMain(int argc, char** argv, PARSEMODE mode)
         setvar(argv[i]);
 
     // parse default config file
-    string cfg_File=argv[0];
+    string cfg_File=argv[1];
     insert("argv0", cfg_File);
     pi::StringArray path_name = pi::path_split(cfg_File);
     insert("ProgramPath",path_name[0]);
     insert("ProgramName",path_name[1]);
-    cfg_File += ".cfg";
+//    cfg_File += ".cfg";
     if( !pi::path_exist(cfg_File.c_str()) )
     {
         cfg_File="./Default.cfg";
