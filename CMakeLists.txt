@@ -50,7 +50,7 @@ endif ()
 
 # build of PI-SLAM
 pi_add_target(PiSLAMFusion BIN
-        src pi-slam/tests
+        src pi-slam/tests pi-slam/gui
         pi-slam/GSLAM-DIYSLAM/src
         ${QRC_FILES}
         cmake/glew cmake/QGLViewer
