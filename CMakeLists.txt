@@ -68,10 +68,10 @@ elseif (QT5_FOUND)
 endif ()
 
 include_directories(
-        pi-slam/gui
-        pi-slam/GSLAM
-        pi-slam/GSLAM-DIYSLAM/src
-        ${CMAKE_CURRENT_LIST_DIR}
+        #        pi-slam/gui
+        #        pi-slam/GSLAM
+        #        pi-slam/GSLAM-DIYSLAM/src
+        #        ${CMAKE_CURRENT_LIST_DIR}
 
         Map2DFusion/src
         Map2DFusion/PIL/src
@@ -85,15 +85,15 @@ include_directories(
 # build of PI-SLAM
 pi_add_target(PiSLAMFusion BIN
         src
-        pi-slam/gui
-        pi-slam/tests
-        pi-slam/GSLAM-DIYSLAM/src
-        ${QRC_FILES}
+        #        pi-slam/gui
+        #        pi-slam/tests
+        #        pi-slam/GSLAM-DIYSLAM/src
+        #        ${QRC_FILES}
 
         cmake/glew
         cmake/QGLViewer
 
-        # 目前的问题：GSLAM里面的SE3.h与PIL里面的冲突了，
+        # 目前的问题：把下面的注释去掉就会编译不通过，感觉是SE3这样的东西冲突了，但报错不是很清楚，又感觉不是
         Map2DFusion/src
         ${UI_OPM}
         ${qrc_mapresources}

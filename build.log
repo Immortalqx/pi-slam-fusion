@@ -1,0 +1,459 @@
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:22:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/Svar.h:13:0: warning: "svar" redefined [enabled by default]
+ #define svar GSLAM::Svar::instance()
+ ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/VFX3I5PNAV/../../../Map2DFusion/PIL/src/gui/controls/SvarTable.h:22:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/VFX3I5PNAV/moc_SvarTable.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:4:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/Svar/Svar.h:20:0: note: this is the location of the previous definition
+ #define svar Svar::instance()
+ ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SO3.h:5:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/Point.h:18:8: error: redefinition of ‘struct pi::Point2_<Precision>’
+ struct Point2_
+        ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:17:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/types.h:126:8: error: previous definition of ‘struct pi::Point2_<Precision>’
+ struct Point2_
+        ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SO3.h:5:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/Point.h:132:8: error: redefinition of ‘struct pi::Point3_<Precision>’
+ struct Point3_
+        ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:17:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/types.h:202:8: error: previous definition of ‘struct pi::Point3_<Precision>’
+ struct Point3_
+        ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SO3.h:6:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/Array.h:7:8: error: redefinition of ‘struct pi::Array_<Type, Size>’
+ struct Array_
+        ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:17:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/types.h:65:8: error: previous definition of ‘struct pi::Array_<Type, Size>’
+ struct Array_
+        ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SO3.h:6:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/Array.h:111:8: error: redefinition of default argument for ‘int Size’
+ struct Byte
+        ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:17:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/types.h:92:20: note: original definition appeared here
+ template <int Size=2>
+                    ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:4:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SO3.h:55:7: error: redefinition of default argument for ‘class Precision’
+ class SO3
+       ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/SE3.h:4:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:18,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/SO3.h:50:11: note: original definition appeared here
+ template <class Precision=double>
+           ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:4:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SO3.h:520:22: error: redefinition of ‘template<class Precision> std::ostream& pi::operator<<(std::ostream&, const pi::SO3<Precision>&)’
+ inline std::ostream& operator << (std::ostream& os,const SO3<Precision>& so3)
+                      ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/SE3.h:4:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:18,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/SO3.h:381:22: error: ‘template<class Precision> std::ostream& pi::operator<<(std::ostream&, const pi::SO3<Precision>&)’ previously declared here
+ inline std::ostream& operator << (std::ostream& os,const SO3<Precision>& so3)
+                      ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:4:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SO3.h:536:22: error: redefinition of ‘template<class Precision> std::istream& pi::operator>>(std::istream&, pi::SO3<Precision>&)’
+ inline std::istream& operator >> (std::istream& is,SO3<Precision>& so3)
+                      ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/SE3.h:4:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:18,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/SO3.h:396:22: error: ‘template<class Precision> std::istream& pi::operator>>(std::istream&, pi::SO3<Precision>&)’ previously declared here
+ inline std::istream& operator >> (std::istream& is,SO3<Precision>& so3)
+                      ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SIM3.h:4:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/GSLAM.h:17,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/../../../pi-slam/gui/FrameVisualizer.h:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_FrameVisualizer.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:36:
+/home/immortalqx/Lab/pi-slam-fusion/pi-slam/GSLAM/GSLAM/core/SE3.h:39:7: error: redefinition of default argument for ‘class Precision’
+ class SE3
+       ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/Win3D.h:18:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_Win3D.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:3:
+/home/immortalqx/Lab/pi-slam-fusion/Map2DFusion/PIL/src/base/types/SE3.h:38:11: note: original definition appeared here
+ template <class Precision = double>
+           ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:60:13: error: ‘GSLAM::MainWindow’ has not been declared
+ void GSLAM::MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+             ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘void qt_static_metacall(QObject*, QMetaObject::Call, int, void**)’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:66:72: error: no matching function for call to ‘MainWindow::call_signal(QString&)’
+         case 0: _t->call_signal((*reinterpret_cast< QString(*)>(_a[1]))); break;
+                                                                        ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:66:72: note: candidate is:
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:29:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/HHBTK53SZ4/moc_MainWindow.cpp:99:6: note: void MainWindow::call_signal()
+ void MainWindow::call_signal()
+      ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/HHBTK53SZ4/moc_MainWindow.cpp:99:6: note:   candidate expects 0 arguments, 1 provided
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:67:21: error: ‘class MainWindow’ has no member named ‘signalStop’
+         case 1: _t->signalStop(); break;
+                     ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:68:70: error: no matching function for call to ‘MainWindow::call_slot(QString&)’
+         case 2: _t->call_slot((*reinterpret_cast< QString(*)>(_a[1]))); break;
+                                                                      ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:68:70: note: candidate is:
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/HHBTK53SZ4/moc_MainWindow.cpp:9:0,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:29:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/HHBTK53SZ4/../../../Map2DFusion/src/MainWindow.h:50:10: note: void MainWindow::call_slot()
+     void call_slot();
+          ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/HHBTK53SZ4/../../../Map2DFusion/src/MainWindow.h:50:10: note:   candidate expects 0 arguments, 1 provided
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:69:21: error: ‘class MainWindow’ has no member named ‘slotShowMessage’
+         case 3: _t->slotShowMessage((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+                     ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:70:21: error: ‘class MainWindow’ has no member named ‘slotShowMessage’
+         case 4: _t->slotShowMessage((*reinterpret_cast< QString(*)>(_a[1]))); break;
+                     ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:71:33: error: ‘class MainWindow’ has no member named ‘slotOpen’
+         case 5: { bool _r = _t->slotOpen();
+                                 ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:73:33: error: ‘class MainWindow’ has no member named ‘slotOpen’
+         case 6: { bool _r = _t->slotOpen((*reinterpret_cast< QString(*)>(_a[1])));
+                                 ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:75:33: error: ‘class MainWindow’ has no member named ‘slotStart’
+         case 7: { bool _r = _t->slotStart();
+                                 ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:77:33: error: ‘class MainWindow’ has no member named ‘slotPause’
+         case 8: { bool _r = _t->slotPause();
+                                 ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:79:33: error: ‘class MainWindow’ has no member named ‘slotStop’
+         case 9: { bool _r = _t->slotStop();
+                                 ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:81:34: error: ‘class MainWindow’ has no member named ‘slotStartDataset’
+         case 10: { bool _r = _t->slotStartDataset((*reinterpret_cast< QString(*)>(_a[1])));
+                                  ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:88:35: error: ‘GSLAM::MainWindow’ has not been declared
+ const QMetaObjectExtraData GSLAM::MainWindow::staticMetaObjectExtraData = {
+                                   ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:92:26: error: ‘GSLAM::MainWindow’ has not been declared
+ const QMetaObject GSLAM::MainWindow::staticMetaObject = {
+                          ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:101:27: error: ‘GSLAM::MainWindow’ has not been declared
+ const QMetaObject *GSLAM::MainWindow::metaObject() const
+                           ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:101:52: error: non-member function ‘const QMetaObject* metaObject()’ cannot have cv-qualifier
+ const QMetaObject *GSLAM::MainWindow::metaObject() const
+                                                    ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h: In function ‘const QMetaObject* metaObject()’:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: ‘QScopedPointer<QObjectData> QObject::d_ptr’ is protected
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:103:21: error: within this context
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                     ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: invalid use of non-static data member ‘QObject::d_ptr’
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:103:21: error: from this location
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                     ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: ‘QScopedPointer<QObjectData> QObject::d_ptr’ is protected
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:103:50: error: within this context
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                                                  ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: invalid use of non-static data member ‘QObject::d_ptr’
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:103:50: error: from this location
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                                                  ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:106:14: error: ‘GSLAM::MainWindow’ has not been declared
+ void *GSLAM::MainWindow::qt_metacast(const char *_clname)
+              ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘void* qt_metacast(const char*)’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:110:60: error: invalid use of ‘this’ in non-member function
+         return static_cast<void*>(const_cast< MainWindow*>(this));
+                                                            ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:111:44: error: cannot call member function ‘virtual void* QMainWindow::qt_metacast(const char*)’ without object
+     return QMainWindow::qt_metacast(_clname);
+                                            ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:114:12: error: ‘GSLAM::MainWindow’ has not been declared
+ int GSLAM::MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+            ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘int qt_metacall(QMetaObject::Call, int, void**)’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:116:47: error: cannot call member function ‘virtual int QMainWindow::qt_metacall(QMetaObject::Call, int, void**)’ without object
+     _id = QMainWindow::qt_metacall(_c, _id, _a);
+                                               ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:121:32: error: invalid use of ‘this’ in non-member function
+             qt_static_metacall(this, _c, _id, _a);
+                                ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:128:13: error: ‘GSLAM::MainWindow’ has not been declared
+ void GSLAM::MainWindow::call_signal(QString _t1)
+             ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘void call_signal(QString)’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:131:27: error: invalid use of ‘this’ in non-member function
+     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+                           ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:135:13: error: ‘GSLAM::MainWindow’ has not been declared
+ void GSLAM::MainWindow::signalStop()
+             ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘void signalStop()’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:137:27: error: invalid use of ‘this’ in non-member function
+     QMetaObject::activate(this, &staticMetaObject, 1, 0);
+                           ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:162:13: error: ‘GSLAM::SCommandAction’ has not been declared
+ void GSLAM::SCommandAction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+             ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘void qt_static_metacall(QObject*, QMetaObject::Call, int, void**)’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:162:6: error: redefinition of ‘void qt_static_metacall(QObject*, QMetaObject::Call, int, void**)’
+ void GSLAM::SCommandAction::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+      ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:60:6: error: ‘void qt_static_metacall(QObject*, QMetaObject::Call, int, void**)’ previously defined here
+ void GSLAM::MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+      ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:166:9: error: ‘SCommandAction’ was not declared in this scope
+         SCommandAction *_t = static_cast<SCommandAction *>(_o);
+         ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:166:25: error: ‘_t’ was not declared in this scope
+         SCommandAction *_t = static_cast<SCommandAction *>(_o);
+                         ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:166:42: error: expected type-specifier before ‘SCommandAction’
+         SCommandAction *_t = static_cast<SCommandAction *>(_o);
+                                          ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:166:42: error: expected ‘>’ before ‘SCommandAction’
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:166:42: error: expected ‘(’ before ‘SCommandAction’
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:166:58: error: expected primary-expression before ‘>’ token
+         SCommandAction *_t = static_cast<SCommandAction *>(_o);
+                                                          ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:166:63: error: expected ‘)’ before ‘;’ token
+         SCommandAction *_t = static_cast<SCommandAction *>(_o);
+                                                               ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:175:35: error: ‘GSLAM::SCommandAction’ has not been declared
+ const QMetaObjectExtraData GSLAM::SCommandAction::staticMetaObjectExtraData = {
+                                   ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:175:51: error: redefinition of ‘const QMetaObjectExtraData staticMetaObjectExtraData’
+ const QMetaObjectExtraData GSLAM::SCommandAction::staticMetaObjectExtraData = {
+                                                   ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:88:28: error: ‘const QMetaObjectExtraData staticMetaObjectExtraData’ previously defined here
+ const QMetaObjectExtraData GSLAM::MainWindow::staticMetaObjectExtraData = {
+                            ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:179:26: error: ‘GSLAM::SCommandAction’ has not been declared
+ const QMetaObject GSLAM::SCommandAction::staticMetaObject = {
+                          ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:179:42: error: redefinition of ‘const QMetaObject staticMetaObject’
+ const QMetaObject GSLAM::SCommandAction::staticMetaObject = {
+                                          ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:92:19: error: ‘const QMetaObject staticMetaObject’ previously defined here
+ const QMetaObject GSLAM::MainWindow::staticMetaObject = {
+                   ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:188:27: error: ‘GSLAM::SCommandAction’ has not been declared
+ const QMetaObject *GSLAM::SCommandAction::metaObject() const
+                           ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:188:56: error: non-member function ‘const QMetaObject* metaObject()’ cannot have cv-qualifier
+ const QMetaObject *GSLAM::SCommandAction::metaObject() const
+                                                        ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘const QMetaObject* metaObject()’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:188:20: error: redefinition of ‘const QMetaObject* metaObject()’
+ const QMetaObject *GSLAM::SCommandAction::metaObject() const
+                    ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:101:20: error: ‘const QMetaObject* metaObject()’ previously defined here
+ const QMetaObject *GSLAM::MainWindow::metaObject() const
+                    ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: ‘QScopedPointer<QObjectData> QObject::d_ptr’ is protected
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:190:21: error: within this context
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                     ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: invalid use of non-static data member ‘QObject::d_ptr’
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:190:21: error: from this location
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                     ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: ‘QScopedPointer<QObjectData> QObject::d_ptr’ is protected
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:190:50: error: within this context
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                                                  ^
+In file included from /usr/include/qt4/QtGui/qwidget.h:47:0,
+                 from /usr/include/qt4/QtGui/qmainwindow.h:45,
+                 from /usr/include/qt4/QtGui/QMainWindow:1,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/../../../Map2DFusion/PIL/src/gui/MainWindowImpl.h:3,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/2KPCHQVDTL/moc_MainWindowImpl.cpp:9,
+                 from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:2:
+/usr/include/qt4/QtCore/qobject.h:320:33: error: invalid use of non-static data member ‘QObject::d_ptr’
+     QScopedPointer<QObjectData> d_ptr;
+                                 ^
+In file included from /home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/mocs_compilation.cpp:37:0:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:190:50: error: from this location
+     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+                                                  ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:193:14: error: ‘GSLAM::SCommandAction’ has not been declared
+ void *GSLAM::SCommandAction::qt_metacast(const char *_clname)
+              ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘void* qt_metacast(const char*)’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:193:7: error: redefinition of ‘void* qt_metacast(const char*)’
+ void *GSLAM::SCommandAction::qt_metacast(const char *_clname)
+       ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:106:7: error: ‘void* qt_metacast(const char*)’ previously defined here
+ void *GSLAM::MainWindow::qt_metacast(const char *_clname)
+       ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:197:47: error: expected type-specifier before ‘SCommandAction’
+         return static_cast<void*>(const_cast< SCommandAction*>(this));
+                                               ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:197:47: error: expected ‘>’ before ‘SCommandAction’
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:197:47: error: expected ‘(’ before ‘SCommandAction’
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:197:47: error: ‘SCommandAction’ was not declared in this scope
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:197:62: error: expected primary-expression before ‘>’ token
+         return static_cast<void*>(const_cast< SCommandAction*>(this));
+                                                              ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:197:64: error: invalid use of ‘this’ in non-member function
+         return static_cast<void*>(const_cast< SCommandAction*>(this));
+                                                                ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:197:70: error: expected ‘)’ before ‘;’ token
+         return static_cast<void*>(const_cast< SCommandAction*>(this));
+                                                                      ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:198:40: error: cannot call member function ‘virtual void* QAction::qt_metacast(const char*)’ without object
+     return QAction::qt_metacast(_clname);
+                                        ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: At global scope:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:201:12: error: ‘GSLAM::SCommandAction’ has not been declared
+ int GSLAM::SCommandAction::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+            ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp: In function ‘int qt_metacall(QMetaObject::Call, int, void**)’:
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:201:5: error: redefinition of ‘int qt_metacall(QMetaObject::Call, int, void**)’
+ int GSLAM::SCommandAction::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+     ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:114:5: error: ‘int qt_metacall(QMetaObject::Call, int, void**)’ previously defined here
+ int GSLAM::MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+     ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:203:43: error: cannot call member function ‘virtual int QAction::qt_metacall(QMetaObject::Call, int, void**)’ without object
+     _id = QAction::qt_metacall(_c, _id, _a);
+                                           ^
+/home/immortalqx/Lab/pi-slam-fusion/build/PiSLAMFusion_autogen/TH32M2F4QG/moc_MainWindow.cpp:208:32: error: invalid use of ‘this’ in non-member function
+             qt_static_metacall(this, _c, _id, _a);
+                                ^
+make[2]: *** [CMakeFiles/PiSLAMFusion.dir/PiSLAMFusion_autogen/mocs_compilation.cpp.o] Error 1
+make[2]: *** 正在等待未完成的任务....
+make[2]: *** [CMakeFiles/PiSLAMFusion.dir/pi-slam/GSLAM-DIYSLAM/src/zhaoyong/EstimatorEigen/EstimatorEigen.cpp.o] 中断
+make[1]: *** [CMakeFiles/PiSLAMFusion.dir/all] 中断
+make: *** [all] 中断
