@@ -29,6 +29,8 @@
 #include <base/types/SE3.h>
 #include <base/system/thread/ThreadBase.h>
 #include <gui/gl/GL_Object.h>
+//TODO add types.h here!
+#include "PIL/src/base/types/types.h"
 
 #define  ELE_PIXELS 256
 
