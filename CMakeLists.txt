@@ -43,7 +43,7 @@ include_directories(GSLAM
 # build of PI-SLAM
 pi_collect_packages(VERBOSE REQUIRED System MODULES # System dependency -dl is essential
                     Eigen3                          # Dependency for Optimizer
-                    Qt OPENGL GLEW GLUT QGLViewer   # Dependency for GUI
+                    OPENGL GLEW GLUT QGLViewer      # Dependency for GUI
                     OpenCV                          # Dependency for IO
                     )
 
@@ -51,9 +51,13 @@ find_package(Poco REQUIRED Net)
 find_package(Qt4 REQUIRED)
 
 if(QT4_FOUND)
+    qt4_add_resources(qrc_mapresources thirdparty/opmapcontrol/mapwidget/mapresources.qrc)
     qt4_add_resources(QRC_FILES gui/gui_res.qrc)
+    qt4_wrap_ui(UI_OPM thirdparty/opmapcontrol/mapwidget/mapripform.ui)
 elseif(QT5_FOUND)
+    qt5_add_resources(qrc_mapresources thirdparty/opmapcontrol/mapwidget/mapresources.qrc)
     qt5_add_resources(QRC_FILES gui/gui_res.qrc)
+    qt5_wrap_ui(UI_OPM thirdparty/opmapcontrol/mapwidget/mapripform.ui)
 endif()
 
 
@@ -61,13 +65,14 @@ endif()
 pi_add_target(pislamfusion BIN
     gui tests
     GSLAM-DIYSLAM/src
-    ${QRC_FILES}
+    ${QRC_FILES} ${UI_OPM}
+    ${qrc_mapresources}
     PIL/src/base
     PIL/src/gui
     PIL/src/hardware
     PIL/src/network
     cmake/glew cmake/QGLViewer
-    REQUIRED QGLViewer Qt GLEW GLUT OPENGL Eigen3 System
+    REQUIRED QGLViewer Qt GLEW GLUT OPENGL Poco Eigen3 System
     MODULES OpenCV)
 
 pi_report_target()
