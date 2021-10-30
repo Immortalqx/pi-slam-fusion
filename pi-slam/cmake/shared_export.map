@@ -1,9 +1,0 @@
-{  
-global:  
-  PILBuildManifest;  
-  PILInitializeLibrary;
-  PILUninitializeLibrary;
-  createSLAMInstance; 
-  createEstimatorInstance;
-local: *;  
-};
