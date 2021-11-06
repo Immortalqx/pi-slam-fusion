@@ -35,7 +35,8 @@ include_directories(GSLAM
         thirdparty
         thirdparty/opmapcontrol
         cmake/glew
-        ${CMAKE_CURRENT_LIST_DIR})
+        ${CMAKE_CURRENT_LIST_DIR}
+        ${PROJECT_BINARY_DIR})
 
 #set(OpenCV_DIR “/usr/local/opencv2_4/share/OpenCV ”)
 
@@ -63,7 +64,8 @@ endif ()
 
 # build of PI-SLAM
 pi_add_target(pislamfusion BIN
-        #gui
+        src
+        gui
         Map2DFusion
         thirdparty/opmapcontrol/core
         thirdparty/opmapcontrol/internals
