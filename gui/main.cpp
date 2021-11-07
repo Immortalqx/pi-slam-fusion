@@ -189,17 +189,17 @@ public:
     }
 
 public:
-    SlamStatus              status;
-    std::thread             threadSLAM;
+    SlamStatus                      status;
+    std::thread                     threadSLAM;
 
-    GSLAM::SLAMPtr          slam;
-    GSLAM::MapFusionPtr     mapFusion;
+    GSLAM::SLAMPtr                  slam;
+    GSLAM::MapFusionPtr             mapFusion;
 
-    GSLAM::DatasetPtr       dataset;   // current dataset, load implementations
+    GSLAM::DatasetPtr               dataset;   // current dataset, load implementations
 
-    GSLAM::MainWindow       *mainWindow;
-    GSLAM::FrameVisualizer  *frameVis;  // image viewer
-    GSLAM::SLAMVisualizer   *slamVis;   // SLAM visualizer
+    GSLAM::MainWindow               *mainWindow;
+    GSLAM::FrameVisualizer_local    *frameVis;  // image viewer
+    GSLAM::SLAMVisualizer           *slamVis;   // SLAM visualizer
 };
 
 
@@ -224,7 +224,7 @@ void slamScommandHandle(void *ptr, string cmd, string para)
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-int main(int argc,char** argv)
+int _main_pislam(int argc,char** argv)
 {
     int    ret=0;
 

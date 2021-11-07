@@ -21,20 +21,20 @@
 
 *******************************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINWINDOW_MAP2DFUSION_H
+#define MAINWINDOW_MAP2DFUSION_H
 
 #include <QMainWindow>
 #include <gui/gl/Win3D.h>
 #include <queue>
 #include <opmapcontrol/opmapcontrol.h>
 
-class MainWindow:public QMainWindow
+class MainWindow_Map2DFusion :public QMainWindow
 {
     Q_OBJECT
 public:
-    MainWindow(QWidget *parent = 0);
-    virtual ~MainWindow(){}
+    MainWindow_Map2DFusion(QWidget *parent = 0);
+    virtual ~MainWindow_Map2DFusion(){}
 
     virtual int setupLayout(void);
 
@@ -62,4 +62,4 @@ protected:
     std::queue<std::string>       cmds;
 };
 
-#endif // MAINWINDOW_H
+#endif // MAINWINDOW_MAP2DFUSION_H

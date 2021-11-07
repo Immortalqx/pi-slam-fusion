@@ -48,7 +48,7 @@ public:
     {
         if(svar.GetInt("Win3D.Enable",1))
         {
-            mainwindow=SPtr<MainWindow>(new MainWindow(0));
+            mainwindow=SPtr<MainWindow_Map2DFusion>(new MainWindow_Map2DFusion(0));
         }
 
     }
@@ -59,7 +59,7 @@ public:
         if(map.get())
             map->save(svar.GetString("Map.File2Save","result.png"));
         map=SPtr<Map2D>();
-        mainwindow=SPtr<MainWindow>();
+        mainwindow=SPtr<MainWindow_Map2DFusion>();
     }
 
     virtual bool KeyPressHandle(void* arg)
@@ -242,13 +242,13 @@ public:
 
     string        datapath;
     pi::TicTac    tictac;
-    SPtr<MainWindow>  mainwindow;
+    SPtr<MainWindow_Map2DFusion>  mainwindow;
     SPtr<ifstream>      in;
     SPtr<Map2D>       map;
     SPtr<TrajectoryLengthCalculator> lengthCalculator;
 };
 
-int main(int argc,char** argv)
+int _main_map2dfusion(int argc,char** argv)
 {
     svar.ParseMain(argc,argv);
 

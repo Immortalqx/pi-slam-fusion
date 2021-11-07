@@ -15,11 +15,11 @@ message("-- Build type: " ${CMAKE_BUILD_TYPE})
 
 
 # set compile options
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}   -DPIL_LINUX")
+set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -DPIL_LINUX")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPIL_LINUX")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGLEW_BUILD -DGLEW_NO_GLU -DGLEW_STATIC -D_GNU_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fPIC")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}   -fPIC")
+set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -fPIC")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DG2O_OPENMP -fopenmp")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -34,7 +34,8 @@ include_directories(GSLAM
         PIL/src
         thirdparty
         thirdparty/opmapcontrol
-        cmake/glew
+        thirdparty/glew-1.13.0/include
+        thirdparty/QGLViewer
         ${CMAKE_CURRENT_LIST_DIR}
         ${PROJECT_BINARY_DIR})
 
@@ -44,7 +45,7 @@ include_directories(GSLAM
 # build of PI-SLAM
 pi_collect_packages(VERBOSE REQUIRED System MODULES # System dependency -dl is essential
         Eigen3                          # Dependency for Optimizer
-        OPENGL GLEW GLUT QGLViewer      # Dependency for GUI
+        OPENGL GLEW GLUT                # Dependency for GUI
         OpenCV                          # Dependency for IO
         )
 
@@ -65,25 +66,23 @@ endif ()
 # build of PI-SLAM
 pi_add_target(pislamfusion BIN
         src
+        tests
         gui
         Map2DFusion
+        GSLAM-DIYSLAM/src
+        ${QRC_FILES} ${UI_OPM}
+        ${qrc_mapresources}
         thirdparty/opmapcontrol/core
         thirdparty/opmapcontrol/internals
         thirdparty/opmapcontrol/mapwidget
         thirdparty/QGLViewer
         thirdparty/lua-5.1.5/src
         thirdparty/glew-1.13.0/src
-
-        tests
-        GSLAM-DIYSLAM/src
-        ${QRC_FILES} ${UI_OPM}
-        ${qrc_mapresources}
         PIL/src/base
         PIL/src/gui
         PIL/src/hardware
         PIL/src/network
-        cmake/glew cmake/QGLViewer
-        REQUIRED QGLViewer Qt GLEW GLUT OPENGL Poco Eigen3 System
+        REQUIRED Qt GLUT OPENGL Poco Eigen3 System
         MODULES OpenCV)
 
 pi_report_target()

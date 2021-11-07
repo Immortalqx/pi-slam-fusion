@@ -20,22 +20,24 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 *******************************************************************************/
+
 #include "MainWindow.h"
 #include "gui/controls/SvarTable.h"
 #include "Map2DItem.h"
 #include <base/Svar/Scommand.h>
+
 using namespace std;
 
 void GuiHandle(void *ptr,string cmd,string para)
 {
     if(cmd=="setMapType")
     {
-        MainWindow* mainwindow=(MainWindow*)ptr;
+        MainWindow_Map2DFusion* mainwindow=(MainWindow_Map2DFusion*)ptr;
         mainwindow->setMapType(para);
     }
     else if(cmd=="show")
     {
-        MainWindow* mainwindow=(MainWindow*)ptr;
+        MainWindow_Map2DFusion* mainwindow=(MainWindow_Map2DFusion*)ptr;
         mainwindow->call("show");
     }
     else if(cmd=="SetCurrentPosition")
@@ -57,12 +59,12 @@ void GuiHandle(void *ptr,string cmd,string para)
     }
     else if(cmd=="MainWindow")
     {
-        MainWindow* mainwindow=(MainWindow*)ptr;
+        MainWindow_Map2DFusion* mainwindow=(MainWindow_Map2DFusion*)ptr;
         mainwindow->call(para);
     }
 }
 
-MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),win3d(NULL),mapwidget(NULL)
+MainWindow_Map2DFusion::MainWindow_Map2DFusion(QWidget *parent):QMainWindow(parent),win3d(NULL),mapwidget(NULL)
 {
     // set window minimum size
     this->setMinimumSize(1000, 700);
@@ -78,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),win3d(NULL),mapwidge
     scommand.RegisterCommand("MainWindow",GuiHandle,this);
 }
 
-int MainWindow::setupLayout(void)
+int MainWindow_Map2DFusion::setupLayout(void)
 {
     QWidget *wAll = new QWidget(this);
 
@@ -124,21 +126,21 @@ int MainWindow::setupLayout(void)
     return 0;
 }
 
-bool MainWindow::setMapType(const std::string& MapType)
+bool MainWindow_Map2DFusion::setMapType(const std::string& MapType)
 {
     mapwidget->SetMapType(MapType::TypeByStr(QString::fromStdString(MapType)));
     cout<<"Map type has changed to "<<MapType::StrByType(mapwidget->GetMapType()).toStdString();
     return true;
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *event)
+void MainWindow_Map2DFusion::keyPressEvent(QKeyEvent *event)
 {
     int     key;
 
     key  = event->key();
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *event)
+void MainWindow_Map2DFusion::mousePressEvent(QMouseEvent *event)
 {
 #if 0
     // 1 - left
@@ -152,21 +154,21 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 #endif
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event)
+void MainWindow_Map2DFusion::resizeEvent(QResizeEvent *event)
 {
 }
 
-void MainWindow::timerEvent(QTimerEvent *event)
+void MainWindow_Map2DFusion::timerEvent(QTimerEvent *event)
 {
 }
 
-void MainWindow::call(const std::string& cmd)
+void MainWindow_Map2DFusion::call(const std::string& cmd)
 {
     cmds.push(cmd);
     emit call_signal();
 }
 
-void MainWindow::call_slot()
+void MainWindow_Map2DFusion::call_slot()
 {
     if(cmds.size())
     {

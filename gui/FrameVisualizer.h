@@ -11,32 +11,32 @@
 
 namespace GSLAM
 {
-class GImageWidget;
+class GImageWidget_local;
 
-class InfomationViewer : public QTableWidget
+class InfomationViewer_local : public QTableWidget
 {
     Q_OBJECT
 public:
-    InfomationViewer(QWidget* parent);
+    InfomationViewer_local(QWidget* parent);
     QTableWidgetItem* setValue(int row,int col,QString val);
     QTableWidgetItem* setValue(int row,int col,double  val);
     void              update(const FramePtr& frame);
     std::map<QString,QString>   vars;
 };
 
-class FrameVisualizer: public QWidget,public GObjectHandle
+class FrameVisualizer_local : public QWidget,public GObjectHandle
 {
     Q_OBJECT
 public:
-    FrameVisualizer(QWidget* parent=NULL):QWidget(parent){
+    FrameVisualizer_local(QWidget* parent=NULL):QWidget(parent){
         _splitter=new QSplitter(Qt::Vertical,this);
         _imageLayout=new QVBoxLayout(this);
         _imageLayout->addWidget(_splitter);
-        _infos=new InfomationViewer(this);
+        _infos=new InfomationViewer_local(this);
         _splitter->addWidget(_infos);
         connect(this,SIGNAL(signalFrameUpdated()),this,SLOT(slotFrameUpdated()));
     }
-    virtual ~FrameVisualizer(){}
+    virtual ~FrameVisualizer_local(){}
 
     void setFrame(const FramePtr& frame){
         {
@@ -55,12 +55,12 @@ public slots:
     void slotFrameUpdated();
 
 protected:
-    GSLAM::MutexRW              _mutex;
-    FramePtr                    _curFrame;
-    std::vector<GImageWidget*>  _images;
-    InfomationViewer*           _infos;
-    QVBoxLayout*                _imageLayout;
-    QSplitter*                  _splitter;
+    GSLAM::MutexRW                      _mutex;
+    FramePtr                            _curFrame;
+    std::vector<GImageWidget_local*>    _images;
+    InfomationViewer_local*             _infos;
+    QVBoxLayout*                        _imageLayout;
+    QSplitter*                          _splitter;
 };
 
 } // end of namespace GSLAM

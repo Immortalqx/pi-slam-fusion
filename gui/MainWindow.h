@@ -28,9 +28,9 @@ public:
 
     bool addSLAM(GSLAM::SLAM* s);
 
-    FrameVisualizer* getFrameVisualizer(void) { return frameVis; }
-    SLAMVisualizer*  getSLAMVisualizer(void) { return slamVis; }
-    DatasetPtr       getDataset(){return dataset;}
+    FrameVisualizer_local*  getFrameVisualizer(void) { return frameVis; }
+    SLAMVisualizer*         getSLAMVisualizer(void) { return slamVis; }
+    DatasetPtr              getDataset(){return dataset;}
 
 signals:
     void call_signal(QString cmd);
@@ -54,7 +54,7 @@ protected:
 
 protected:
     DatasetPtr              dataset;    // current dataset, load implementations
-    FrameVisualizer         *frameVis;  // image viewer
+    FrameVisualizer_local   *frameVis;  // image viewer
     SLAMVisualizer          *slamVis;   // SLAM visualizer
 
     std::shared_ptr<MainWindowData> _d;

@@ -163,7 +163,7 @@ int MainWindow::setupLayout(void)
     _d->operateDock->setWidget(_d->splitterLeft);
     addDockWidget(Qt::LeftDockWidgetArea,_d->operateDock);
 
-    frameVis      = new FrameVisualizer(_d->splitterLeft);
+    frameVis      = new FrameVisualizer_local(_d->splitterLeft);
     slamVis       = new SLAMVisualizer(_d->splitterLeft);
 
     _d->slamTab->addTab(slamVis, "SLAM");

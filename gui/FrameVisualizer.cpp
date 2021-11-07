@@ -16,10 +16,10 @@ using namespace std;
 namespace GSLAM
 {
 
-class QImageWidget : public QWidget
+class QImageWidget_local : public QWidget
 {
 public:
-    QImageWidget(QWidget* parent)
+    QImageWidget_local(QWidget* parent)
         :imageUpdated(false), QWidget(parent){
         setBaseSize(QSize(100,100));
         setMinimumHeight(128);
@@ -164,10 +164,10 @@ public:
 };
 
 
-class GImageWidget : public QImageWidget
+class GImageWidget_local : public QImageWidget_local
 {
 public:
-    GImageWidget(QWidget *parent):QImageWidget(parent){}
+    GImageWidget_local(QWidget *parent):QImageWidget_local(parent){}
     bool setImage(const GImage& ImageInput,bool flush=false)// flush can only called by GUI thread
     {
         GImage gimage=ImageInput;
@@ -185,17 +185,17 @@ public:
         if(gimage.type()==GSLAM::GImageType<uchar,3>::Type)
         {
             QImage qimage(gimage.data,gimage.cols,gimage.rows,QImage::Format_RGB888);
-            return QImageWidget::setImage(qimage,flush);
+            return QImageWidget_local::setImage(qimage,flush);
         }
         else if(gimage.type()==GSLAM::GImageType<uchar,4>::Type)
         {
             QImage qimage(gimage.data,gimage.cols,gimage.rows,QImage::Format_RGB32);
-            return QImageWidget::setImage(qimage,flush);
+            return QImageWidget_local::setImage(qimage,flush);
         }
         else if(gimage.type()==GSLAM::GImageType<uchar,1>::Type)
         {
             QImage qimage(gimage.data,gimage.cols,gimage.rows,QImage::Format_Indexed8);
-            return QImageWidget::setImage(qimage,flush);
+            return QImageWidget_local::setImage(qimage,flush);
         }
         // don't support other format yet
         return false;
@@ -204,7 +204,7 @@ public:
     GImage _curGImage;
 };
 
-InfomationViewer::InfomationViewer(QWidget* parent)
+InfomationViewer_local::InfomationViewer_local(QWidget* parent)
     :QTableWidget(parent){
     setColumnCount(2);
     setHorizontalHeaderLabels({"name","value"});
@@ -217,7 +217,7 @@ InfomationViewer::InfomationViewer(QWidget* parent)
 #endif
 }
 
-QTableWidgetItem* InfomationViewer::setValue(int row,int col,QString val)
+QTableWidgetItem* InfomationViewer_local::setValue(int row,int col,QString val)
 {
     if(item(row,col)!=NULL)
     {
@@ -233,7 +233,7 @@ QTableWidgetItem* InfomationViewer::setValue(int row,int col,QString val)
     }
 }
 
-QTableWidgetItem* InfomationViewer::setValue(int row,int col,double  val)
+QTableWidgetItem* InfomationViewer_local::setValue(int row,int col,double  val)
 {
     if(item(row,col)!=NULL)
     {
@@ -249,7 +249,7 @@ QTableWidgetItem* InfomationViewer::setValue(int row,int col,double  val)
     }
 }
 
-void InfomationViewer::update(const FramePtr& frame)
+void InfomationViewer_local::update(const FramePtr& frame)
 {
     vars["id"]=QString("%1").arg(frame->id());
     vars["type"]=frame->type().c_str();
@@ -313,7 +313,7 @@ void InfomationViewer::update(const FramePtr& frame)
     }
 }
 
-void FrameVisualizer::slotFrameUpdated()
+void FrameVisualizer_local::slotFrameUpdated()
 {
     if(!_curFrame) return;
     GSLAM::ReadMutex lock(_mutex);
@@ -322,10 +322,10 @@ void FrameVisualizer::slotFrameUpdated()
     {
         if(_images.size()==camIdx)
         {
-            _images.push_back(new GImageWidget(_splitter));
+            _images.push_back(new GImageWidget_local(_splitter));
             _splitter->addWidget(_images[camIdx]);
         }
-        GImageWidget* gimageW=_images[camIdx];
+        GImageWidget_local* gimageW=_images[camIdx];
         int channelFlags=_curFrame->imageChannels();
         auto img=_curFrame->getImage(camIdx);
         if((channelFlags&IMAGE_BGRA)&&img.channels()==3)
