@@ -1,9 +1,28 @@
-#include <iostream>
+//#include "../gui/pislam.h"
+#include "../Map2DFusion/Map2DFusion.h"
 
-using namespace std;
-
-int main()
+int main(int argc, char **argv)
 {
-    cout << "hello pi-slam-fusion!" << endl;
-    return 0;
+    if (argc < 2)
+    {
+        std::cout << "param is not right" << std::endl;
+        return 0;
+    }
+    else if (std::string(argv[1]) == "pislam")
+    {
+        std::cout << "pislam will start!" << std::endl;
+//        return pislam::_main_pislam(argc, argv);
+        return 0;
+    }
+    else if (std::string(argv[1]) == "map2dfusion")
+    {
+        std::cout << "map2dfusion will start!" << std::endl;
+        return Map2DFusion::_main_map2dfusion(argc, argv);
+//        return 0;
+    }
+    else
+    {
+        std::cout << "unknown type:\t" << argv[1] << std::endl;
+        return 0;
+    }
 }
