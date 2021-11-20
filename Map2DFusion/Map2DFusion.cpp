@@ -1,14 +1,8 @@
-//#include <iostream>
-//#include <fstream>
-//
-//#include <opencv2/highgui/highgui.hpp>
-//
-//#include <base/Svar/Svar.h>
-//#include <base/Svar/VecParament.h>
-//#include <base/time/Global_Timer.h>
-//#include "MainWindow.h"
-//
-//#include "Map2D.h"
+#include <iostream>
+#include <fstream>
+#include <opencv2/highgui/highgui.hpp>
+#include <base/Svar/VecParament.h>
+
 #include "Map2DFusion.h"
 
 using namespace std;

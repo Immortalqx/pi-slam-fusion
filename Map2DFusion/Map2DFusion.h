@@ -1,16 +1,9 @@
 #ifndef MAP2DFUSION_H
 #define MAP2DFUSION_H
 
-#include <iostream>
-#include <fstream>
-
-#include <opencv2/highgui/highgui.hpp>
-
 #include <base/Svar/Svar.h>
-#include <base/Svar/VecParament.h>
 #include <base/time/Global_Timer.h>
 #include "MainWindow.h"
-
 #include "Map2D.h"
 
 namespace Map2DFusion

@@ -1,4 +1,4 @@
-//#include "../gui/pislam.h"
+#include "../gui/pislam.h"
 #include "../Map2DFusion/Map2DFusion.h"
 
 int main(int argc, char **argv)
@@ -11,7 +11,7 @@ int main(int argc, char **argv)
     else if (std::string(argv[1]) == "pislam")
     {
         std::cout << "pislam will start!" << std::endl;
-//        return pislam::_main_pislam(argc, argv);
+        return pislam::_main_pislam(argc, argv);
         return 0;
     }
     else if (std::string(argv[1]) == "map2dfusion")
