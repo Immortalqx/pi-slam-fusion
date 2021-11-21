@@ -9,12 +9,6 @@
 
 namespace pislam
 {
-    extern "C" {
-    GSLAM::SLAMPtr createSLAMInstance();
-    }
-
-    void slamScommandHandle(void *ptr, std::string cmd, std::string para);
-
     class SLAM_System : public GSLAM::SLAM, public GSLAM::GObjectHandle
     {
     public:
@@ -33,49 +27,17 @@ namespace pislam
 
         int stop(void);
 
-        virtual bool setCallback(GObjectHandle *cbk)
-        {
-            _handle = cbk;
-            return true;
-        }
+        virtual bool setCallback(GObjectHandle *cbk);
 
-        virtual void handle(const SPtr<GObject> &obj)
-        {
-            if (!obj) return;
+        virtual void handle(const SPtr<GObject> &obj);
 
-            if (SPtr<GSLAM::MapFrame> frame = std::dynamic_pointer_cast<GSLAM::MapFrame>(obj))// SLAM KeyFrame CallBack
-            {
-                if (!frame) return;
+        virtual bool valid() const;
 
-                frame->setImage(GSLAM::GImage());
-            }
+        virtual void draw();
 
-            // do visualization handle
-            slamVis->handle(obj);
-        }
+        virtual bool isDrawable();
 
-        virtual bool valid() const
-        {
-            return true;
-        }
-
-        virtual void draw()
-        {
-            if (slam) slam->draw();
-        }
-
-        virtual bool isDrawable()
-        {
-            if (slam) return slam->isDrawable();
-            else return false;
-        }
-
-        virtual GSLAM::MapPtr getMap()
-        {
-            if (slam) return slam->getMap();
-            else return GSLAM::MapPtr(NULL);
-        }
-
+        virtual GSLAM::MapPtr getMap();
 
         void slamThread(void);
 

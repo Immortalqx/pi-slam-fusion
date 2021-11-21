@@ -9,6 +9,10 @@ using namespace std;
 
 namespace Map2DFusion
 {
+    TrajectoryLengthCalculator::TrajectoryLengthCalculator() : length(-1)
+    {
+    }
+
     TrajectoryLengthCalculator::~TrajectoryLengthCalculator()
     {
         cout << "TrajectoryLength:" << length << endl;
@@ -47,6 +51,45 @@ namespace Map2DFusion
         mainwindow = SPtr<MainWindow_Map2DFusion>();
     }
 
+    bool TestSystem::KeyPressHandle(void *arg)
+    {
+        QKeyEvent *e = (QKeyEvent *) arg;
+        switch (e->key())
+        {
+            case Qt::Key_I:
+            {
+                std::pair<cv::Mat, pi::SE3d> frame;
+                if (obtainFrame(frame))
+                {
+                    pi::timer.enter("Map2D::feed");
+                    map->feed(frame.first, frame.second);
+                    if (mainwindow.get() && tictac.Tac() > 0.033)
+                    {
+                        tictac.Tic();
+                        mainwindow->update();
+                    }
+                    pi::timer.leave("Map2D::feed");
+                }
+            }
+                break;
+            case Qt::Key_P:
+            {
+                int &pause = svar.GetInt("Pause");
+                pause = !pause;
+            }
+                break;
+            case Qt::Key_Escape:
+            {
+                stop();
+                return false;
+            }
+                break;
+            default:
+                return false;
+                break;
+        }
+        return false;
+    }
 
     int TestSystem::TestMap2DItem()
     {
@@ -178,6 +221,14 @@ namespace Map2DFusion
                 rate.sleep();
             }
         }
+    }
+
+    void TestSystem::run()
+    {
+        std::string act = svar.GetString("Act", "Default");
+        if (act == "TestMap2DItem") TestMap2DItem();
+        else if (act == "TestMap2D" || act == "Default") testMap2D();
+        else std::cout << "No act " << act << "!\n";
     }
 
     int _main_map2dfusion(int argc, char **argv)

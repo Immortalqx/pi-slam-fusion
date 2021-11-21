@@ -15,6 +15,28 @@
 
 namespace pislam
 {
+    extern "C" {
+    GSLAM::SLAMPtr createSLAMInstance();
+    }
+
+    void slamScommandHandle(void *ptr, string cmd, string para)
+    {
+        //LOG(INFO) << "cmd: " << cmd << ", param: " << para;
+
+        if (cmd == "SLAM_Call")
+        {
+            SLAM_System *s = (SLAM_System *) ptr;
+            if (para == "Start")
+                s->start();
+            else if (para == "Pause")
+                s->pause();
+            else if (para == "Stop")
+                s->stop();
+
+            return;
+        }
+    }
+
     SLAM_System::SLAM_System(GSLAM::MainWindow *mw) : status(STOP)
     {
         // regist scommand
@@ -62,6 +84,49 @@ namespace pislam
     {
         status = STOP;
         return 0;
+    }
+
+    bool SLAM_System::setCallback(GObjectHandle *cbk)
+    {
+        _handle = cbk;
+        return true;
+    }
+
+    void SLAM_System::handle(const std::shared_ptr<GObject> &obj)
+    {
+        if (!obj) return;
+
+        if (SPtr<GSLAM::MapFrame> frame = std::dynamic_pointer_cast<GSLAM::MapFrame>(obj))// SLAM KeyFrame CallBack
+        {
+            if (!frame) return;
+
+            frame->setImage(GSLAM::GImage());
+        }
+
+        // do visualization handle
+        slamVis->handle(obj);
+    }
+
+    bool SLAM_System::valid() const
+    {
+        return true;
+    }
+
+    void SLAM_System::draw()
+    {
+        if (slam) slam->draw();
+    }
+
+    bool SLAM_System::isDrawable()
+    {
+        if (slam) return slam->isDrawable();
+        else return false;
+    }
+
+    GSLAM::MapPtr SLAM_System::getMap()
+    {
+        if (slam) return slam->getMap();
+        else return GSLAM::MapPtr(NULL);
     }
 
     void SLAM_System::slamThread(void)
@@ -116,26 +181,6 @@ namespace pislam
         status = STOP;
         mainWindow->slotStop();
     }
-
-
-    void slamScommandHandle(void *ptr, string cmd, string para)
-    {
-        //LOG(INFO) << "cmd: " << cmd << ", param: " << para;
-
-        if (cmd == "SLAM_Call")
-        {
-            SLAM_System *s = (SLAM_System *) ptr;
-            if (para == "Start")
-                s->start();
-            else if (para == "Pause")
-                s->pause();
-            else if (para == "Stop")
-                s->stop();
-
-            return;
-        }
-    }
-
 
     int _main_pislam(int argc, char **argv)
     {

@@ -11,9 +11,7 @@ namespace Map2DFusion
     class TrajectoryLengthCalculator
     {
     public:
-        TrajectoryLengthCalculator() : length(-1)
-        {
-        }
+        TrajectoryLengthCalculator();
 
         ~TrajectoryLengthCalculator();
 
@@ -32,45 +30,7 @@ namespace Map2DFusion
 
         ~TestSystem();
 
-        virtual bool KeyPressHandle(void *arg)
-        {
-            QKeyEvent *e = (QKeyEvent *) arg;
-            switch (e->key())
-            {
-                case Qt::Key_I:
-                {
-                    std::pair<cv::Mat, pi::SE3d> frame;
-                    if (obtainFrame(frame))
-                    {
-                        pi::timer.enter("Map2D::feed");
-                        map->feed(frame.first, frame.second);
-                        if (mainwindow.get() && tictac.Tac() > 0.033)
-                        {
-                            tictac.Tic();
-                            mainwindow->update();
-                        }
-                        pi::timer.leave("Map2D::feed");
-                    }
-                }
-                    break;
-                case Qt::Key_P:
-                {
-                    int &pause = svar.GetInt("Pause");
-                    pause = !pause;
-                }
-                    break;
-                case Qt::Key_Escape:
-                {
-                    stop();
-                    return false;
-                }
-                    break;
-                default:
-                    return false;
-                    break;
-            }
-            return false;
-        }
+        virtual bool KeyPressHandle(void *arg);
 
         int TestMap2DItem();
 
@@ -78,13 +38,7 @@ namespace Map2DFusion
 
         int testMap2D();
 
-        virtual void run()
-        {
-            std::string act = svar.GetString("Act", "Default");
-            if (act == "TestMap2DItem") TestMap2DItem();
-            else if (act == "TestMap2D" || act == "Default") testMap2D();
-            else std::cout << "No act " << act << "!\n";
-        }
+        virtual void run();
 
         std::string datapath;
         pi::TicTac tictac;
