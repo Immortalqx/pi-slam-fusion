@@ -1,16 +1,16 @@
 #include <algorithm>
-
+#include <QApplication>
 #include "GSLAM/core/Svar.h"
 #include "GSLAM/core/Timer.h"
 #include "GSLAM/core/TileManager.h"
+#include "GSLAM/core/Utils.inc"
 
 #ifdef  ENABLE_MEMORYCHECK
 #include "GSLAM/core/MemoryMetric.inc"
 #endif
 
-#include "GSLAM/core/Utils.inc"
-
-
+#include "tests/gtest.h"
+#include "StackTrace.h"
 #include "pislam.h"
 
 namespace pislam

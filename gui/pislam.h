@@ -1,11 +1,8 @@
 #ifndef PISLAM_H
 #define PISLAM_H
 
-#include <QApplication>
 #include "GSLAM/core/MapFusion.h"
-#include "tests/gtest.h"
 #include "MainWindow.h"
-#include "StackTrace.h"
 
 namespace pislam
 {

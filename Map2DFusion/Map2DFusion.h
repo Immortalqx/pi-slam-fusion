@@ -1,7 +1,6 @@
 #ifndef MAP2DFUSION_H
 #define MAP2DFUSION_H
 
-#include <base/Svar/Svar.h>
 #include <base/time/Global_Timer.h>
 #include "MainWindow.h"
 #include "Map2D.h"
@@ -36,6 +35,7 @@ namespace Map2DFusion
 
         bool obtainFrame(std::pair<cv::Mat, pi::SE3d> &frame);
 
+        //TODO 也许只需要重构这一个函数？
         int testMap2D();
 
         virtual void run();
