@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 link_libraries(pthread)
 
-add_executable(thread_test main.cpp)
+add_executable(thread_test pthread_demo.cpp)
+
+#add_executable(thread_test std_thread_demo.cpp)
