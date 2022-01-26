@@ -1,6 +1,6 @@
 #ifndef THREAD_H_
 #define THREAD_H_
-
+//TODO 好好了解一下这个地方，后面可能直接用这边的线程类！！！
 // FIXME: only support POSIX system
 
 //POSIX threads

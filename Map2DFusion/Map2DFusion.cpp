@@ -6,6 +6,8 @@
 
 #include "Map2DFusion.h"
 
+#include "../src/Data.h"
+
 using namespace std;
 
 namespace Map2DFusion
@@ -211,6 +213,7 @@ namespace Map2DFusion
         if (svar.GetInt("AutoFeedFrames", 1))
         {
             pi::Rate rate(svar.GetInt("Video.fps", 100));
+            //这里是最后被阻塞的地方
             while (!shouldStop())
             {
                 if (map->queueSize() < 2)
@@ -257,5 +260,33 @@ namespace Map2DFusion
             sys.run();
         }
         return 0;
+    }
+
+    //之后要改成线程的话，就在这里修改！
+    void *_thread_map2dfusion(void *pVoid)
+    {
+        MainData *data = (MainData *) pVoid;
+        int argc = data->get_argc();
+        char **argv = data->get_argv();
+
+        //FIXME 如果直接调用函数，这里没有问题，但是如果用线程的话，这里就会出错！
+        // 把这一步放到主线程里面去？
+        svar.ParseMain(argc, argv);
+
+        if (svar.GetInt("Win3D.Enable", 0))
+        {
+            QApplication app(argc, argv);
+            TestSystem sys;
+            sys.start();
+            app.exec();
+            return nullptr;
+        }
+        else
+        {
+            TestSystem sys;
+            sys.run();
+        }
+//        return 0;
+        return nullptr;
     }
 }

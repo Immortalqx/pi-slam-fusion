@@ -2,9 +2,12 @@
 #include <iostream>
 #include <stack>
 #include <armadillo>
+#include <thread>
 /*
- * 我发现pi-slam和map2dfusion用的都是封装过的pthread，所以也尝试了一下pthread的使用【没看仔细，实际上只有map2dfusion是pthread】
- * 后面可能全改成std::thread，但看网上的资料说它跨平台做的比较好，功能上做的还是不如pthread
+ * TODO
+ *  我发现map2dfusion用封装过的pthread，而pi-slam使用std::thread
+ *  这两个可以像这个例子一样混合着使用，现在先去把里面的线程关系搞清楚，然后再照着这个例子编程！！！
+ *  注意互斥锁！这里还没尝试使用互斥锁
  */
 /*
  *FIXME:
@@ -62,7 +65,7 @@ void *func_1(void *pVoid)
     pthread_exit((void *) nullptr);
 }
 
-void *func_2(void *pVoid)
+void *func_2()
 {
     //这里是子线程2
     // TODO
@@ -95,7 +98,7 @@ void *func_2(void *pVoid)
 //        pthread_mutex_unlock(&mutexsum);
         sleep(1);
     }
-    pthread_exit((void *) nullptr);
+//    pthread_exit((void *) nullptr);
 }
 
 int main()
@@ -111,15 +114,19 @@ int main()
     //线程pi_slam
     pthread_t pi_slam;
     //线程map2dfusion
-    pthread_t map2dfusion;
+//    pthread_t map2dfusion;
     pthread_create(&pi_slam, &attr, func_1, nullptr);
-    pthread_create(&map2dfusion, &attr, func_2, nullptr);
+//    pthread_create(&map2dfusion, &attr, func_2, nullptr);
+
+    //所以这样就可以了，然后std::thread和pthread就可以交换数据了！！！
+    thread T_1(func_2);
+    T_1.detach();
 
     pthread_attr_destroy(&attr);
 
     void *status;
     pthread_join(pi_slam, &status);
-    pthread_join(map2dfusion, &status);
+//    pthread_join(map2dfusion, &status);
     //终端有输入就会让程序停止运行
     getchar();
     getchar();
