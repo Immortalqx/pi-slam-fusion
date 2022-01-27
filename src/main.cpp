@@ -18,11 +18,11 @@ int main(int argc, char **argv)
     else if (std::string(argv[1]) == "map2dfusion")
     {
         std::cout << "map2dfusion will start!" << std::endl;
-//        return Map2DFusion::_main_map2dfusion(argc, argv);
+        return Map2DFusion::_main_map2dfusion(argc, argv);
         //测试一下效果
-        MainData data(argc, argv);
-        Map2DFusion::_thread_map2dfusion((void *) (&data));
-        return 0;
+//        MainData data(argc, argv);
+//        Map2DFusion::_thread_map2dfusion((void *) (&data));
+//        return 0;
     }
     else if (std::string(argv[1]) == "pislamfusion")
     {

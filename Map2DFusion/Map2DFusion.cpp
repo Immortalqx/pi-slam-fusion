@@ -271,12 +271,22 @@ namespace Map2DFusion
 
         //FIXME 如果直接调用函数，这里没有问题，但是如果用线程的话，这里就会出错！
         // 把这一步放到主线程里面去？
+        // 但是放到主线程里面之后，参数就传递不进来了(因为svar用的是懒汉式，多线程中会导致多个实例被创建)
+        // 能不能解决这个段错误的问题？
         svar.ParseMain(argc, argv);
 
+        //测试一下效果
+        std::cout << "svar test\n";
+        std::cout << svar.GetInt("Win3D.Enable", 0) << std::endl;
+        std::cout << svar.GetString("Map2D.DataPath", "") << std::endl;
+        std::cout << "svar test end\n";
+
+        //正常情况下，if语句判定条件为true(之前看map2dfusion的时候弄错了。)
         if (svar.GetInt("Win3D.Enable", 0))
         {
             QApplication app(argc, argv);
             TestSystem sys;
+            //线程启动的指令，会调动sys.run()，最后运行testMap2D()
             sys.start();
             app.exec();
             return nullptr;
