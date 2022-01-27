@@ -201,6 +201,7 @@ namespace pislam
         timer.disable();
 
         timer.enter("Main");
+        //这里注释掉，放到main.cpp中，不过也没有问题！
         svar.ParseMain(argc, argv);
 
         string act = svar.GetString("Act", "SLAM");
@@ -213,13 +214,6 @@ namespace pislam
 
             // 这里应该就是启动了线程，而不是阻塞在这里了
             SLAM_System slamSystem(&mainwindow);
-
-//            // TODO 如何在这里直接启动map2dfusion的线程？？？
-//            pthread_attr_t attr;
-//            pthread_t map2dfusion;
-//            pthread_attr_init(&attr);
-//            pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-//            pthread_create(&map2dfusion, &attr, Map2DFusion::_thread_map2dfusion, nullptr);
 
             // 这里不是很清楚获取了什么数据集，其实输出的就是“pislam”
             // get direct dataset

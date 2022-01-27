@@ -15,7 +15,7 @@ pislamfusion="-pislamfusion"
 cd build
 
 if [ $num == 0 ]; then
-	./pislamfusion pislamfusion
+	./pislamfusion conf=/home/immortalqx/Lab/pi-slam/NWPU.cfg
 elif [ $num == 1 ]; then
 	cmd=$1
 	if [ $cmd == $pislam ]; then
