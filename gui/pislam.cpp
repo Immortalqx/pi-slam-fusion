@@ -52,7 +52,7 @@ namespace pislam
         // create SLAM instance
         slam = createSLAMInstance();
         slam->setCallback(dynamic_cast<GObjectHandle *>(this));
-        slam->call("SetSvar", &svar);
+        slam->call("SetSvar", &svar);   // FIXME: this call need be checked, this is used for multi-module system，但是你目前整合到一个程序，应该这里需要改一下，你先确认一下程序里面到底做了什么
 
         // get mainwindow & widgets
         mainWindow = mw;

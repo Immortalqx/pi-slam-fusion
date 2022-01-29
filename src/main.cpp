@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 {
     int ret = 0;
 
+    // FIXME: this utils failed under new GCC compiler, you can find the problem
     // enable stack trace
     pi::dbg_stacktrace_setup();
 
