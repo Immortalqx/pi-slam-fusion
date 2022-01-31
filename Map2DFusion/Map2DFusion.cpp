@@ -37,6 +37,8 @@ namespace Map2DFusion
 
     TestSystem::TestSystem()
     {
+        std::cout << "TestSystem svar address:" << &svar << std::endl;
+
         if (svar.GetInt("Win3D.Enable", 1))
         {
             mainwindow = SPtr<MainWindow_Map2DFusion>(new MainWindow_Map2DFusion(0));
@@ -138,7 +140,8 @@ namespace Map2DFusion
     int TestSystem::testMap2D()
     {
         cout << "Act=TestMap2D\n";
-        datapath = svar.GetString("Map2D.DataPath", "/home/immortalqx/Lab/DataSet/phantom3-npu-origin");
+        //datapath = svar.GetString("Map2D.DataPath", "/home/immortalqx/Lab/DataSet/phantom3-npu-origin");
+        datapath = svar.GetString("Map2D.DataPath", "");
         if (!datapath.size())
         {
             cerr << "Map2D.DataPath is not seted!\n";

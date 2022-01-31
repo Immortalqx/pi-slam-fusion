@@ -22,6 +22,8 @@ int main(int argc, char **argv)
 
     svar.ParseMain(argc, argv);
 
+    std::cout << "main svar address:" << &svar << std::endl;
+
     std::string act = svar.GetString("Act", "SLAM");
     if ("SLAM" == act)
     {
@@ -34,9 +36,6 @@ int main(int argc, char **argv)
         pislam::SLAM_System slamSystem(&mainwindow);
 
         //启动map2dfusion线程
-        //TODO 这里要做的修改可能比较多
-        // 两个项目传入的参数有冲突，需要做点修改！
-        // 另外cfg文件里面可能也有冲突的内容，可能也需要修改。。。
         Map2DFusion::TestSystem sys;
         sys.start();
 
