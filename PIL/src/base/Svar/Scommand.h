@@ -5,9 +5,10 @@
 
 #include "Svar.h"
 
+#define p_scommand pi::Scommand::instance()
+
 namespace pi
 {
-#define scommand Scommand::instance()
 
 ///
 /// ptr      - class pointer

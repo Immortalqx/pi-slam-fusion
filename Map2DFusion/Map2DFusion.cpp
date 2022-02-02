@@ -37,9 +37,10 @@ namespace Map2DFusion
 
     TestSystem::TestSystem()
     {
-        std::cout << "TestSystem svar address:" << &pi::svar << std::endl;
+        std::cout << "TestSystem svar address:" << &svar << std::endl;
+        std::cout << "TestSystem p_svar address:" << &p_svar << std::endl;
 
-        if (pi::svar.GetInt("Win3D.Enable", 1))
+        if (p_svar.GetInt("Win3D.Enable", 1))
         {
             mainwindow = SPtr<MainWindow_Map2DFusion>(new MainWindow_Map2DFusion(0));
         }
@@ -51,7 +52,7 @@ namespace Map2DFusion
         stop();
         while (this->isRunning()) sleep(10);
         if (map.get())
-            map->save(pi::svar.GetString("Map.File2Save", "result.png"));
+            map->save(p_svar.GetString("Map.File2Save", "result.png"));
         map = SPtr<Map2D>();
         mainwindow = SPtr<MainWindow_Map2DFusion>();
     }
@@ -79,7 +80,7 @@ namespace Map2DFusion
                 break;
             case Qt::Key_P:
             {
-                int &pause = pi::svar.GetInt("Pause");
+                int &pause = p_svar.GetInt("Pause");
                 pause = !pause;
             }
                 break;
@@ -98,7 +99,7 @@ namespace Map2DFusion
 
     int TestSystem::TestMap2DItem()
     {
-        cv::Mat img = cv::imread(pi::svar.GetString("TestMap2DItem.Image", "data/test.png"));
+        cv::Mat img = cv::imread(p_svar.GetString("TestMap2DItem.Image", "data/test.png"));
         if (img.empty() || !mainwindow.get())
         {
             cerr << "No image or mainwindow found.!\n";
@@ -110,7 +111,7 @@ namespace Map2DFusion
         mainwindow->getWin3D()->SetEventHandle(this);
         mainwindow->getWin3D()->setSceneRadius(1000);
         mainwindow->call("show");
-        mainwindow->call("MapWidget" + pi::svar.GetString(" TestMap2DItem.cmd",
+        mainwindow->call("MapWidget" + p_svar.GetString(" TestMap2DItem.cmd",
                                                       " Map2DUpdate LastTexMat 34.257287 108.888931 0 34.253234419307354 108.89463874078366 0"));
     }
 
@@ -127,7 +128,7 @@ namespace Map2DFusion
         pi::timer.leave("obtainFrame");
         if (frame.first.empty()) return false;
         ifs >> frame.second;
-        if (pi::svar.exist("GPS.Origin"))
+        if (p_svar.exist("GPS.Origin"))
         {
             if (!lengthCalculator.get())
                 lengthCalculator = SPtr<TrajectoryLengthCalculator>(
@@ -141,14 +142,14 @@ namespace Map2DFusion
     {
         cout << "Act=TestMap2D\n";
         //datapath = svar.GetString("Map2D.DataPath", "/home/immortalqx/Lab/DataSet/phantom3-npu-origin");
-        datapath = pi::svar.GetString("Map2D.DataPath", "");
+        datapath = p_svar.GetString("Map2D.DataPath", "");
         if (!datapath.size())
         {
             cerr << "Map2D.DataPath is not seted!\n";
             return -1;
         }
-        pi::svar.ParseFile(datapath + "/config.cfg");
-        if (!pi::svar.exist("Plane"));
+        p_svar.ParseFile(datapath + "/config.cfg");
+        if (!p_svar.exist("Plane"));
         {
 //            cerr<<"Plane is not defined!\n";
 //            return -2;
@@ -163,7 +164,7 @@ namespace Map2DFusion
             return -3;
         }
         deque<std::pair<cv::Mat, pi::SE3d>> frames;
-        for (int i = 0, iend = pi::svar.GetInt("PrepareFrameNum", 10); i < iend; i++)
+        for (int i = 0, iend = p_svar.GetInt("PrepareFrameNum", 10); i < iend; i++)
         {
             std::pair<cv::Mat, pi::SE3d> frame;
             if (!obtainFrame(frame)) break;
@@ -173,14 +174,14 @@ namespace Map2DFusion
 
         if (!frames.size()) return -4;
 
-        map = Map2D::create(pi::svar.GetInt("Map2D.Type", Map2D::TypeGPU),
-                            pi::svar.GetInt("Map2D.Thread", true));
+        map = Map2D::create(p_svar.GetInt("Map2D.Type", Map2D::TypeGPU),
+                            p_svar.GetInt("Map2D.Thread", true));
         if (!map.get())
         {
             cerr << "No map2d created!\n";
             return -5;
         }
-        VecParament vecP = pi::svar.get_var("Camera.Paraments", VecParament());
+        VecParament vecP = p_svar.get_var("Camera.Paraments", VecParament());
         if (vecP.size() != 6)
         {
             cerr << "Invalid camera parameters!\n";
@@ -191,7 +192,7 @@ namespace Map2DFusion
         // 在这里需要传入plane的数据（pi-slam先用ransac计算出来，再想办法传这里来！）
         // 1. ransac算法的C++实现倒是还没有写，先把ransac算法写好！
         // 2. 怎么传过来呢？flag+plane，两个变量？
-        map->prepare(pi::svar.get_var<pi::SE3d>("Plane", pi::SE3d()),
+        map->prepare(p_svar.get_var<pi::SE3d>("Plane", pi::SE3d()),
                      PinHoleParameters(vecP[0], vecP[1], vecP[2], vecP[3], vecP[4], vecP[5]),
                      frames);
 
@@ -202,20 +203,20 @@ namespace Map2DFusion
             mainwindow->getWin3D()->setSceneRadius(1000);
             mainwindow->call("show");
 
-            if (!pi::svar.exist("GPS.Origin")) pi::svar.i["Fuse2Google"] = 0;
+            if (!p_svar.exist("GPS.Origin")) p_svar.i["Fuse2Google"] = 0;
             else
-                pi::svar.ParseLine("SetCurrentPosition $(GPS.Origin)");
+                p_svar.ParseLine("SetCurrentPosition $(GPS.Origin)");
             tictac.Tic();
         }
         else
         {
-            int &needStop = pi::svar.GetInt("ShouldStop");
+            int &needStop = p_svar.GetInt("ShouldStop");
             while (!needStop) sleep(20);
         }
 
-        if (pi::svar.GetInt("AutoFeedFrames", 1))
+        if (p_svar.GetInt("AutoFeedFrames", 1))
         {
-            pi::Rate rate(pi::svar.GetInt("Video.fps", 100));
+            pi::Rate rate(p_svar.GetInt("Video.fps", 100));
             //这里是最后被阻塞的地方
             while (!shouldStop())
             {
@@ -240,7 +241,7 @@ namespace Map2DFusion
 
     void TestSystem::run()
     {
-        std::string act = pi::svar.GetString("Act", "Default");
+        std::string act = p_svar.GetString("Act", "Default");
         if (act == "TestMap2DItem") TestMap2DItem();
         else if (act == "TestMap2D" || act == "Default") testMap2D();
         else std::cout << "No act " << act << "!\n";
@@ -248,9 +249,9 @@ namespace Map2DFusion
 
     int _main_map2dfusion(int argc, char **argv)
     {
-        pi::svar.ParseMain(argc, argv);
+        p_svar.ParseMain(argc, argv);
 
-        if (pi::svar.GetInt("Win3D.Enable", 0))
+        if (p_svar.GetInt("Win3D.Enable", 0))
         {
             QApplication app(argc, argv);
             TestSystem sys;

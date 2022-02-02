@@ -13,7 +13,7 @@ MainWindowBase::MainWindowBase()
 
 void MainWindowBase::run()
 {
-    int argc=svar.GetInt("argc",1);
+    int argc=p_svar.GetInt("argc",1);
     SvarWithType<char**>& inst=SvarWithType<char**>::instance();
     char** argv=new char*[argc];
     if(inst.exist("argv"))

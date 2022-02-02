@@ -4,6 +4,7 @@
 #include <base/time/Global_Timer.h>
 #include "MainWindow.h"
 #include "Map2D.h"
+#include "GSLAM/core/Svar.h"
 
 namespace Map2DFusion
 {

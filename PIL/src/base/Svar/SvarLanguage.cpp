@@ -121,7 +121,7 @@ private:
     CallBack(function);
     void function(string name, string args)
     {
-        svar.GetInt("Svar.Collecting",0)++;
+        p_svar.GetInt("Svar.Collecting",0)++;
         vector<string> vs = ChopAndUnquoteString(args);
         if(vs.size() != 1)
         {
@@ -136,7 +136,7 @@ private:
     CallBack(endfunction)
     void endfunction(string name, string args)
     {
-        svar.GetInt("Svar.Collecting",0)--;
+        p_svar.GetInt("Svar.Collecting",0)--;
         if(current_function() == "")
         {
             cerr << "Error: " << name << ": no current function.\n";
@@ -160,14 +160,14 @@ private:
     {
         vector<string> v = functions.get(name);
         for(unsigned int i=0; i < v.size(); i++)
-            svar.ParseLine(v[i]);
+            p_svar.ParseLine(v[i]);
     }
 
 
     CallBack(gui_if_equal)
     void gui_if_equal(string name, string s)
     {
-        svar.GetInt("Svar.Collecting",0)++;
+        p_svar.GetInt("Svar.Collecting",0)++;
         bool is_equal=false;
         string::size_type n;
         n=s.find("=");
@@ -236,7 +236,7 @@ private:
     CallBack(gui_endif)
     void gui_endif(string /*name*/, string /*args*/)
     {
-        svar.GetInt("Svar.Collecting",0)--;
+        p_svar.GetInt("Svar.Collecting",0)--;
         if(ifbit().empty())
             ifbit() = collection();
         else
@@ -255,10 +255,10 @@ private:
         //                cout<<"SvarName="<<gv<<",Value="<<svar.GetString(gv,"")<<",Test="<<st<<endl;
         if(gv == st)
             for(unsigned int i=0; i < ib.size(); i++)
-                svar.ParseLine(ib[i]);
+                p_svar.ParseLine(ib[i]);
         else
             for(unsigned int i=0; i < eb.size(); i++)
-                svar.ParseLine(eb[i]);
+                p_svar.ParseLine(eb[i]);
     }
     Scommand& scommand_;
 };

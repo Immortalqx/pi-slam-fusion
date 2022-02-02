@@ -193,7 +193,7 @@ MultiBandMap2DCPU::MultiBandMap2DCPUData::MultiBandMap2DCPUData(double eleSize_,
       _lengthPixel(lengthPixel_),_lengthPixelInv(1./lengthPixel_),
       _min(min_),_max(max_),_w(w_),_h(h_),_data(d_)
 {
-    _gpsOrigin=pi::svar.get_var("GPS.Origin",_gpsOrigin);
+    _gpsOrigin=p_svar.get_var("GPS.Origin",_gpsOrigin);
 }
 
 bool MultiBandMap2DCPU::MultiBandMap2DCPUData::prepare(SPtr<MultiBandMap2DCPUPrepare> prepared)
@@ -225,14 +225,14 @@ bool MultiBandMap2DCPU::MultiBandMap2DCPUData::prepare(SPtr<MultiBandMap2DCPUPre
         pi::Point3d line=prepared->UnProject(pi::Point2d(prepared->_camera.w,prepared->_camera.h))
                 -prepared->UnProject(pi::Point2d(0,0));
         double radius=0.5*maxh*sqrt((line.x*line.x+line.y*line.y));
-        _lengthPixel=pi::svar.GetDouble("Map2D.Resolution",0);
+        _lengthPixel=p_svar.GetDouble("Map2D.Resolution",0);
         if(!_lengthPixel)
         {
             cout<<"Auto resolution from max height "<<maxh<<"m.\n";
             _lengthPixel=2*radius/sqrt(prepared->_camera.w*prepared->_camera.w
                                        +prepared->_camera.h*prepared->_camera.h);
 
-            _lengthPixel/=pi::svar.GetDouble("Map2D.Scale",1);
+            _lengthPixel/=p_svar.GetDouble("Map2D.Scale",1);
         }
         cout<<"Map2D.Resolution="<<_lengthPixel<<endl;
         _lengthPixelInv=1./_lengthPixel;
@@ -250,15 +250,15 @@ bool MultiBandMap2DCPU::MultiBandMap2DCPUData::prepare(SPtr<MultiBandMap2DCPUPre
             _data.resize(_w*_h);
         }
     }
-    _gpsOrigin=pi::svar.get_var("GPS.Origin",_gpsOrigin);
+    _gpsOrigin=p_svar.get_var("GPS.Origin",_gpsOrigin);
     return true;
 }
 
 MultiBandMap2DCPU::MultiBandMap2DCPU(bool thread)
-    :alpha(pi::svar.GetInt("Map2D.Alpha",0)),
+    :alpha(p_svar.GetInt("Map2D.Alpha",0)),
      _valid(false),_thread(thread),
-     _bandNum(pi::svar.GetInt("MultiBandMap2DCPU.BandNumber",5)),
-     _highQualityShow(pi::svar.GetInt("MultiBandMap2DCPU.HighQualityShow",1))
+     _bandNum(p_svar.GetInt("MultiBandMap2DCPU.BandNumber",5)),
+     _highQualityShow(p_svar.GetInt("MultiBandMap2DCPU.HighQualityShow",1))
 {
     _bandNum=min(_bandNum, static_cast<int>(ceil(log(ELE_PIXELS) / log(2.0))));
 }
@@ -404,7 +404,7 @@ bool MultiBandMap2DCPU::renderFrame(const std::pair<cv::Mat,pi::SE3d>& frame)
         float x_center=w/2;
         float y_center=h/2;
         float dis_max=sqrt(x_center*x_center+y_center*y_center);
-        int weightType=pi::svar.GetInt("Map2D.WeightType",0);
+        int weightType=p_svar.GetInt("Map2D.WeightType",0);
         for(int i=0;i<h;i++)
             for(int j=0;j<w;j++)
             {
@@ -441,7 +441,7 @@ bool MultiBandMap2DCPU::renderFrame(const std::pair<cv::Mat,pi::SE3d>& frame)
     cv::Mat transmtx = cv::getPerspectiveTransform(imgPtsCV, destPoints);
 
     cv::Mat img_src;
-    if(pi::svar.GetInt("MultiBandMap2DCPU.ForceFloat",0))
+    if(p_svar.GetInt("MultiBandMap2DCPU.ForceFloat",0))
         frame.first.convertTo(img_src,CV_32FC3,1./255.);
     else
         frame.first.convertTo(img_src,CV_16SC3);
@@ -451,11 +451,11 @@ bool MultiBandMap2DCPU::renderFrame(const std::pair<cv::Mat,pi::SE3d>& frame)
     cv::warpPerspective(img_src, image_warped, transmtx, image_warped.size(),cv::INTER_LINEAR,cv::BORDER_REFLECT);
     cv::warpPerspective(weight_src, weight_warped, transmtx, weight_warped.size(),cv::INTER_NEAREST);
 
-    if(pi::svar.GetInt("ShowWarped",0))
+    if(p_svar.GetInt("ShowWarped",0))
     {
         cv::imshow("image_warped",image_warped);
         cv::imshow("weight_warped",weight_warped);
-        if(pi::svar.GetInt("SaveImageWarped"))
+        if(p_svar.GetInt("SaveImageWarped"))
         {
             cout<<"Saving warped image.\n";
             cv::imwrite("image_warped.png",image_warped);
@@ -670,7 +670,7 @@ void MultiBandMap2DCPU::draw()
         glEnd();
     }
     //draw global area
-    if(pi::svar.GetInt("Map2D.DrawArea"))
+    if(p_svar.GetInt("Map2D.DrawArea"))
     {
         pi::Point3d _min=d->min();
         pi::Point3d _max=d->max();
@@ -741,7 +741,7 @@ void MultiBandMap2DCPU::draw()
                             updated=ele->updateTexture();
                         pi::timer.leave("MultiBandMap2DCPU::updateTexture");
 
-                        if(updated&&!inborder&&pi::svar.GetInt("Fuse2Google"))
+                        if(updated&&!inborder&&p_svar.GetInt("Fuse2Google"))
                         {
                             pi::timer.enter("MultiBandMap2DCPU::fuseGoogle");
                             stringstream cmd;
@@ -754,7 +754,7 @@ void MultiBandMap2DCPU::draw()
                             cmd<<"Map2DUpdate LastTexMat "<< setiosflags(ios::fixed)
                               << setprecision(9)<<gpsTl<<" "<<gpsBr;
 //                            cout<<cmd.str()<<endl;
-                            pi::scommand.Call("MapWidget",cmd.str());
+                            p_scommand.Call("MapWidget",cmd.str());
                             pi::timer.leave("MultiBandMap2DCPU::fuseGoogle");
 
                         }
@@ -837,10 +837,10 @@ bool MultiBandMap2DCPU::save(const std::string& filename)
 
     cv::Mat result=pyr_laplace[0];
     if(result.type()==CV_16SC3) result.convertTo(result,CV_8UC3);
-    result.setTo(cv::Scalar::all(pi::svar.GetInt("Result.BackGroundColor")),pyr_weights[0]==0);
+    result.setTo(cv::Scalar::all(p_svar.GetInt("Result.BackGroundColor")),pyr_weights[0]==0);
     cv::imwrite(filename,result);
     cout<<"Resolution:["<<result.cols<<" "<<result.rows<<"]";
-    if(pi::svar.exist("GPS.Origin"))
+    if(p_svar.exist("GPS.Origin"))
           cout<<",_lengthPixel:"<<d->lengthPixel()
        <<",Area:"<<contentCount*d->eleSize()*d->eleSize()<<endl;
     return true;

@@ -89,7 +89,7 @@ void Map2DItemHandle(void* ptr,std::string cmd,std::string para)
 
         // reload map
         double tmNow = pi::tm_getTimeStamp();
-        if( tmNow - tmLastReload > pi::svar.GetDouble("Map2D.periodMapReload", 0.5) ) {
+        if( tmNow - tmLastReload > p_svar.GetDouble("Map2D.periodMapReload", 0.5) ) {
             item->mapwidget->ReloadMap();
             tmLastReload = tmNow;
         }
@@ -109,12 +109,12 @@ Map2DItem::Map2DItem(MapGraphicItem* _map, OPMapWidget* parent)
     setPos(0,0);
     //setZValue(0);
 
-    pi::scommand.RegisterCommand("MapWidget",Map2DItemHandle,this);
+    p_scommand.RegisterCommand("MapWidget",Map2DItemHandle,this);
 }
 
 Map2DItem::~Map2DItem()
 {
-    pi::scommand.UnRegisterCommand("MapWidget");
+    p_scommand.UnRegisterCommand("MapWidget");
 }
 
 void Map2DItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

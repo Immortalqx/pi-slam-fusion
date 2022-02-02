@@ -15,13 +15,16 @@
 #include "../system/thread/ThreadBase.h"
 
 #endif
+
+#define p_svar pi::Svar::instance()
+
 namespace pi
 {
     class Svar;
 
 //extern Svar svar;
-#define svar Svar::instance()
-#define GV2 svar
+//#define svar Svar::instance()
+//#define GV2 svar
 
 /** The class Svar will be shared in the same process, it help users to transform paraments use a name id,
  all paraments with a same name will got the same data. One can change it in all threads from assigned var,

@@ -7,7 +7,7 @@
 
 namespace pi {
 
-SystemBase::SystemBase():pause(svar.i["SystemPause"])
+SystemBase::SystemBase():pause(p_svar.i["SystemPause"])
 {
     dbg_stacktrace_setup();
     mWindow=NULL;

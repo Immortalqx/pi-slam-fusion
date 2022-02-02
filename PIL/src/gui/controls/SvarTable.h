@@ -46,7 +46,7 @@ class SvarTable : public QTableWidget
     friend class SvarWidget;
 
 public:
-    explicit SvarTable(QWidget *parent=NULL,pi::Svar &svar_ins=pi::svar);
+    explicit SvarTable(QWidget *parent=NULL,pi::Svar &svar_ins=p_svar);
 
     virtual  ~SvarTable(){}
 
@@ -69,7 +69,7 @@ class SvarWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SvarWidget(QWidget *parent=NULL,pi::Svar &svar_ins=pi::svar);
+    explicit SvarWidget(QWidget *parent=NULL,pi::Svar &svar_ins=p_svar);
     virtual ~SvarWidget(){}
 
     void setupUI();

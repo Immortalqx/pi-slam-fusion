@@ -942,7 +942,7 @@ int svar_main(int argc, char *argv[],
 
     // set argc & argv
     SvarWithType<void*>::instance()["argv"] = argv;
-    svar.i["argc"] = argc;
+    p_svar.i["argc"] = argc;
 
     // parse basic input arguments
     if( argc <= 1 && 0 ) {
@@ -968,28 +968,28 @@ int svar_main(int argc, char *argv[],
 
     // load config file
     if( fn_conf.length() > 0 )
-        svar.ParseFile(fn_conf);
+        p_svar.ParseFile(fn_conf);
 
     // parse input arguments
     for(i=1; i<argc; i++) {
         sa1 = split_text(argv[i], "=");
 
         if( sa1.size() > 1 ) {
-            svar.setvar(argv[i]);
+            p_svar.setvar(argv[i]);
         }
     }
 
     // save input arguments to file
-    if( svar.GetInt("Svar.saveArguments", 0) ) {
+    if( p_svar.GetInt("Svar.saveArguments", 0) ) {
         sa2 = path_splitext(argv[0]);
         save_arguments(argc, argv, sa2[0]);
     }
 
     // print all settings
-    svar.dumpAllVars();
+    p_svar.dumpAllVars();
 
     // get action name
-    act = svar.GetString("act", actDefault);
+    act = p_svar.GetString("act", actDefault);
 
     // call corresponding function
     i = 0; j = 0;

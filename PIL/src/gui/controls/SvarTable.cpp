@@ -109,7 +109,7 @@ void SvarTable::load(QString filt_string)
     }
 
     //load Svar
-    if(pi::svar.GetInt("Svar.ShowInTable",1))
+    if(p_svar.GetInt("Svar.ShowInTable",1))
     {
         pi::Svar::SvarMap sv_data=m_svar.get_data();
         for(pi::Svar::SvarIter it=sv_data.begin();it!=sv_data.end();it++)
@@ -123,7 +123,7 @@ void SvarTable::load(QString filt_string)
         }
     }
 
-    if(pi::svar.GetInt("Scommand.ShowInTable",0))
+    if(p_svar.GetInt("Scommand.ShowInTable",0))
     {
         pi::SvarWithType<pi::CallbackVector>::DataMap cb_data=pi::SvarWithType<pi::CallbackVector>::instance().get_data();
         for(pi::SvarWithType<pi::CallbackVector>::DataIter it=cb_data.begin();it!=cb_data.end();it++)
@@ -245,7 +245,7 @@ void SvarWidget::btnLoad_clicked(bool checked)
 void SvarWidget::edtFilter_editingFinished(void)
 {
     QString text=m_edtFilter->text();
-    if(pi::scommand.Call(text.toStdString()))
+    if(p_scommand.Call(text.toStdString()))
     {
         m_edtFilter->setText("");
     }

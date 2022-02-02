@@ -42,13 +42,13 @@ namespace pi
 
     Scommand::Scommand() : data(SvarWithType<CallbackVector>::instance())
     {
-        RegisterCommand("include", buildInHandle, &svar);
-        RegisterCommand("parse", buildInHandle, &svar);
-        RegisterCommand("echo", buildInHandle, &svar);
-        RegisterCommand("GetVar", buildInHandle, &svar);
-        RegisterCommand("GetInt", buildInHandle, &svar);
-        RegisterCommand("GetDouble", buildInHandle, &svar);
-        RegisterCommand("GetString", buildInHandle, &svar);
+        RegisterCommand("include", buildInHandle, &p_svar);
+        RegisterCommand("parse", buildInHandle, &p_svar);
+        RegisterCommand("echo", buildInHandle, &p_svar);
+        RegisterCommand("GetVar", buildInHandle, &p_svar);
+        RegisterCommand("GetInt", buildInHandle, &p_svar);
+        RegisterCommand("GetDouble", buildInHandle, &p_svar);
+        RegisterCommand("GetString", buildInHandle, &p_svar);
         RegisterCommand("system", systemFunction);
     }
 

@@ -94,8 +94,8 @@ void Win3D::endSelection(const QPoint& point)
     int slcted=selectedName();
     if(slcted>0)
     {
-        svar.i["Win3D.SelectedName"]=slcted;
-        scommand.Call("selectedName","Win3D.SelectedName");
+        p_svar.i["Win3D.SelectedName"]=slcted;
+        p_scommand.Call("selectedName","Win3D.SelectedName");
     }
 }
 
@@ -117,8 +117,8 @@ void Win3D::initializeGL()
     glEnable(GL_COLOR_MATERIAL);
 
     // Default colors
-    setForegroundColor(QColor(svar.GetString("Win3D.ForegroundColor","#B4B4B4").c_str()));
-    setBackgroundColor(QColor(svar.GetString("Win3D.BackgroundColor","#333333").c_str()));
+    setForegroundColor(QColor(p_svar.GetString("Win3D.ForegroundColor","#B4B4B4").c_str()));
+    setBackgroundColor(QColor(p_svar.GetString("Win3D.BackgroundColor","#333333").c_str()));
 
     // Clear the buffer where we're going to draw
     if (format().stereo())
@@ -244,7 +244,7 @@ void Win3D::preDraw()
 void Win3D::draw()
 {
     //Draw text
-    if( svar.GetInt("Win3D.DrawInfoText", 1) ) {
+    if( p_svar.GetInt("Win3D.DrawInfoText", 1) ) {
         int j=1;
         for(int i=0;i<infos.size();i++)
         {

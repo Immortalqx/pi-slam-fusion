@@ -16,20 +16,20 @@ namespace pi
 {
     int *SvarInt(string name, int def)
     {
-        def = svar.GetInt(name, def);
-        return svar.i.get_ptr(name, def);
+        def = p_svar.GetInt(name, def);
+        return p_svar.i.get_ptr(name, def);
     }
 
     double *SvarDouble(string name, double def)
     {
-        def = svar.GetDouble(name, def);
-        return svar.d.get_ptr(name, def);
+        def = p_svar.GetDouble(name, def);
+        return p_svar.d.get_ptr(name, def);
     }
 
     string *SvarString(string name, string def)
     {
-        def = svar.GetString(name, def);
-        return svar.s.get_ptr(name, def);
+        def = p_svar.GetString(name, def);
+        return p_svar.s.get_ptr(name, def);
     }
 
     inline std::string Trim(const std::string &str, const std::string &delimiters = " \f\n\r\t\v")
@@ -383,24 +383,24 @@ namespace pi
     {
         if (s == "")
             return 0;
-        int &collectFlag = svar.GetInt("Svar.Collecting", 0);
+        int &collectFlag = p_svar.GetInt("Svar.Collecting", 0);
         if (collectFlag)
         {
             istringstream ist(s);
             string sCommand;
             ist >> sCommand;
             if (sCommand == "endif" || sCommand == "fi")
-                scommand.Call("endif");
+                p_scommand.Call("endif");
             if (sCommand == "else")
-                scommand.Call("else");
+                p_scommand.Call("else");
             else if (sCommand == "endfunction")
-                scommand.Call("endfunction");
+                p_scommand.Call("endfunction");
             else if (sCommand == ".")
             {
-                scommand.Call(".", ist.str());
+                p_scommand.Call(".", ist.str());
             }
             else
-                scommand.Call(".", s);
+                p_scommand.Call(".", s);
             return 0;
         }
         s = UncommentString(expandVal(s, '{'));
@@ -439,13 +439,13 @@ namespace pi
 
     bool Svar::ParseStream(istream &is)
     {
-        string parsingFile = svar.GetString("Svar.ParsingFile", "");
+        string parsingFile = p_svar.GetString("Svar.ParsingFile", "");
         pi::StringArray path_file = pi::path_split(parsingFile);
         insert("Svar.ParsingPath", path_file[0], true);
         insert("Svar.ParsingName", path_file[1], true);
         insert("Svar.ParsingFile", parsingFile, true);
         string buffer;
-        int &shouldParse = svar.GetInt("Svar.NoReturn", 1);
+        int &shouldParse = p_svar.GetInt("Svar.NoReturn", 1);
         while (getline(is, buffer) && shouldParse)
         {
             // Lines ending with '\' are taken as continuing on the next line.
@@ -476,7 +476,7 @@ namespace pi
         }
 
         fileQueue.push_back(sFileName);
-        svar.GetString("Svar.ParsingFile", sFileName) = sFileName;
+        p_svar.GetString("Svar.ParsingFile", sFileName) = sFileName;
 
         bool ret = ParseStream(ifs);
         ifs.close();
@@ -486,7 +486,7 @@ namespace pi
         if (fileQueue.size())
         {
 //        cout<<"Back to parsing "<<fileQueue.back();
-            svar.GetString("Svar.ParsingFile", sFileName) = fileQueue.back();
+            p_svar.GetString("Svar.ParsingFile", sFileName) = fileQueue.back();
             string parsingFile = fileQueue.back();
             pi::StringArray path_file = pi::path_split(parsingFile);
             insert("Svar.ParsingPath", path_file[0], true);
@@ -495,9 +495,9 @@ namespace pi
         }
         else
         {
-            svar.erase("Svar.ParsingName");
-            svar.erase("Svar.ParsingPath");
-            svar.erase("Svar.ParsingFile");
+            p_svar.erase("Svar.ParsingName");
+            p_svar.erase("Svar.ParsingPath");
+            p_svar.erase("Svar.ParsingFile");
         }
         return ret;
     }
