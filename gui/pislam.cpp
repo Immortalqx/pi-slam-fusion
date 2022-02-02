@@ -42,8 +42,6 @@ namespace pislam
 
     SLAM_System::SLAM_System(GSLAM::MainWindow *mw) : status(STOP)
     {
-        std::cout << "SLAM_System svar address:" << &svar << std::endl;
-
         // regist scommand
         scommand.RegisterCommand("SLAM_Call", slamScommandHandle, this);
 

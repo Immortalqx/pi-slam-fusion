@@ -22,8 +22,6 @@ int main(int argc, char **argv)
 
     svar.ParseMain(argc, argv);
 
-    std::cout << "main svar address:" << &svar << std::endl;
-
     std::string act = svar.GetString("Act", "SLAM");
     if ("SLAM" == act)
     {
@@ -36,9 +34,6 @@ int main(int argc, char **argv)
         pislam::SLAM_System slamSystem(&mainwindow);
 
         //启动map2dfusion线程
-        // FIXME：如何和pi-slam的svar统一？？？
-        //  也许可以这样：for(auto it:var->get_data()) svar.insert(it.first,it.second);
-        //  把数据拷贝过去应该是最简单的，不然还可以试一试强行改成统一的？
         Map2DFusion::TestSystem sys;
         sys.start();
 

@@ -3,6 +3,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <base/Svar/VecParament.h>
 #include <base/Svar/Svar.h>
+#include <GSLAM/core/Svar.h>
 
 #include "Map2DFusion.h"
 
@@ -37,8 +38,8 @@ namespace Map2DFusion
 
     TestSystem::TestSystem()
     {
-        std::cout << "TestSystem svar address:" << &svar << std::endl;
-        std::cout << "TestSystem p_svar address:" << &p_svar << std::endl;
+        //从GSLAM的svar更新到PIL的svar（不过其实也可以在main中用两种svar解析命令含参数?）
+        for(const auto& it:svar.get_data()) p_svar.insert(it.first,it.second);
 
         if (p_svar.GetInt("Win3D.Enable", 1))
         {
