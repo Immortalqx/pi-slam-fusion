@@ -75,9 +75,9 @@ MainWindow_Map2DFusion::MainWindow_Map2DFusion(QWidget *parent):QMainWindow(pare
     // setup layout
     setupLayout();
     connect(this, SIGNAL(call_signal() ), this, SLOT(call_slot()) );
-    scommand.RegisterCommand("setMapType",GuiHandle,this);
-    scommand.RegisterCommand("show",GuiHandle,this);
-    scommand.RegisterCommand("MainWindow",GuiHandle,this);
+    pi::scommand.RegisterCommand("setMapType",GuiHandle,this);
+    pi::scommand.RegisterCommand("show",GuiHandle,this);
+    pi::scommand.RegisterCommand("MainWindow",GuiHandle,this);
 }
 
 int MainWindow_Map2DFusion::setupLayout(void)
@@ -91,8 +91,8 @@ int MainWindow_Map2DFusion::setupLayout(void)
 
     if(!mapwidget){
         mapwidget=new mapcontrol::OPMapWidget(this);
-        scommand.RegisterCommand("SetCurrentPosition",GuiHandle,mapwidget);
-        scommand.RegisterCommand("SetZoom",GuiHandle,mapwidget);
+        pi::scommand.RegisterCommand("SetCurrentPosition",GuiHandle,mapwidget);
+        pi::scommand.RegisterCommand("SetZoom",GuiHandle,mapwidget);
         m_tabWidget->addTab(mapwidget,"MapWidget");
     }
 
@@ -103,7 +103,7 @@ int MainWindow_Map2DFusion::setupLayout(void)
         mapwidget->configuration->SetCacheLocation("data/map/");
 
         mapwidget->SetCurrentPosition(internals::PointLatLng(34.2457760,108.918389));
-        mapwidget->SetZoom(svar.GetInt("MapWidget.DefaultZoom",18));
+        mapwidget->SetZoom(pi::svar.GetInt("MapWidget.DefaultZoom",18));
         mapwidget->SetMinZoom(4);
         mapwidget->SetMaxZoom(18);
         mapwidget->SetMapType(MapType::BingSatellite);
@@ -175,7 +175,7 @@ void MainWindow_Map2DFusion::call_slot()
         std::string& cmd=(cmds.front());
         if("show"==cmd) show();
         else
-            scommand.Call(cmd);
+            pi::scommand.Call(cmd);
         cmds.pop();
     }
 

@@ -45,8 +45,8 @@ void Map2DItemHandle(void* ptr,std::string cmd,std::string para)
         pi::timer.enter("Map2DUpdate");
 //        cout<<"Map2DUpdate Handled.\n";
         sst>>cmd;//image name
-        cv::Mat img=SvarWithType<cv::Mat>::instance()[cmd];
-        cv::Mat imgWeight=SvarWithType<cv::Mat>::instance()[cmd+"Weight"];
+        cv::Mat img=pi::SvarWithType<cv::Mat>::instance()[cmd];
+        cv::Mat imgWeight=pi::SvarWithType<cv::Mat>::instance()[cmd+"Weight"];
         if(img.empty()||(img.type()!=CV_8UC3))
         {
             cerr<<"Map2DItemHandle::Map2DUpdate: Not correct image!\n";
@@ -89,7 +89,7 @@ void Map2DItemHandle(void* ptr,std::string cmd,std::string para)
 
         // reload map
         double tmNow = pi::tm_getTimeStamp();
-        if( tmNow - tmLastReload > svar.GetDouble("Map2D.periodMapReload", 0.5) ) {
+        if( tmNow - tmLastReload > pi::svar.GetDouble("Map2D.periodMapReload", 0.5) ) {
             item->mapwidget->ReloadMap();
             tmLastReload = tmNow;
         }
@@ -109,12 +109,12 @@ Map2DItem::Map2DItem(MapGraphicItem* _map, OPMapWidget* parent)
     setPos(0,0);
     //setZValue(0);
 
-    scommand.RegisterCommand("MapWidget",Map2DItemHandle,this);
+    pi::scommand.RegisterCommand("MapWidget",Map2DItemHandle,this);
 }
 
 Map2DItem::~Map2DItem()
 {
-    scommand.UnRegisterCommand("MapWidget");
+    pi::scommand.UnRegisterCommand("MapWidget");
 }
 
 void Map2DItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

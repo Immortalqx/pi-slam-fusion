@@ -31,7 +31,6 @@
 
 using namespace std;
 
-
 /**
 
   __________max
@@ -73,7 +72,7 @@ bool Map2DCPU::Map2DCPUData::prepare(SPtr<Map2DCPUPrepare> prepared)
         double radius=0.5*minh*sqrt((line.x*line.x+line.y*line.y));
         _lengthPixel=2*radius/sqrt(prepared->_camera.w*prepared->_camera.w
                                    +prepared->_camera.h*prepared->_camera.h);
-        _lengthPixel/=svar.GetDouble("Map2D.Scale",1);
+        _lengthPixel/=pi::svar.GetDouble("Map2D.Scale",1);
         _lengthPixelInv=1./_lengthPixel;
         _min=_min-pi::Point3d(radius,radius,0);
         _max=_max+pi::Point3d(radius,radius,0);
@@ -98,7 +97,7 @@ Map2DCPU::Map2DCPUEle::~Map2DCPUEle()
 }
 
 Map2DCPU::Map2DCPU(bool thread)
-    :alpha(svar.GetInt("Map2D.Alpha",0)),
+    :alpha(pi::svar.GetInt("Map2D.Alpha",0)),
      _valid(false),_thread(thread)
 {
 }
@@ -244,7 +243,7 @@ bool Map2DCPU::renderFrame(const std::pair<cv::Mat,pi::SE3d>& frame)
         float x_center=w/2;
         float y_center=h/2;
         float dis_max=sqrt(x_center*x_center+y_center*y_center);
-        int weightType=svar.GetInt("Map2D.WeightType",0);
+        int weightType=pi::svar.GetInt("Map2D.WeightType",0);
         for(int i=0;i<h;i++)
             for(int j=0;j<w;j++)
             {
@@ -275,7 +274,7 @@ bool Map2DCPU::renderFrame(const std::pair<cv::Mat,pi::SE3d>& frame)
         pimg++;
     }
 
-    if(svar.GetInt("ShowSRC",0))
+    if(pi::svar.GetInt("ShowSRC",0))
     {
         cv::imshow("src",src);
     }
@@ -299,7 +298,7 @@ bool Map2DCPU::renderFrame(const std::pair<cv::Mat,pi::SE3d>& frame)
     cv::Mat transmtx = cv::getPerspectiveTransform(imgPtsCV, destPoints);
     cv::warpPerspective(src, dst, transmtx, dst.size(),cv::INTER_LINEAR);
 
-    if(svar.GetInt("ShowDST",0))
+    if(pi::svar.GetInt("ShowDST",0))
     {
         cv::imshow("dst",dst);
     }

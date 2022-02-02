@@ -180,7 +180,7 @@ bool Map2DGPU::Map2DGPUData::prepare(SPtr<Map2DGPUPrepare> prepared)
         double radius=0.5*minh*sqrt((line.x*line.x+line.y*line.y));
         _lengthPixel=2*radius/sqrt(prepared->_camera.w*prepared->_camera.w
                                    +prepared->_camera.h*prepared->_camera.h);
-        _lengthPixel/=svar.GetDouble("Map2D.Scale",1);
+        _lengthPixel/=pi::svar.GetDouble("Map2D.Scale",1);
         _lengthPixelInv=1./_lengthPixel;
         _min=_min-pi::Point3d(radius,radius,0);
         _max=_max+pi::Point3d(radius,radius,0);
@@ -200,7 +200,7 @@ bool Map2DGPU::Map2DGPUData::prepare(SPtr<Map2DGPUPrepare> prepared)
 }
 
 Map2DGPU::Map2DGPU(bool thread)
-    :alpha(svar.GetInt("Map2D.Alpha",0)),
+    :alpha(pi::svar.GetInt("Map2D.Alpha",0)),
      _valid(false),_thread(thread)
 {
     {
@@ -447,7 +447,7 @@ bool Map2DGPU::renderFrame(const std::pair<cv::Mat,pi::SE3d>& frame)
 
     pi::timer.leave("Map2DGPU::Apply");
 
-    if(!svar.GetInt("Win3D.Enable"))//show result
+    if(!pi::svar.GetInt("Win3D.Enable"))//show result
     {
         cv::Mat result(ELE_PIXELS*d->h(),ELE_PIXELS*d->w(),CV_32FC4);
         cv::Mat tmp(ELE_PIXELS,ELE_PIXELS,CV_32FC4);

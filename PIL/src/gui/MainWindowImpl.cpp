@@ -14,7 +14,7 @@ MainWindowImpl::MainWindowImpl(QWidget *parent):QMainWindow(parent)
     // setup layout
 //    setupLayout();
 
-    SvarWithType<QObject*>& inst=SvarWithType<QObject*>::instance();
+    pi::SvarWithType<QObject*>& inst=pi::SvarWithType<QObject*>::instance();
     inst.insert("MainWindow",this,false);
 
     connect(this, SIGNAL(call_signal() ), this, SLOT(call_slot()) );
@@ -40,7 +40,7 @@ void MainWindowImpl::call_slot()
         string& cmd=(cmds.front());
         if("show"==cmd) show();
         else
-            Scommand::instance().Call(cmd);
+            pi::Scommand::instance().Call(cmd);
         cmds.pop();
     }
 }
