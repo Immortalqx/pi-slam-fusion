@@ -18,9 +18,17 @@
 
   问题出在：pi-slam用的是GSLAM中的svar，map2dfusion用的是PIL中的svar
 
+  > 想办法如何把这个问题解决了
+
 - [x] 想办法统一这个svar类。
 
 - [ ] 考虑如何让线程之间进行数据交换
+
+    > 这个可以考虑使用互斥+类成员变量，或者信号量
+    >
+    > https://zhuanlan.zhihu.com/p/157171731
+    >
+    > https://gitee.com/pi-lab/learn_programming/tree/master/5_advanced/5_MultiThread
 
 **疑问：**
 
@@ -29,6 +37,8 @@
 - 目前发现把map2dfusion中的svar替换成pi-slam中的svar的话，要修改的地方特别多，尝试了一下，感觉不太能成功。。。
 
   可能尝试一下让这两个svar的内容交换要更靠谱一些？
+  
+  > 可以让一个更新的版本做为主要版本，把另外一个屏蔽掉，整个项目都使用主要的那个试试
 
 ### 1月29日
 
