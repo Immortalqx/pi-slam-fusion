@@ -24,6 +24,15 @@
 
 **问题：**
 
+- map2dfusion需要的类型：std::pair\<cv::Mat, pi::SE3d\>
+- pi-slam中的类型：std::shared_ptr\<MapFrame\>，MapFrame是一个类，里面包含pi::SE3d但不包含cv::Mat
+
+如何保证pi-slam和map2dfusion的图片是相同的?
+
+目前的解决方案：目前pi-slam还是从固定数据集读取图片，所以可以先让pi-slam向map2dfusion传送时间戳（图片名称）和pi::SE3d，这样让map2dfusion根据获取的时间戳从本地读取图片，然后根据获取的位姿来生成frame。
+
+在pi-slam的trackeropt的track函数里面进行修改？
+
 
 
 ### 1月31日~2月3日

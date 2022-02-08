@@ -370,6 +370,7 @@ bool Tracker::track(const SPtr<MapFrame>& frame)
     }
     if(_handle) _handle->handle(new GSLAM::CurrentFrameEvent(_curFrame));
 
+    //TODO 从这里往map2dfusion发送数据？？？
     return bOK;
 }
 
