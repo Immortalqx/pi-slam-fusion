@@ -212,13 +212,12 @@ namespace Map2DFusion
             return -5;
         }
 
-        //TODO 接受plane参数
-        // 在这里需要传入plane的数据（pi-slam先用ransac计算出来，再想办法传这里来！）
-        // 1. ransac算法的C++实现倒是还没有写，先把ransac算法写好！
-        // 2. 怎么传过来呢？flag+plane，两个变量？
-        map->prepare(p_svar.get_var<pi::SE3d>("Plane", pi::SE3d()),
-                     PinHoleParameters(vecP[0], vecP[1], vecP[2], vecP[3], vecP[4], vecP[5]),
-                     frames);
+        pi::SE3d plane;
+        Trans_Plane.consumption(plane);
+        map->prepare(plane, PinHoleParameters(vecP[0], vecP[1], vecP[2], vecP[3], vecP[4], vecP[5]), frames);
+//        map->prepare(p_svar.get_var<pi::SE3d>("Plane", pi::SE3d()),
+//                     PinHoleParameters(vecP[0], vecP[1], vecP[2], vecP[3], vecP[4], vecP[5]),
+//                     frames);
 
         if (mainwindow.get())
         {

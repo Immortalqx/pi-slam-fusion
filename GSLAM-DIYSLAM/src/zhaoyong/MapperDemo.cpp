@@ -26,6 +26,8 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #endif
 
+#include "../../src/RANSAC.h"
+
 namespace demo{
 
 using GSLAM::PointID;
@@ -612,6 +614,10 @@ void  Mapper::createNewMapPointsBow()
             _map->insertMapPoint(pMP);
             _recentPoints.push_back(pMP);
             successCount++;
+
+            //计算Plane
+            if (!ransac.is_finished())
+                ransac.solve(p3d);
         }
         _logger<<",ref:"<<refKF->id()<<"-"<<successCount
               <<"/"<<count2<<"/"<<count1<<"/"<<matches.size();

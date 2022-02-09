@@ -6,22 +6,23 @@
 #include <cmath>
 #include <GSLAM/core/SE3.h>
 
-//感觉需要一个类来实现RANSAC算法，否则变量的传递会非常麻烦
+#define ransac RANSAC::Instance()
+
 class RANSAC
 {
 public:
-    RANSAC() = default;
-
-    //读取数据
-    void read_data(const std::string &filepath, int data_size = 1000);
+    // 获取单实例对象
+    static RANSAC &Instance();
 
     //进行求解
-    void solve();
+    void solve(pi::Point3d point3D);
 
-    //测试代码
-    void test();
+    //是否完成计算
+    bool is_finished() const;
 
 private:
+    RANSAC();
+
     /**
      * 求解点M到平面的距离
      * @param M 点M
@@ -52,6 +53,8 @@ private:
     pi::SO3d plane_Q;
     //计算得到的平面的法向量
     pi::Point3d plane_N;
+    //是否完成计算
+    bool finished;
 };
 
 #endif //RANSAC_RANSAC_H

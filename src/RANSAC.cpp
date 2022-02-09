@@ -1,34 +1,12 @@
-#include <fstream>
 #include <cmath>
-#include <iostream>
 #include <ctime>
 #include "RANSAC.h"
+#include "DataTrans.h"
 
-using namespace std;
-
-void RANSAC::read_data(const std::string &filepath, int data_size)
+RANSAC::RANSAC()
 {
     this->points.clear();
-
-    ifstream fp(filepath);
-    string line;
-    int line_num = 0;
-
-    while (getline(fp, line) && line_num < data_size)
-    {
-        line_num++;
-
-        double num[3];
-        string str;
-        std::stringstream ss(line);
-        for (double &i: num)
-        {
-            getline(ss, str, ',');
-            i = stod(str);
-        }
-
-        this->points.emplace_back(pi::Point3d(num[0], num[1], num[2]));
-    }
+    this->finished = false;
 }
 
 double RANSAC::solve_distance(pi::Point3d M, pi::Point3d P, pi::Point3d N)
@@ -122,16 +100,28 @@ void RANSAC::ransac_core()
     }
 }
 
-void RANSAC::solve()
+void RANSAC::solve(pi::Point3d point3D)
 {
-    ransac_core();
+    //将目前的点存入
+    this->points.emplace_back(point3D);
+    //如果目前保存的点不足以计算Plane，则返回
+    if (this->points.size() < 2000)
+        return;
+    //进行计算
+    this->ransac_core();
+    //完成计算
+    this->finished = true;
+    //向map2dfusion发送数据
+    Trans_Plane.product(pi::SE3d(this->plane_Q, this->plane_P));
 }
 
-void RANSAC::test()
+bool RANSAC::is_finished() const
 {
-    read_data("/home/immortalqx/Lab/DataSet/Test/pcltest.csv", 10000);
-    solve();
-    cout << plane_P << endl;
-    cout << plane_Q << endl;
-    cout << plane_N << endl;
+    return this->finished;
+}
+
+RANSAC &RANSAC::Instance()
+{
+    static RANSAC instance;
+    return instance;
 }

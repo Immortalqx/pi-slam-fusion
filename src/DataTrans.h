@@ -6,6 +6,7 @@
 #include <condition_variable>
 
 #define Trans DataTrans<std::pair<std::string, pi::SE3d>>::Instance()
+#define Trans_Plane DataTrans<pi::SE3d>::Instance()
 
 template<typename T>
 class DataTrans
