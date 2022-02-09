@@ -56,7 +56,10 @@ public:
         while (isFull())
         {
             //生产者等待"产品队列缓冲区不为满"这一条件发生.
-            m_notFull.wait(m_mutex);
+            //m_notFull.wait(m_mutex);
+            
+            //如果满了就把前面的丢掉！
+            m_queue.pop_front();
         }
         m_queue.push_back(v);
         locker.unlock();

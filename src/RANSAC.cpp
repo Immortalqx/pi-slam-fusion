@@ -1,5 +1,4 @@
 #include <fstream>
-#include <sstream>
 #include <cmath>
 #include <iostream>
 #include <ctime>
@@ -28,11 +27,11 @@ void RANSAC::read_data(const std::string &filepath, int data_size)
             i = stod(str);
         }
 
-        this->points.emplace_back(num);
+        this->points.emplace_back(pi::Point3d(num[0], num[1], num[2]));
     }
 }
 
-double RANSAC::solve_distance(RANSAC::Point3d M, RANSAC::Point3d P, RANSAC::Point3d N)
+double RANSAC::solve_distance(pi::Point3d M, pi::Point3d P, pi::Point3d N)
 {
     double A = N.x;
     double B = N.y;
@@ -42,18 +41,18 @@ double RANSAC::solve_distance(RANSAC::Point3d M, RANSAC::Point3d P, RANSAC::Poin
     return fabs(A * M.x + B * M.y + C * M.z + D) / sqrt(A * A + B * B + C * C);
 }
 
-void RANSAC::solve_plane(RANSAC::Point3d A, RANSAC::Point3d B, RANSAC::Point3d C)
+void RANSAC::solve_plane(pi::Point3d A, pi::Point3d B, pi::Point3d C)
 {
     //定义两个常量
     const double pi = 3.1415926535;
-    RANSAC::Point3d N(0, 0, 1);
+    pi::Point3d N(0, 0, 1);
 
     //计算平面的单位法向量，即BC与BA的叉积
-    RANSAC::Point3d Nx = (B - C) ^ (B - A);
-    Nx.norm();
+    pi::Point3d Nx = (B - C) ^ (B - A);
+    Nx = Nx.normalize();
 
     //计算单位旋转向量与旋转角(范围0到pi)
-    RANSAC::Point3d Nv = Nx ^ N;
+    pi::Point3d Nv = Nx ^ N;
     double angle = acos(Nx * N);
 
     //两个向量的夹角不大于pi/2,这里单独处理一下
@@ -65,7 +64,10 @@ void RANSAC::solve_plane(RANSAC::Point3d A, RANSAC::Point3d B, RANSAC::Point3d C
 
     //利用私有变量把返回值保存出来,不太优美...
     this->plane_P = B;
-    this->plane_Q = Quaternion(Nv * sin(angle / 2), cos(angle / 2));
+    //pi::SO3d根据direction和angle初始化好像不太对，这里只能换一个形式
+    //this->plane_Q = pi::SO3d(Nv * sin(angle / 2), angle);
+    Nv = Nv * sin(angle / 2);
+    this->plane_Q = pi::SO3d(Nv.x, Nv.y, Nv.z, cos(angle / 2));
     this->plane_N = Nx;
 }
 
@@ -85,11 +87,10 @@ void RANSAC::ransac_core()
     {
         //随机从数据中算则三个点去求解模型,这里取得点可能是重复的
         int index[3];
-        srand((unsigned) time(NULL));
+        srand((unsigned) time(nullptr));
         index[0] = rand() % (size);
         index[1] = rand() % (size);
         index[2] = rand() % (size);
-        //TODO 下面这样可能有问题，卡住了就注释掉，放弃保证点不重复
         //如果取的点是重复的,就重新取一次
         if (index[0] == index[1] || index[1] == index[2] || index[2] == index[0])
         {
@@ -128,28 +129,9 @@ void RANSAC::solve()
 
 void RANSAC::test()
 {
-    //////////////////////////////////////////
-    RANSAC::Point3d A(1, 2, 3);
-    RANSAC::Point3d B(2, 3, 4);
-    RANSAC::Point3d C = (A + B) ^ ((A - B)) * (A * B);
-    cout << C.x << " " << C.y << " " << C.z << endl;
-    C.norm();
-    cout << C.x << " " << C.y << " " << C.z << endl;
-
-    //////////////////////////////////////////
-    RANSAC::Point3d D(1, 2, 3);
-    RANSAC::Point3d E(0, 3, 4);
-    RANSAC::Point3d F(1, 8, -10);
-    solve_plane(D, E, F);
-    cout << solve_distance(D, E, F) << endl;
-    cout << plane_P.x << " " << plane_P.y << " " << plane_P.z << endl;
-    cout << plane_Q.x << " " << plane_Q.y << " " << plane_Q.z << " " << plane_Q.w << endl;
-    cout << plane_N.x << " " << plane_N.y << " " << plane_N.z << endl;
-
-    //////////////////////////////////////////
-    read_data("../pcltest.csv", 5000);
+    read_data("/home/immortalqx/Lab/DataSet/Test/pcltest.csv", 10000);
     solve();
-    cout << plane_P.x << " " << plane_P.y << " " << plane_P.z << endl;
-    cout << plane_Q.x << " " << plane_Q.y << " " << plane_Q.z << " " << plane_Q.w << endl;
-    cout << plane_N.x << " " << plane_N.y << " " << plane_N.z << endl;
+    cout << plane_P << endl;
+    cout << plane_Q << endl;
+    cout << plane_N << endl;
 }
