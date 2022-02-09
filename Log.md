@@ -3,12 +3,33 @@
 **目前的想法：**
 
 - [x] 目前先尝试让pi-slam和map2dfusion合并到一起运行，不考虑一些逻辑关系之类的问题，先把线程问题解决掉！
-- [ ] 尝试让map2dfusion读取pi-slam的frame信息，通过这种方式运行
+- [x] 尝试让map2dfusion读取pi-slam的frame信息，通过这种方式运行
 - [ ] 在原pi-slam中合适的地方加入一个RANSAC计算plane参数的部分，计算好之后输出结果和计算需要的拍数
 - [ ] 将上面这一步单独提取出来，用来启动map2dfusion
 - [ ] 如果使用plane启动map2dfusion有困难，可以直接让plane为空，然后map2dfusion启动后阻塞。（目前想到最简单的方法）
 
 另外：map2dfusion中的错误还是要找出来，不过打算先等前面几步做好了再来找。
+
+### 2月9日
+
+**安排：**
+
+- [x] 实现map2dfusion能够读取pi-slam的frame信息
+  - [x] 先修改map2dfusion的接口，obtainframe
+  - [x] 从pi-slam中传输计算好的frame，可能要考虑一下数据类型的问题！
+- [ ] 在原pi-slam中合适的地方加入一个RANSAC计算plane参数的部分
+
+**问题：**
+
+- 目前map2dfusion还不是完全的依赖pi-slam的，后面得研究一下是不是可以只让pi-slam接触数据，然后给map2dfusion传处理过的数据。
+
+  （比如图片，目前就是pi-slam把时间戳传过来，然后map2dfusion再读取图片）
+
+- 数据集里trajectory上面四元数的格式确实是wxyz，读取也是按照xyzw读取的，所以map2dfusion里面这里应该是有问题；
+
+  而pi-slam传递给map2dfusion的是xyzw的形式，但是不需要调整成wxyz就能正确建图了，很奇怪。
+  
+  
 
 ### 2月7日~2月8日
 

@@ -7,7 +7,7 @@
 
 #include "Map2DFusion.h"
 
-#include "../src/Data.h"
+#include "../src/DataTrans.h"
 
 using namespace std;
 
@@ -39,7 +39,7 @@ namespace Map2DFusion
     TestSystem::TestSystem()
     {
         //从GSLAM的svar更新到PIL的svar（不过其实也可以在main中用两种svar解析命令含参数?）
-        for(const auto& it:svar.get_data()) p_svar.insert(it.first,it.second);
+        for (const auto &it: svar.get_data()) p_svar.insert(it.first, it.second);
 
         if (p_svar.GetInt("Win3D.Enable", 1))
         {
@@ -113,22 +113,45 @@ namespace Map2DFusion
         mainwindow->getWin3D()->setSceneRadius(1000);
         mainwindow->call("show");
         mainwindow->call("MapWidget" + p_svar.GetString(" TestMap2DItem.cmd",
-                                                      " Map2DUpdate LastTexMat 34.257287 108.888931 0 34.253234419307354 108.89463874078366 0"));
+                                                        " Map2DUpdate LastTexMat 34.257287 108.888931 0 34.253234419307354 108.89463874078366 0"));
     }
 
+//    bool TestSystem::obtainFrame(std::pair<cv::Mat, pi::SE3d> &frame)
+//    {
+//        string line;
+//        if (!getline(*in, line)) return false;
+//        stringstream ifs(line);
+//        string imgfile;
+//        ifs >> imgfile;
+//        imgfile = datapath + "/rgb/" + imgfile + ".jpg";
+//        pi::timer.enter("obtainFrame");
+//        frame.first = cv::imread(imgfile);
+//        pi::timer.leave("obtainFrame");
+//        if (frame.first.empty()) return false;
+//        ifs >> frame.second;
+//        if (p_svar.exist("GPS.Origin"))
+//        {
+//            if (!lengthCalculator.get())
+//                lengthCalculator = SPtr<TrajectoryLengthCalculator>(
+//                        new TrajectoryLengthCalculator());
+//            lengthCalculator->feed(frame.second.get_translation());
+//        }
+//        return true;
+//    }
+
+    //TODO 这里后面要改成完全从pi-slam获取
     bool TestSystem::obtainFrame(std::pair<cv::Mat, pi::SE3d> &frame)
     {
-        string line;
-        if (!getline(*in, line)) return false;
-        stringstream ifs(line);
-        string imgfile;
-        ifs >> imgfile;
+        std::pair<std::string, pi::SE3d> trans_frame;
+        Trans.consumption(trans_frame);
+
+        string imgfile = trans_frame.first;
         imgfile = datapath + "/rgb/" + imgfile + ".jpg";
         pi::timer.enter("obtainFrame");
         frame.first = cv::imread(imgfile);
         pi::timer.leave("obtainFrame");
         if (frame.first.empty()) return false;
-        ifs >> frame.second;
+        frame.second = trans_frame.second;
         if (p_svar.exist("GPS.Origin"))
         {
             if (!lengthCalculator.get())
@@ -223,9 +246,6 @@ namespace Map2DFusion
             {
                 if (map->queueSize() < 2)
                 {
-                    //TODO 接收处理好的frame
-                    // 可以把obtainFrame改一改或者就在这里写一个收发的程序，应该要先把发写好？
-                    // 应该需要使用一个栈，并且栈可以因为放入的数据过多而“溢出”
                     std::pair<cv::Mat, pi::SE3d> frame;
                     if (!obtainFrame(frame)) break;
                     map->feed(frame.first, frame.second);
@@ -266,42 +286,4 @@ namespace Map2DFusion
         }
         return 0;
     }
-
-//    //之后要改成线程的话，就在这里修改！
-//    void *_thread_map2dfusion(void *pVoid)
-//    {
-//        MainData *data = (MainData *) pVoid;
-//        int argc = data->get_argc();
-//        char **argv = data->get_argv();
-//
-//        //FIXME 如果直接调用函数，这里没有问题，但是如果用线程的话，这里就会出错！
-//        // 把这一步放到主线程里面去？
-//        // 但是放到主线程里面之后，参数就传递不进来了(因为svar用的是懒汉式，多线程中会导致多个实例被创建)
-//        // 能不能解决这个段错误的问题？
-//        svar.ParseMain(argc, argv);
-//
-//        //测试一下效果
-//        std::cout << "svar test\n";
-//        std::cout << svar.GetInt("Win3D.Enable", 0) << std::endl;
-//        std::cout << svar.GetString("Map2D.DataPath", "") << std::endl;
-//        std::cout << "svar test end\n";
-//
-//        //正常情况下，if语句判定条件为true(之前看map2dfusion的时候弄错了。)
-//        if (svar.GetInt("Win3D.Enable", 0))
-//        {
-//            QApplication app(argc, argv);
-//            TestSystem sys;
-//            //线程启动的指令，会调动sys.run()，最后运行testMap2D()
-//            sys.start();
-//            app.exec();
-//            return nullptr;
-//        }
-//        else
-//        {
-//            TestSystem sys;
-//            sys.run();
-//        }
-////        return 0;
-//        return nullptr;
-//    }
 }

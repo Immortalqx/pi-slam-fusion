@@ -48,7 +48,5 @@ namespace Map2DFusion
     };
 
     int _main_map2dfusion(int argc, char **argv);
-
-//    void *_thread_map2dfusion(void *pVoid);
 }
 #endif // MAP2DFUSION_H

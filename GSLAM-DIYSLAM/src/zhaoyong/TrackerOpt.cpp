@@ -31,6 +31,7 @@
 #include "optimizerG2O/Optimizer.h"
 #include <Eigen/Core>
 
+#include "../../src/DataTrans.h"
 
 namespace opt
 {
@@ -371,6 +372,9 @@ bool Tracker::track(const SPtr<MapFrame>& frame)
     if(_handle) _handle->handle(new GSLAM::CurrentFrameEvent(_curFrame));
 
     //TODO 从这里往map2dfusion发送数据？？？
+    std::pair<std::string, pi::SE3d> trans_frame(std::to_string(_curFrame->timestamp()), _curFrame->getPose());
+    Trans.product(trans_frame);
+
     return bOK;
 }
 
