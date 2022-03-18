@@ -46,20 +46,20 @@ class SvarTable : public QTableWidget
     friend class SvarWidget;
 
 public:
-    explicit SvarTable(QWidget *parent=NULL,pi::Svar &svar_ins=p_svar);
+    explicit SvarTable(QWidget *parent=NULL,GSLAM::Svar &svar_ins=svar);
 
     virtual  ~SvarTable(){}
 
     void load(QString filt_string="");
     void load(std::list<SvarElement>& sl);
     void setValue(int row,int col,QString val);
-    pi::Svar& getSvar(){return m_svar;}
+    GSLAM::Svar& getSvar(){return m_svar;}
 
 protected slots:
     void act_cellChanged(int row, int column);
 
 private:
-    pi::Svar&    m_svar;
+    GSLAM::Svar&    m_svar;
     std::set<QString> modified;
     bool     loading_flag;
 };
@@ -69,7 +69,7 @@ class SvarWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SvarWidget(QWidget *parent=NULL,pi::Svar &svar_ins=p_svar);
+    explicit SvarWidget(QWidget *parent=NULL,GSLAM::Svar &svar_ins=svar);
     virtual ~SvarWidget(){}
 
     void setupUI();

@@ -451,7 +451,7 @@ int RMP_SocketThread::thread_func(void *arg)
 
             msg->data.rewind();
             msg->data.read(command);
-            p_scommand.Call(command);
+            scommand.Call(command);
 
             // delete temp obj
             delete msg;
@@ -531,8 +531,8 @@ int RMessagePassing::begin(string name)
     }
 
     // load self information (IP address, port)
-    node_ip   = p_svar.GetString(name+".ip", node_ip);
-    node_port = p_svar.GetInt(name+".port", node_port);
+    node_ip   = svar.GetString(name+".ip", node_ip);
+    node_port = svar.GetInt(name+".port", node_port);
 
 
     // start message passing system
@@ -569,8 +569,8 @@ int RMessagePassing::begin(string name)
         RMP_Node *pn  = new RMP_Node,
                  *pnm = new RMP_Node;
 
-        nodeMaster_ip   = p_svar.GetString("Master.ip", nodeMaster_ip);
-        nodeMaster_port = p_svar.GetInt("Master.port", 30000);
+        nodeMaster_ip   = svar.GetString("Master.ip", nodeMaster_ip);
+        nodeMaster_port = svar.GetInt("Master.port", 30000);
 
         // set self/master node information
         pn->set(name, node_ip, node_port);

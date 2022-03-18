@@ -67,7 +67,7 @@ Camera Camera::createFromName(const std::string& name)
     SPtr<CameraImpl> impl_result=SPtr<CameraImpl>(new CameraImpl());;
     if(pi::path_exist(name.c_str()))//try to read as file
     {
-        Svar config;
+        GSLAM::Svar config;
         if(config.ParseFile(name)==0)
         {
             config.clear();
@@ -133,17 +133,17 @@ Camera Camera::createFromName(const std::string& name)
     }
     else//try to read from name
     {
-        if(!p_svar.exist(name+".CameraType"))
+        if(!svar.exist(name+".CameraType"))
         {
             cout<<"Can't find paraments for Camera "<<name<<endl;
             return Camera();
         }
 
-        string cameraType=p_svar.GetString(name+".CameraType","NoCamera");
+        string cameraType=svar.GetString(name+".CameraType","NoCamera");
         VecParament para;
-        if(p_svar.exist(name+".Paraments"))
+        if(svar.exist(name+".Paraments"))
         {
-            para=p_svar.get_var(name+".Paraments",para);
+            para=svar.get_var(name+".Paraments",para);
             if((cameraType=="ANTA"||cameraType=="ATAN"||cameraType=="PTAM")&&para.size()==7)
             {
                 impl_result=SPtr<CameraImpl>(new CameraANTA(para[0],para[1],
@@ -162,7 +162,7 @@ Camera Camera::createFromName(const std::string& name)
             }
             else if(cameraType=="OCAM")
             {
-                impl_result=SPtr<CameraOCAM>(new CameraOCAM(p_svar.GetString(name+".File","")));
+                impl_result=SPtr<CameraOCAM>(new CameraOCAM(svar.GetString(name+".File","")));
             }
             else if(cameraType=="Ideal")
             {
@@ -171,18 +171,18 @@ Camera Camera::createFromName(const std::string& name)
         }
         else
         {
-            int width=p_svar.GetInt(name+".width",0);
-            int height=p_svar.GetInt(name+".height",0);
-            double fx=p_svar.GetDouble(name+".fx",0);
-            double fy=p_svar.GetDouble(name+".fy",0);
-            double cx=p_svar.GetDouble(name+".cx",0);
-            double cy=p_svar.GetDouble(name+".cy",0);
-            double w=p_svar.GetDouble(name+".w",0);
-            double k1=p_svar.GetDouble(name+".k1",0);
-            double k2=p_svar.GetDouble(name+".k2",0);
-            double p1=p_svar.GetDouble(name+".p1",0);
-            double p2=p_svar.GetDouble(name+".p2",0);
-            double k3=p_svar.GetDouble(name+".k3",0);
+            int width=svar.GetInt(name+".width",0);
+            int height=svar.GetInt(name+".height",0);
+            double fx=svar.GetDouble(name+".fx",0);
+            double fy=svar.GetDouble(name+".fy",0);
+            double cx=svar.GetDouble(name+".cx",0);
+            double cy=svar.GetDouble(name+".cy",0);
+            double w=svar.GetDouble(name+".w",0);
+            double k1=svar.GetDouble(name+".k1",0);
+            double k2=svar.GetDouble(name+".k2",0);
+            double p1=svar.GetDouble(name+".p1",0);
+            double p2=svar.GetDouble(name+".p2",0);
+            double k3=svar.GetDouble(name+".k3",0);
 
             if((cameraType=="ANTA"||cameraType=="PTAM"))
             {
@@ -199,7 +199,7 @@ Camera Camera::createFromName(const std::string& name)
             }
             else if(cameraType=="OCAM")
             {
-                impl_result=SPtr<CameraOCAM>(new CameraOCAM(p_svar.GetString(name+".File","")));
+                impl_result=SPtr<CameraOCAM>(new CameraOCAM(svar.GetString(name+".File","")));
             }
         }
 

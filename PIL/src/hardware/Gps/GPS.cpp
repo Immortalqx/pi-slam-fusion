@@ -26,14 +26,14 @@ GPS::GPS(string name)
     :pathTable(0.05)
 {
     // FIXME: this may make the timestamp error
-    int64_t dt_time = p_svar.get_var<int64_t>(name+".BaseData",0);
+    int64_t dt_time = svar.get_var<int64_t>(name+".BaseData",0);
     if( dt_time ) {
         DateTime dt;
         dt.fromTimeStamp(dt_time);
         setBaseDate(dt);
     }
 
-    string port = p_svar.GetString(name+".port", "/dev/ttyUSB0");
+    string port = svar.GetString(name+".port", "/dev/ttyUSB0");
     string ext  =pi::path_extname(port);
 
     if(ext==".txt")
@@ -42,7 +42,7 @@ GPS::GPS(string name)
     }
     else
     {
-        portType = p_svar.GetInt(name+".port_type", 3);
+        portType = svar.GetInt(name+".port_type", 3);
         if(portType == 2) //treat as data_manager,no thread will be run
         {
             load(port.c_str());
@@ -65,13 +65,13 @@ GPS::GPS(string name)
 
         if( uart ) {
             uart->port_name = port;
-            uart->baud_rate = p_svar.GetInt(name+".port_speed", 115200);
+            uart->baud_rate = svar.GetInt(name+".port_speed", 115200);
         }
 
-        string  fn_base = p_svar.GetString("fn_autosave", "");
+        string  fn_base = svar.GetString("fn_autosave", "");
         m_fnAutoSave = auto_filename(fn_base);
 
-        dataType = p_svar.GetInt(name+".data_type", 0);
+        dataType = svar.GetInt(name+".data_type", 0);
         if(dataType == 0 )   m_fnAutoSave = m_fnAutoSave + ".bin";
         else                 m_fnAutoSave = m_fnAutoSave + ".txt";
 

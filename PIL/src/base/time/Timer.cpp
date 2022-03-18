@@ -73,10 +73,10 @@ Timer::TCallData::TCallData() :
 
 Timer::~Timer()
 {
-    if(SvarWithType<int>::instance().get_var("Timer.DumpAllStats",1))
+    if(GSLAM::SvarWithType<int>::instance().get_var("Timer.DumpAllStats",1))
     {
         dumpAllStats();
-        SvarWithType<int>::instance()["Timer.DumpAllStats"]=0;
+        GSLAM::SvarWithType<int>::instance()["Timer.DumpAllStats"]=0;
     }
 }
 

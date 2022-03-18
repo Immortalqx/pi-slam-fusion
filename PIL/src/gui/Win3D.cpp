@@ -272,7 +272,7 @@ void Win3D::InsertAxis(SE3<float> pose,float width,float length,bool forver)
 void Win3D::draw()
 {
     //Draw text
-    if(p_svar.GetInt("Win3D.DrawInfoText", 1) ) {
+    if(svar.GetInt("Win3D.DrawInfoText", 1) ) {
         int j=1;
         for(int i=0;i<infos.size();i++)
         {

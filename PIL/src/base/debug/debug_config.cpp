@@ -60,7 +60,7 @@ static int  g_iDebugLevelStackIdx=0;
 void dbg_set_level(int i)
 {
     g_iDebugLevel = i;
-    p_svar.GetInt("DBG_LEVEL", 4) = g_iDebugLevel;
+    svar.GetInt("DBG_LEVEL", 4) = g_iDebugLevel;
 } 
 
 /**
@@ -71,7 +71,7 @@ void dbg_set_level(int i)
  */
 int  dbg_get_level(void)
 {
-    g_iDebugLevel = p_svar.GetInt("DBG_LEVEL", 4);
+    g_iDebugLevel = svar.GetInt("DBG_LEVEL", 4);
     return g_iDebugLevel;
 }
 
@@ -95,7 +95,7 @@ void dbg_push_level(int level)
 
     g_aDebugLevelStack[g_iDebugLevelStackIdx++] = g_iDebugLevel;
     g_iDebugLevel = level;
-    p_svar.GetInt("DBG_LEVEL", 4) = g_iDebugLevel;
+    svar.GetInt("DBG_LEVEL", 4) = g_iDebugLevel;
 }
 
 /**
@@ -117,7 +117,7 @@ int  dbg_pop_level(void)
     }
 
     g_iDebugLevel = g_aDebugLevelStack[--g_iDebugLevelStackIdx];
-    p_svar.GetInt("DBG_LEVEL", 4) = g_iDebugLevel;
+    svar.GetInt("DBG_LEVEL", 4) = g_iDebugLevel;
 
     return g_iDebugLevel;
 }
@@ -199,7 +199,7 @@ void dbg_printf(int level,
     va_list va_params;
 
     // check debug level
-    if( level > p_svar.GetInt("DBG_LEVEL", 4) ) return;
+    if( level > svar.GetInt("DBG_LEVEL", 4) ) return;
 
     // alloc string buffer
     lBuf1 = strlen(szFmtString);

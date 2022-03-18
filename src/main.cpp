@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 
     svar.ParseMain(argc, argv);
 
-    std::string act = svar.GetString("Act", "SLAM");
+    std::string act = svar.GetString("SLAM_Act", "SLAM");
     if ("SLAM" == act)
     {
         QApplication app(svar.i["argc"], (char **) svar.GetPointer("argv"));

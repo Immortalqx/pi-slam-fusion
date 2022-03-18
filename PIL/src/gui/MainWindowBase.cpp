@@ -13,8 +13,8 @@ MainWindowBase::MainWindowBase()
 
 void MainWindowBase::run()
 {
-    int argc=p_svar.GetInt("argc",1);
-    SvarWithType<char**>& inst=SvarWithType<char**>::instance();
+    int argc=svar.GetInt("argc",1);
+    GSLAM::SvarWithType<char**>& inst=GSLAM::SvarWithType<char**>::instance();
     char** argv=new char*[argc];
     if(inst.exist("argv"))
         argv=inst.get_var("argv",argv);

@@ -171,7 +171,7 @@ public:
         int x_tl = tl_new.x - dst_roi_.x;
         int x_br = br_new.x - dst_roi_.x;
 
-        if(p_svar.GetInt("Map2DRender.ShowPyrLaplace",1))
+        if(svar.GetInt("Map2DRender.ShowPyrLaplace",1))
         {
             vector<cv::Mat> pyr_laplaceClone(src_pyr_laplace.size());
             for(int i=0;i<src_pyr_laplace.size();i++)
@@ -375,7 +375,7 @@ bool Map2DRender::Map2DRenderData::prepare(SPtr<Map2DRenderPrepare> prepared)
         double radius=0.5*minh*sqrt((line.x*line.x+line.y*line.y));
         _lengthPixel=2*radius/sqrt(prepared->_camera.w*prepared->_camera.w
                                    +prepared->_camera.h*prepared->_camera.h);
-        _lengthPixel/=p_svar.GetDouble("Map2D.Scale",1);
+        _lengthPixel/=svar.GetDouble("Map2D.Scale",1);
         _lengthPixelInv=1./_lengthPixel;
         _min=_min-pi::Point3d(radius,radius,0);
         _max=_max+pi::Point3d(radius,radius,0);
@@ -395,7 +395,7 @@ bool Map2DRender::Map2DRenderData::prepare(SPtr<Map2DRenderPrepare> prepared)
 }
 
 Map2DRender::Map2DRender(bool thread)
-    :alpha(p_svar.GetInt("Map2D.Alpha",0)),
+    :alpha(svar.GetInt("Map2D.Alpha",0)),
       _valid(false),_thread(thread)
 {
 }
@@ -641,7 +641,7 @@ bool Map2DRender::renderFrames(std::deque<std::pair<cv::Mat,pi::SE3d> >& frames)
         cornersImages[i]=cv::Point((cornersWorld[i].x-min.x)*d->lengthPixelInv(),
                                    (cornersWorld[i].y-min.y)*d->lengthPixelInv());
     }
-    if(p_svar.GetInt("Map2DRender.EnableSeam",1))//find seam
+    if(svar.GetInt("Map2DRender.EnableSeam",1))//find seam
     {
         std::vector<cv::Mat>  seamwarped(frames.size());
         for(int i=0;i<maskwarped.size();i++)
@@ -825,7 +825,7 @@ void Map2DRender::run()
         }
         sleep(10);
     }
-    p_svar.GetInt("ShouldStop")=1;
+    svar.GetInt("ShouldStop")=1;
 }
 
 void Map2DRender::draw()
@@ -918,7 +918,7 @@ void Map2DRender::draw()
                 glTexImage2D(GL_TEXTURE_2D, 0,
                              GL_RGBA, ele->img.cols,ele->img.rows, 0,
                              GL_BGRA, GL_UNSIGNED_BYTE,ele->img.data);
-                if(p_svar.GetInt("ShowTex",0))
+                if(svar.GetInt("ShowTex",0))
                     cv::imshow("tex",ele->img);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,  GL_LINEAR);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_NEAREST);

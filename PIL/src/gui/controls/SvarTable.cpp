@@ -5,7 +5,7 @@
 
 using namespace std;
 
-SvarTable::SvarTable(QWidget *parent,pi::Svar &svar_ins)
+SvarTable::SvarTable(QWidget *parent,GSLAM::Svar &svar_ins)
     : QTableWidget(parent), m_svar(svar_ins)
 {
     setObjectName((QString::fromUtf8("SvarTable")));
@@ -72,9 +72,9 @@ void SvarTable::load(QString filt_string)
     std::list<SvarElement> sl;
 
     //load Int
-    pi::SvarWithType<int>::DataMap i_data=m_svar.i.get_data();
+    GSLAM::SvarWithType<int>::DataMap i_data=m_svar.i.get_data();
 
-    for(pi::SvarWithType<int>::DataIter it=i_data.begin(),iend=i_data.end();it!=iend;it++)
+    for(GSLAM::SvarWithType<int>::DataIter it=i_data.begin(),iend=i_data.end();it!=iend;it++)
     {
         const QString& name=QString::fromStdString(it->first);
         if(dofilt)
@@ -85,8 +85,8 @@ void SvarTable::load(QString filt_string)
     }
 
     //load Double
-    pi::SvarWithType<double>::DataMap d_data=m_svar.d.get_data();
-    for(pi::SvarWithType<double>::DataIter it=d_data.begin(),iend=d_data.end();it!=iend;it++)
+    GSLAM::SvarWithType<double>::DataMap d_data=m_svar.d.get_data();
+    for(GSLAM::SvarWithType<double>::DataIter it=d_data.begin(),iend=d_data.end();it!=iend;it++)
     {
         const QString& name=QString::fromStdString(it->first);
         if(dofilt)
@@ -97,8 +97,8 @@ void SvarTable::load(QString filt_string)
     }
 
     //load String
-    pi::SvarWithType<string>::DataMap s_data=m_svar.s.get_data();
-    for(pi::SvarWithType<string>::DataIter it=s_data.begin(),iend=s_data.end();it!=iend;it++)
+    GSLAM::SvarWithType<string>::DataMap s_data=m_svar.s.get_data();
+    for(GSLAM::SvarWithType<string>::DataIter it=s_data.begin(),iend=s_data.end();it!=iend;it++)
     {
         const QString& name=QString::fromStdString(it->first);
         if(dofilt)
@@ -109,10 +109,10 @@ void SvarTable::load(QString filt_string)
     }
 
     //load Svar
-    if(p_svar.GetInt("Svar.ShowInTable",1))
+    if(svar.GetInt("Svar.ShowInTable",1))
     {
-        pi::Svar::SvarMap sv_data=m_svar.get_data();
-        for(pi::Svar::SvarIter it=sv_data.begin();it!=sv_data.end();it++)
+        GSLAM::Svar::SvarMap sv_data=m_svar.get_data();
+        for(GSLAM::Svar::SvarIter it=sv_data.begin();it!=sv_data.end();it++)
         {
             const QString& name=QString::fromStdString(it->first);
             if(dofilt)
@@ -123,10 +123,10 @@ void SvarTable::load(QString filt_string)
         }
     }
 
-    if(p_svar.GetInt("Scommand.ShowInTable",0))
+    if(svar.GetInt("Scommand.ShowInTable",0))
     {
-        pi::SvarWithType<pi::CallbackVector>::DataMap cb_data=pi::SvarWithType<pi::CallbackVector>::instance().get_data();
-        for(pi::SvarWithType<pi::CallbackVector>::DataIter it=cb_data.begin();it!=cb_data.end();it++)
+        GSLAM::SvarWithType<GSLAM::CallbackVector>::DataMap cb_data=GSLAM::SvarWithType<GSLAM::CallbackVector>::instance().get_data();
+        for(GSLAM::SvarWithType<GSLAM::CallbackVector>::DataIter it=cb_data.begin();it!=cb_data.end();it++)
         {
             const QString& name=QString::fromStdString(it->first);
             if(dofilt)
@@ -184,7 +184,7 @@ void SvarTable::act_cellChanged(int row, int column)
     item(row,1)->setBackgroundColor(QColor(0,255,255));
 }
 
-SvarWidget::SvarWidget(QWidget *parent,pi::Svar &svar_ins)
+SvarWidget::SvarWidget(QWidget *parent,GSLAM::Svar &svar_ins)
     :m_table(this,svar_ins),QWidget(parent)
 {
     setupUI();
@@ -245,7 +245,7 @@ void SvarWidget::btnLoad_clicked(bool checked)
 void SvarWidget::edtFilter_editingFinished(void)
 {
     QString text=m_edtFilter->text();
-    if(p_scommand.Call(text.toStdString()))
+    if(scommand.Call(text.toStdString()))
     {
         m_edtFilter->setText("");
     }

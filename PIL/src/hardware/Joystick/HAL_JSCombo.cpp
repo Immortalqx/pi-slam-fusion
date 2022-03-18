@@ -16,12 +16,12 @@ int HAL_JSComobo::open(const std::string &confName)
 {
     int     i, j;
     int     ret;
-    string  devType = p_svar.GetString(confName + ".devType", "integrated");
+    string  devType = svar.GetString(confName + ".devType", "integrated");
 
     if( m_devOpened ) return -1;
     m_devOpened = 0;
 
-    m_invThrottle = p_svar.GetInt(confName + ".invThrottle", 0);
+    m_invThrottle = svar.GetInt(confName + ".invThrottle", 0);
 
     // stick & button integrated
     if( devType == "integrated" ) {
@@ -32,7 +32,7 @@ int HAL_JSComobo::open(const std::string &confName)
             ret = m_js0.open(i);
             if( ret == 0 ) {
                 // check device name
-                string devName = p_svar.GetString(confName + ".devName",
+                string devName = svar.GetString(confName + ".devName",
                                                 "Thrustmaster T.Flight Hotas X");
                 if( devName != m_js0.m_devName ) {
                     m_js0.close();
@@ -45,8 +45,8 @@ int HAL_JSComobo::open(const std::string &confName)
                 for(j=0; j<JS_AXIS_MAX_NUM; j++)    channelMap.push_back(j);
                 for(j=0; j<JS_BUTTON_MAX_NUM; j++)  btnMap.push_back(j);
 
-                channelMap = p_svar.get_var(confName + ".channelMap", channelMap);
-                btnMap = p_svar.get_var(confName + ".btnMap", btnMap);
+                channelMap = svar.get_var(confName + ".channelMap", channelMap);
+                btnMap = svar.get_var(confName + ".btnMap", btnMap);
                 m_js0.setChannelMap(channelMap);
                 m_js0.setBtnMap(btnMap);
 
@@ -73,7 +73,7 @@ int HAL_JSComobo::open(const std::string &confName)
             ret = m_js0.open(i);
             if( ret == 0 ) {
                 // check device name
-                string devName = p_svar.GetString(confName + ".stick.devName",
+                string devName = svar.GetString(confName + ".stick.devName",
                                                 "Madcatz Saitek Pro Flight X-55 Rhino Stick");
                 if( trim(devName) != trim(m_js0.m_devName) ) {
                     m_js0.close();
@@ -100,7 +100,7 @@ int HAL_JSComobo::open(const std::string &confName)
             ret = m_js1.open(i);
             if( ret == 0 ) {
                 // check device name
-                string devName = p_svar.GetString(confName + ".throt.devName",
+                string devName = svar.GetString(confName + ".throt.devName",
                                                 "Madcatz Saitek Pro Flight X-55 Rhino Throttle");
                 if( trim(devName) != trim(m_js1.m_devName) ) {
                     m_js1.close();
@@ -135,10 +135,10 @@ int HAL_JSComobo::open(const std::string &confName)
         }
 
         // load user defined channel & button maps
-        channelMap0 = p_svar.get_var(confName + ".stick.channelMap", channelMap0);
-        btnMap0     = p_svar.get_var(confName + ".stick.btnMap",     btnMap0);
-        channelMap1 = p_svar.get_var(confName + ".throt.channelMap", channelMap1);
-        btnMap1     = p_svar.get_var(confName + ".throt.btnMap",     btnMap1);
+        channelMap0 = svar.get_var(confName + ".stick.channelMap", channelMap0);
+        btnMap0     = svar.get_var(confName + ".stick.btnMap",     btnMap0);
+        channelMap1 = svar.get_var(confName + ".throt.channelMap", channelMap1);
+        btnMap1     = svar.get_var(confName + ".throt.btnMap",     btnMap1);
 
         for(i=0; i<channelMap0.size(); i++) m_channelMap0[i] = (int) channelMap0[i];
         for(i=0; i<channelMap1.size(); i++) m_channelMap1[i] = (int) channelMap1[i];
