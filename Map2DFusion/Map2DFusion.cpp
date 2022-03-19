@@ -260,7 +260,7 @@ namespace Map2DFusion
 
     void TestSystem::run()
     {
-        std::string act = svar.GetString("Map_Act", "Default");
+        std::string act = svar.GetString("Map.Act", "Default");
         if (act == "TestMap2DItem") TestMap2DItem();
         else if (act == "TestMap2D" || act == "Default") testMap2D();
         else std::cout << "No act " << act << "!\n";

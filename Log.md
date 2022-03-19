@@ -22,8 +22,26 @@
 
 **安排：**
 
-- [ ] 检查pi-slam与map2dfusion是否有共用的参数；
+- [x] 检查pi-slam与map2dfusion是否有共用的参数；
+
+  - [x] “Act”
+
+    map2dfusion的“Act“修改为"Map.Act"
+
+  - [ ] “GPS.origin”
+
+    暂时不打算修改，这个好像没有影响
+
+  - [ ] “Plane”
+
+    同上，应该没有影响
+
+  - [ ] "Camera.Paraments"
+
+    同上
+
 - [ ] 让map2dfusion完全从pi-slam中获取数据；
+
 - [ ] 修改pi-slam-fusion的接口，让pi-slam-fusion可以在仿真环境中使用（和陶志坤沟通）；
 
 
