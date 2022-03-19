@@ -56,6 +56,7 @@ public:
 };
 
 inline bool Dataset::open(const std::string& dataset){
+    //TODO 这里要好好看看
     DatasetPtr impl=DatasetFactory::create(dataset);
     if(impl) {_impl=impl;return _impl->open(dataset);}
     return false;
