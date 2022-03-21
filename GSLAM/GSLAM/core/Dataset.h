@@ -58,6 +58,8 @@ public:
 inline bool Dataset::open(const std::string& dataset){
     //TODO 这里要好好看看
     DatasetPtr impl=DatasetFactory::create(dataset);
+    //St10shared_ptrIN5GSLAM7DatasetEE
+    //std::cout<< typeid(impl).name()<<std::endl;
     if(impl) {_impl=impl;return _impl->open(dataset);}
     return false;
 }
@@ -73,6 +75,7 @@ inline DatasetPtr DatasetFactory::create(std::string dataset)
 {
     std::string extension;
     // The input path could be dataset configuration file or just a folder path
+    //从后往前找到第一个'.'的位置
     size_t dotPosition=dataset.find_last_of('.');
     if(dotPosition!=std::string::npos)// call by extension
     {
@@ -80,7 +83,8 @@ inline DatasetPtr DatasetFactory::create(std::string dataset)
     }
     if(extension.empty()) return DatasetPtr();
 
-    if(!instance()._ext2creator.exist(extension))
+    //extension是扩展名，rtm
+    if(!instance()._ext2creator.exist(extension))//False
     {
         SharedLibraryPtr plugin=Registry::get("libgslamDB_"+extension);
         if(!plugin.get()) return DatasetPtr();
@@ -88,11 +92,13 @@ inline DatasetPtr DatasetFactory::create(std::string dataset)
         if(createFunc) return createFunc();
     }
 
-    if(!instance()._ext2creator.exist(extension)) return DatasetPtr();
+    if(!instance()._ext2creator.exist(extension)) return DatasetPtr();//False
     funcCreateDataset createFunc=instance()._ext2creator.get_var(extension,NULL);
-    if(!createFunc) return DatasetPtr();
+    if(!createFunc) return DatasetPtr();//False
 
-    return createFunc();
+    //这里实际上就是根据文件的后缀来指定一个类来读取数据！
+    //比如NPU数据集用的是rtm格式的，这里返回的就是RTMapper类！
+    return createFunc();//代码最后其实走到了这里！这里最后给出了一个什么？？？
 }
 
 } // end of namespace GSLAM

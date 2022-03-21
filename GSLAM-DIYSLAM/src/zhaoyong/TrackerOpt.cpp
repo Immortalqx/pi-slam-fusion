@@ -371,6 +371,7 @@ bool Tracker::track(const SPtr<MapFrame>& frame)
     }
     if(_handle) _handle->handle(new GSLAM::CurrentFrameEvent(_curFrame));
 
+    //_curFrame->getImage();
     //TODO 从这里往map2dfusion发送数据？？？
     std::pair<std::string, pi::SE3d> trans_frame(std::to_string(_curFrame->timestamp()), _curFrame->getPose());
     Trans.product(trans_frame);

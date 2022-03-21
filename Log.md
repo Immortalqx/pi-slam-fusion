@@ -18,6 +18,25 @@
 
     > 很好！你们沟通好，看看怎么把虚拟的数据接入进来
 
+### 3月20日-3月21日
+
+**安排：**
+
+- [ ] 搞懂pi-slam里面是如何读取和处理数据的！
+- [ ] 让map2dfusion完全从pi-slam中获取数据
+
+**问题：**
+
+这两天以看代码为主。
+
+- 让map2dfusion完全从pi-slam获取数据就必须搞清楚`DatasetFactory::create(dataset);`里面发生了什么。
+
+  修改pi-slam-fusion接口让代码实时运行，好像也要搞清楚上面这个代码做了什么。
+
+- 应该是根据后缀名来选择对应的类处理数据，比如这里的后缀是`rtm`，采用的类是`RTMapper`
+
+- 还需要找到GImage和cv::Mat的联系，找到之后就可以传递给map2dfusion了！！！
+
 ### 3月19日
 
 **安排：**
@@ -43,7 +62,6 @@
 - [ ] 让map2dfusion完全从pi-slam中获取数据；
 
 - [ ] 修改pi-slam-fusion的接口，让pi-slam-fusion可以在仿真环境中使用（和陶志坤沟通）；
-
 
 **问题：**
 

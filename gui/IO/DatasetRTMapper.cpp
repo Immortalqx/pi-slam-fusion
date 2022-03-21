@@ -159,6 +159,7 @@ public:
     // 14: long,lat,alt,sigmaX,sigmaY,sigmaZ,Height,sigmaH,pitch,yaw,roll,sigmaP,sigmaR,sigmaP
 };
 
+// 这个是在跑数据集的时候被使用到的类！！！
 class DatasetRTMapper : public Dataset
 {
 public:
