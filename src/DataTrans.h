@@ -5,7 +5,7 @@
 #include <mutex>
 #include <condition_variable>
 
-#define Trans DataTrans<std::pair<std::string, pi::SE3d>>::Instance()
+#define Trans DataTrans<std::pair<cv::Mat, pi::SE3d>>::Instance()
 #define Trans_Plane DataTrans<pi::SE3d>::Instance()
 
 template<typename T>
@@ -58,7 +58,7 @@ public:
         {
             //生产者等待"产品队列缓冲区不为满"这一条件发生.
             //m_notFull.wait(m_mutex);
-            
+
             //如果满了就把前面的丢掉！
             m_queue.pop_front();
         }

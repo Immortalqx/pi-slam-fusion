@@ -37,6 +37,8 @@ namespace Map2DFusion
 
         int testMap2D();
 
+        int Map2DWithSLAM();
+
         virtual void run();
 
         std::string datapath;

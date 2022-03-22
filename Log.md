@@ -8,7 +8,7 @@
 
     > 可以的，使用老的PIL的部分的代码修改一下，把include头文件改成最新的svar 
 
-- [ ] 让map2dfusion完全从pi-slam中获取数据；
+- [x] 让map2dfusion完全从pi-slam中获取数据；
 
   比如，让map2dfusion使用pi-slam已经读取的图片，而不是自己再从数据集中读取同一张图片；
 
@@ -18,12 +18,23 @@
 
     > 很好！你们沟通好，看看怎么把虚拟的数据接入进来
 
+### 3月22日-3月23日
+
+**安排：**
+
+- [ ] 看[代码]( https://gitee.com/pi-lab/pi-slam/blob/ROS/gui/IO/DatasetROS.cpp)，学习Dataset的使用，想办法用自己的数据集跑起来
+- [ ] 在Airsim里面把程序实时的运行起来
+
+**问题：**
+
+
+
 ### 3月20日-3月21日
 
 **安排：**
 
-- [ ] 搞懂pi-slam里面是如何读取和处理数据的！
-- [ ] 让map2dfusion完全从pi-slam中获取数据
+- [x] 搞懂pi-slam里面是如何读取和处理数据的！
+- [x] 让map2dfusion完全从pi-slam中获取数据
 
 **问题：**
 

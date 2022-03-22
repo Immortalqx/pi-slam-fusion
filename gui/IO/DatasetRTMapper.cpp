@@ -35,7 +35,7 @@ class RTMapperFrame : public GSLAM::MapFrame
 {
 public:
     RTMapperFrame(const GSLAM::FrameID& id=0,const double& timestamp=0)
-        :GSLAM::MapFrame(id,timestamp),_status(SLAMFRAME_READY){}
+            :GSLAM::MapFrame(id,timestamp),_status(SLAMFRAME_READY){}
 
     virtual std::string type()const{return "RTMapperFrame";}
 
@@ -53,20 +53,20 @@ public:
                 if(qimage.format()==QImage::Format_RGB32)
                 {
                     return GImage(qimage.height(),qimage.width(),
-                               GImageType<uchar,4>::Type,qimage.bits(),true);
+                                  GImageType<uchar,4>::Type,qimage.bits(),true);
                 }
                 else if(qimage.format()==QImage::Format_RGB888){
                     return GImage(qimage.height(),qimage.width(),
-                               GImageType<uchar,3>::Type,qimage.bits(),true);
+                                  GImageType<uchar,3>::Type,qimage.bits(),true);
                 }
                 else if(qimage.format()==QImage::Format_Indexed8)
                 {
                     return GImage(qimage.height(),qimage.width(),
-                               GImageType<uchar,1>::Type,qimage.bits(),true);
+                                  GImageType<uchar,1>::Type,qimage.bits(),true);
                 }
             }
-            else  
-				return _image;
+            else
+                return _image;
         }
         else return _thumbnail;
     }   // Just return the image if only one channel is available
@@ -159,13 +159,12 @@ public:
     // 14: long,lat,alt,sigmaX,sigmaY,sigmaZ,Height,sigmaH,pitch,yaw,roll,sigmaP,sigmaR,sigmaP
 };
 
-// 这个是在跑数据集的时候被使用到的类！！！
 class DatasetRTMapper : public Dataset
 {
 public:
     DatasetRTMapper(const std::string& name="")
-        :_frameId(0),
-         _name(name)
+            :_frameId(0),
+             _name(name)
     {
     }
 
@@ -205,14 +204,13 @@ public:
         return ret;
     }
 
-
     bool isOpened()
     {
         return _camera.isValid() && _frames.size();
     }
 
     bool openRTM_Svar(Svar& var, const std::string& name)
-	{
+    {
         _frames.clear();
         _name = name;
         string prjFile = var.GetString("Svar.ParsingFile", "");
@@ -419,6 +417,7 @@ public:
         return img;
     }
 
+    //主要用来给容器插入图片数据
     void run()
     {
         while (!_shouldStop)
@@ -429,7 +428,7 @@ public:
                 continue;
             }
 
-            auto fr = prepareFrame();
+            auto fr = prepareFrame(); //读取一帧 给路径和时间戳
             if( !fr ) break;
 
             _preparedFrames.push_back(fr);
@@ -478,7 +477,7 @@ public:
     GSLAM::Camera    _camera;
     string           _name, _cameraName;
 
-    std::vector<SPtr<RTMapperFrame> >   _frames;
+    std::vector<SPtr<RTMapperFrame> >   _frames; //存文件里面的照片路径
 
     std::thread      _prepareThread;
     bool             _shouldStop;
