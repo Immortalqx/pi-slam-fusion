@@ -22,12 +22,23 @@
 
 **安排：**
 
-- [ ] 看[代码]( https://gitee.com/pi-lab/pi-slam/blob/ROS/gui/IO/DatasetROS.cpp)，学习Dataset的使用，想办法用自己的数据集跑起来
-- [ ] 在Airsim里面把程序实时的运行起来
+- [ ] 看[代码]( https://gitee.com/pi-lab/pi-slam/blob/ROS/gui/IO/DatasetROS.cpp)，先把能修改过来的修改过来，保证能够编译通过；
+- [ ] 学习Dataset的使用，想办法用自己的数据集跑起来；
+- [ ] 在Airsim里面把程序实时的运行起来；
 
 **问题：**
 
+- 目前把ROS加进去还编译不起来，有报错，又是未定义的引用。类似下面这种的：
 
+  ```
+  对‘cv_bridge::toCvCopy(boost::shared_ptr<sensor_msgs::Image_<std::allocator<void> > const> const&, std::string const&)’未定义的引用
+  ```
+
+- 看了一些网上关于上面这种问题的讨论，他们觉得更换gcc、g++版本有用。
+
+  但是这项目opencv和pi-slam等都用的4.8版本，更换版本可能问题会很多。（目前尝试了一下，感觉问题比较大）
+
+- 
 
 ### 3月20日-3月21日
 

@@ -20,6 +20,9 @@ normal_build()
 		 -DCMAKE_C_COMPILER=/usr/bin/gcc-4.8 \
 		 -DOpenCV_DIR=/usr/local/opencv_2.4.9/share/OpenCV \
 		 ..
+
+	#cmake -DOpenCV_DIR=/usr/local/opencv_2.4.9/share/OpenCV ..
+
 	#flag1=#?
 	
 	make -j12
