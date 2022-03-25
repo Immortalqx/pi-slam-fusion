@@ -18,6 +18,32 @@
 
     > 很好！你们沟通好，看看怎么把虚拟的数据接入进来
 
+### 3月25日-3月27日
+
+**安排：**
+
+- [ ] 更新代码，用新版本gcc、g++
+  - [ ] 尝试pi-slam的ROS分支的编译
+  - [ ] 看[代码]( https://gitee.com/pi-lab/pi-slam/blob/ROS/gui/IO/DatasetROS.cpp)，先把能修改过来的修改过来，保证能够编译通过；
+- [x] 从Airsim中获取数据集，整理一个数据集用于之后的测试
+- [ ] 学习Dataset的使用，想办法用自己的数据集跑起来；
+- [ ] 在Airsim里面把程序实时的运行起来；
+
+**问题：**
+
+- 尝试去编译pi-slam的ROS分支，但是报错了：
+
+  ```
+  CMake Error at cmake/FindCUDA.cmake:344 (message):
+    parse_cubin.cmake not found in /home/immortalqx/Lab/pi-slam/cmake/FindCUDA
+  ```
+
+  目前还没有解决这个问题。
+
+- 感觉改代码可能问题会比较多，目前先试试看能不能直接在Airsim里面录制的数据集上跑通，
+
+  然后再想办法修改代码，添加ROS节点、更换opencv版本、编译器版本等
+
 ### 3月22日-3月23日
 
 **安排：**
@@ -37,8 +63,6 @@
 - 看了一些网上关于上面这种问题的讨论，他们觉得更换gcc、g++版本有用。
 
   但是这项目opencv和pi-slam等都用的4.8版本，更换版本可能问题会很多。（目前尝试了一下，感觉问题比较大）
-
-- 
 
 ### 3月20日-3月21日
 
